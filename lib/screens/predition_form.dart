@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 
 class PreditionForm extends StatelessWidget {
   var formkey = GlobalKey<FormState>();
@@ -14,8 +15,8 @@ class PreditionForm extends StatelessWidget {
         appBar: AppBar(
           title:
               const Text("prediction", style: TextStyle(color: Colors.black)),
-          backgroundColor: Colors.white,
           elevation: 10.0,
+          backgroundColor: HexColor('#37465b'),
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               color: Colors.black,

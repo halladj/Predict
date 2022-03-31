@@ -9,7 +9,7 @@ class GeneratedQR extends StatelessWidget {
       appBar: AppBar(
 //            leading: const Icon(Icons.logo_dev)          ,
         title: const Text("GeneratedQR", style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         elevation: 10.0,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
