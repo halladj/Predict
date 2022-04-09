@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:proto/components/components.dart';
 
 class PreditionForm extends StatelessWidget {
   var formkey = GlobalKey<FormState>();
@@ -12,24 +13,9 @@ class PreditionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title:
-              const Text("prediction", style: TextStyle(color: Colors.black)),
-          elevation: 10.0,
-          backgroundColor: HexColor('#37465b'),
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              color: Colors.black,
-              iconSize: 34.0,
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.logo_dev),
-                color: Colors.black),
-          ],
+        appBar: CustomAppBar(
+          appBar: AppBar(),
+          titleText: "Predidiction Form",
         ),
         body: SingleChildScrollView(
           child: Padding(

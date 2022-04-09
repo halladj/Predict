@@ -1,63 +1,46 @@
 import "package:flutter/material.dart";
-import 'package:flutter_hex_color/flutter_hex_color.dart';
-import "screens/screens.dart";
-import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:proto/home/home_cubit.dart';
+import 'package:proto/home/home_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-//TODO implement deep link to allow QR scanneing duntionality
-class Home extends StatefulWidget {
+//TODO implement deep link to allow QR scanneing funtionality
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  //add vars and funcs
-  int _selectedIndex = 0;
-
-  static List<Widget> pages = <Widget>[
-    const QRCodeScanner(),
-    const Hub(),
-    const GoogleAssistant(),
-  ];
-
-  void _onItemTapped(int index) {
-    //u get access to index vai cluser
-    setState(() => {_selectedIndex = index});
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        //backgroundColor: Colors.white,
-        //elevation: 10.0,
-        leading: Icon(Icons.logo_dev, color: HexColor("#726eff")),
-        title: Text(
-          "ProtoType",
-          style: Theme.of(context).textTheme.headline6,
+    final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
+      return Scaffold(
+        appBar: AppBar(
+          //elevation: 10.0,
+          leading: const Icon(Icons.logo_dev),
+          title: const Text("ProtoType"),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.sunny),
+              onPressed: () {
+                homeCubit.changeTheme();
+              },
+            )
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.sunny, color: HexColor("#726eff")),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          //selectedItemColor: Colors.black,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.qr_code_scanner_rounded), label: "QR"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_filled), label: "Hub"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_rounded), label: "Google Assistant"),
-          ]),
-    );
+        body: homeCubit.pages[homeCubit.selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            //selectedItemColor: Colors.black,
+            currentIndex: homeCubit.selectedIndex,
+            onTap: (index) {
+              homeCubit.changeButtomNavIndex(index);
+            },
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.qr_code_scanner_rounded), label: "QR"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_filled), label: "Hub"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person_rounded), label: "Google Assistant"),
+            ]),
+      );
+    });
   }
 }
 

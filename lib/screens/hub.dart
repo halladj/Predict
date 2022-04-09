@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
-import "../components/components.dart";
+import "package:proto/components/components.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/home/home_cubit.dart';
 
 class Hub extends StatelessWidget {
   const Hub({Key? key}) : super(key: key);

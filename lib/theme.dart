@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 
@@ -69,16 +70,26 @@ class CustomTheme {
           },
         ),
       ),
+      //Some Global Stuff
       primaryColor: HexColor("#726eff"),
       primarySwatch: Colors.purple,
-      appBarTheme: const AppBarTheme(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-      ),
+      //AppBar Styles
+      //
+      appBarTheme: AppBarTheme(
+          iconTheme: const IconThemeData(color: Colors.black),
+          //actionsIconTheme: ,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          titleTextStyle: lightTextTheme.headline6,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarBrightness: Brightness.light)),
+      //flaotingActiomBotton
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
       ),
+      //BottomNav Styles
+      //
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Colors.green,
       ),
@@ -93,13 +104,18 @@ class CustomTheme {
     //#37465b
     //#212b3b
     return ThemeData(
+        brightness: Brightness.dark,
+        //flaotingActiomBotton
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: HexColor("#726eff"),
         ),
+        //BottomNav Styles
+        //
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: HexColor('#37465b'),
             unselectedItemColor: HexColor('#0BC6AB'),
             selectedItemColor: HexColor('#5affe7')),
+        //TextTheme
         textTheme: const TextTheme(
             headline4: TextStyle(
                 color: Color(0xffb3b2b2), fontWeight: FontWeight.w500),
@@ -108,12 +124,18 @@ class CustomTheme {
             ),
             headline6: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 18)),
+        //Some Global Stuff
         scaffoldBackgroundColor: HexColor("#212b3b"),
         primarySwatch: ourPurple,
+        //AppBar Styles
+        //
         appBarTheme: AppBarTheme(
-          elevation: 10,
-          backgroundColor: HexColor('#37465b'),
-        ),
+            iconTheme: IconThemeData(color: coolPurple[50]),
+            elevation: 10,
+            backgroundColor: HexColor('#37465b'),
+            titleTextStyle: lightTextTheme.headline6,
+            systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarBrightness: Brightness.dark)),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor:
