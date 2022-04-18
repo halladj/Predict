@@ -3,7 +3,6 @@ import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-//TODO implement deep link to allow QR scanneing funtionality
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
   @override

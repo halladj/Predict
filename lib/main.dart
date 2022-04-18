@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/home/home_cubit.dart';
+import 'package:proto/home/home_states.dart';
 import "home.dart";
 import "screens/screens.dart";
 import "./theme.dart";
 import 'package:provider/provider.dart';
+import "./helpers/cache_helper.dart";
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() {
+  return BlocOverrides.runZoned(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await CacheHelper.init();
+    bool isDarkTheme = CacheHelper.getData(key: 'darkTheme') ?? false;
+    CacheHelper.getData(key: "darkTheme");
+    runApp(MyApp(
+      isDarkTheme: isDarkTheme,
+    ));
+  });
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.isDarkTheme}) : super(key: key);
+  final bool isDarkTheme;
 
   @override
   Widget build(BuildContext context) {
-    //final ThemeCubit themeCubit = BlocProvider.of<ThemeCubit>(context);
+    //final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return BlocProvider(
-        create: (BuildContext context) => HomeCubit(),
-        child: Consumer<HomeCubit>(
-          builder: (_, homeCubit, __) {
+        create: (BuildContext context) =>
+            HomeCubit()..changeTheme(isDarkTheme: isDarkTheme),
+        child: BlocConsumer<HomeCubit, HomeState>(
+          builder: (context, state) {
             return MaterialApp(
               title: 'ProtoType',
-              theme: homeCubit.darkTheme
+              theme: context.read<HomeCubit>().darkTheme
                   ? CustomTheme.light()
                   : CustomTheme.dark(),
               initialRoute: "/",
@@ -37,6 +49,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
             );
           },
+          listener: (BuildContext context, Object? state) {},
         ));
   }
 }

@@ -17,6 +17,11 @@ dependencies:
   google_fonts: ^2.1.0
   bloc: ^8.0.2
   flutter_bloc: ^8.0.1
+  qr_code_scanner: ^0.7.0
+  qr_flutter: ^4.0.0
+  shared_preferences: ^2.0.13
+  flow_builder: ^0.0.6
+  flutter_hooks: ^0.18.3
 
 dev_dependencies:
   flutter_test:

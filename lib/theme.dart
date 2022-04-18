@@ -90,8 +90,8 @@ class CustomTheme {
       ),
       //BottomNav Styles
       //
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: coolPurple[100],
       ),
       textTheme: lightTextTheme,
     );
@@ -104,7 +104,7 @@ class CustomTheme {
     //#37465b
     //#212b3b
     return ThemeData(
-        brightness: Brightness.dark,
+        //brightness: Brightness.dark,
         //flaotingActiomBotton
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: HexColor("#726eff"),
@@ -113,8 +113,10 @@ class CustomTheme {
         //
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: HexColor('#37465b'),
-            unselectedItemColor: HexColor('#0BC6AB'),
-            selectedItemColor: HexColor('#5affe7')),
+            //unselectedItemColor: HexColor('#0BC6AB'),
+            unselectedItemColor: HexColor('#5B58CC'),
+            //selectedItemColor: HexColor('#5affe7')
+            selectedItemColor: coolPurple[700]),
         //TextTheme
         textTheme: const TextTheme(
             headline4: TextStyle(
