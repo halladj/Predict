@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import "package:flutter/material.dart";
 import 'package:proto/components/components.dart';
+import "package:proto/prediction_form/model/pc.model.dart";
 
 class PredictionCard extends StatelessWidget {
-  const PredictionCard({Key? key}) : super(key: key);
+  const PredictionCard({Key? key, required this.price}) : super(key: key);
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -106,15 +106,15 @@ class PredictionCard extends StatelessWidget {
               child: Card(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
-                      "10,000",
+                      price.toString(),
                       style: TextStyle(fontSize: 40.0),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8.0,
                     ),
-                    Text(
+                    const Text(
                       "DZD",
                       style: TextStyle(
                           fontSize: 40.0, fontWeight: FontWeight.bold),

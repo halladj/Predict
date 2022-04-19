@@ -1,14 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:proto/components/components.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flow_builder/flow_builder.dart';
-import "package:proto/components/components.dart";
+import 'package:dio/dio.dart';
 
 import "package:proto/prediction_form/forms/forms.dart";
-
-part 'prediction_form.freezed.dart';
-part 'prediction_form.g.dart';
+import "package:proto/prediction_form/model/pc.model.dart";
 
 class PredictionForm extends HookWidget {
   //var formkey = GlobalKey<FormState>();
@@ -22,6 +19,7 @@ class PredictionForm extends HookWidget {
   Widget build(BuildContext context) {
     final _pcInfo =
         useState<dynamic>(const PcInfo(brand: "", cpuBrand: "", gpuBrand: ""));
+    final price = useState<int>(0);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -37,10 +35,14 @@ class PredictionForm extends HookWidget {
                   onPressed: () async {
                     _pcInfo.value = await Navigator.of(context)
                         .push(OnboardingFlow.route());
+                    price.value = await getPrice(_pcInfo.value);
+                    print(price.value);
                   },
                   child: const Text('Oky Lets Goooooo'),
                 )
-              : const PredictionCard()),
+              : PredictionCard(
+                  price: price.value,
+                )),
     );
   }
 }
@@ -56,11 +58,11 @@ class OnboardingFlow extends StatelessWidget {
     return Scaffold(
       body: FlowBuilder<PcInfo>(
         state: const PcInfo(),
-        onGeneratePages: (profile, pages) {
+        onGeneratePages: (pc, pages) {
           return [
             MaterialPage(child: FirstForm()),
-            if (profile.brand != "") MaterialPage(child: SeconedForm()),
-            if (profile.cpuBrand != "") MaterialPage(child: ThirdForm()),
+            if (pc.brand != "") MaterialPage(child: SeconedForm()),
+            if (pc.gpuBrand != "") MaterialPage(child: ThirdForm()),
           ];
         },
       ),
@@ -68,13 +70,14 @@ class OnboardingFlow extends StatelessWidget {
   }
 }
 
-@freezed
-class PcInfo with _$PcInfo {
-  const factory PcInfo(
-      {@Default("") String brand,
-      @Default("") String cpuBrand,
-      @Default("") String gpuBrand}) = _PcInfo;
-
-  factory PcInfo.fromJson(Map<String, dynamic> json) => _$PcInfoFromJson(json);
+getPrice(PcInfo data) async {
+  try {
+    var response =
+        await Dio().post('http://192.168.1.18:3000', data: data.toJson());
+    print(response.data);
+    return response.data['price'];
+  } catch (e) {
+    print(e);
+  }
 }
 

@@ -13,7 +13,7 @@ class Prediction extends StatelessWidget {
           titleText: "Predicetion Page",
         ),
         body: const Padding(
-            padding: EdgeInsets.all(18.0), child: PredictionCard()
+            padding: EdgeInsets.all(18.0), child: PredictionCard(price: 10000)
             /* Container(
             color: Colors.purple,
             child:Center(

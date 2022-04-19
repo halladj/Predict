@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:proto/prediction_form/prediction_form.dart';
+import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:flow_builder/flow_builder.dart';
 
 class SeconedForm extends HookWidget {
