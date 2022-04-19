@@ -22,6 +22,7 @@ dependencies:
   shared_preferences: ^2.0.13
   flow_builder: ^0.0.6
   flutter_hooks: ^0.18.3
+  freezed_annotation:
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,11 @@ dev_dependencies:
   bloc_test: ^9.0.2
   mocktail: ^0.2.0
   integration_test:
+  build_runner:
+  freezed:
+  json_serializable:
+
+
 
 flutter:
 
