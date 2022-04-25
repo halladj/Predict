@@ -36,27 +36,27 @@ class CustomTheme {
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: Colors.white,
+      color: coolPurple[800],
     ),
     headline1: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
-      color: Colors.white,
+      color: coolPurple[800],
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: Colors.white,
+      color: coolPurple[800],
     ),
     headline3: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: coolPurple[800],
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: coolPurple[800],
     ),
   );
 
@@ -119,8 +119,8 @@ class CustomTheme {
             selectedItemColor: coolPurple[700]),
         //TextTheme
         textTheme: const TextTheme(
-            headline4: TextStyle(
-                color: Color(0xffb3b2b2), fontWeight: FontWeight.w500),
+            headline4:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.w500,fontSize: 18),
             bodyText2: TextStyle(
               color: Color(0xffb3b2b2),
             ),

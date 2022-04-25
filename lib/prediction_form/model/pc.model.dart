@@ -17,19 +17,20 @@ class PcInfo with _$PcInfo {
     //TODO add these to SeconedForm
     @Default("") String gpuBrand,
     @Default("") String gpuNumberIdentifier,
-    @Default(0) int gpuVram,
+    @Default(0)
+        int gpuVram, //possibe problem here check it latter <<seconedForm>>
     @Default("") String gpuWordsIdentifier,
     @Default(0) int ram,
-    @Default(0.0) double ramFrequency,
+    @Default(0.0) double ramFrequency, //recheck the type (int????)
     @Default("") String ramType,
     //TODO add these to the ThirdForm
     @Default(0) int ssd,
     @Default(0) int screenRefreshRate,
     @Default(0.0) double screenSize,
     @Default("") String screenResolution,
-    @Default(false) bool antiGlare,
-    @Default(false) bool touchScreen,
-    @Default(false) bool state,
+    @Default(0) int antiGlare,
+    @Default(0) int touchScreen,
+    @Default(0) int state,
   }) = _PcInfo;
 
   factory PcInfo.fromJson(Map<String, dynamic> json) => _$PcInfoFromJson(json);

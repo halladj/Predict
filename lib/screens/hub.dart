@@ -15,11 +15,11 @@ class Hub extends StatelessWidget {
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const MainCard(),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/predition_form');
-                },
-                child: const Text("Predition Form"))
+            //ElevatedButton(
+            //    onPressed: () {
+            //      Navigator.pushNamed(context, '/predition_form');
+            //},
+            //child: const Text("Predition Form"))
           ],
         ),
       ),

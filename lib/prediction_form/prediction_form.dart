@@ -61,8 +61,8 @@ class OnboardingFlow extends StatelessWidget {
         onGeneratePages: (pc, pages) {
           return [
             MaterialPage(child: FirstForm()),
-            if (pc.brand != "") MaterialPage(child: SeconedForm()),
-            if (pc.gpuBrand != "") MaterialPage(child: ThirdForm()),
+            if (pc.hdd != 0) MaterialPage(child: SeconedForm()),
+            if (pc.ramType != "") MaterialPage(child: ThirdForm()),
           ];
         },
       ),

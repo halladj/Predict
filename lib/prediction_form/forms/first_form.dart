@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-//import "dart:convert";
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -42,6 +41,9 @@ class FirstForm extends HookWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         //TODO ADD A CUSTOM FORMFIELD WIDGET
+
+                        //BRAND FIELD
+                        //MAYBE PUT A DROPDOWN THING HERE OR SOMETHING
                         TextFormField(
                           autofocus: true,
                           controller: brandController,
@@ -62,6 +64,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //CPU BRAND FIELD
+                        //I THING A 2 VALUE SLIDER WOULD BE NICE
                         TextFormField(
                           controller: cpuBrandController,
                           keyboardType: TextInputType.text,
@@ -81,6 +85,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //CPU FAMILY
+                        //
                         TextFormField(
                           controller: cpuFamilyController,
                           keyboardType: TextInputType.text,
@@ -100,6 +106,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //CPU MODIFIER
+                        //
                         TextFormField(
                           controller: cpuModifierController,
                           keyboardType: TextInputType.text,
@@ -119,6 +127,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //CPU FREQUENCY
+                        //
                         TextFormField(
                           controller: cpuFrequencyController,
                           keyboardType: TextInputType.number,
@@ -139,6 +149,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        //CPU NUMBER IDENTIFIER
+                        //DO SOME CHANGES TO THE STYLE
                         TextFormField(
                           controller: cpuNumberIdentifierController,
                           keyboardType: TextInputType.text,
@@ -159,6 +171,8 @@ class FirstForm extends HookWidget {
                         const SizedBox(
                           height: 20,
                         ),
+                        // HDD STORAGE
+                        // A SLIDER WOULD LOOK GOOD HERE
                         TextFormField(
                           controller: hddController,
                           keyboardType: TextInputType.number,
