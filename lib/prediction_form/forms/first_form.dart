@@ -1,216 +1,260 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:proto/prediction_form/model/cpu/cpu.model.dart';
+import 'package:proto/prediction_form/model/gpu/gpu.model.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:flow_builder/flow_builder.dart';
+import 'package:proto/theme.dart';
 import 'package:proto/components/components.dart';
 
 class FirstForm extends HookWidget {
-  //TODO add the controllers and the form key
-  var formkey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   var brandController = TextEditingController();
-  var cpuBrandController = TextEditingController();
-  var cpuFamilyController = TextEditingController();
-  var cpuFrequencyController = TextEditingController();
-  var cpuModifierController = TextEditingController();
-  var cpuNumberIdentifierController = TextEditingController();
-  var hddController = TextEditingController();
+  var cpuController = TextEditingController();
+  var gpuController= TextEditingController();
+  var ramController = TextEditingController();
+  var ramTypeController = TextEditingController();
+  var ramFrequencyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     final _brand = useState<String>("");
-    final _cpuBrand = useState<String>("");
-    final _cpuFamily = useState<String>("");
-    final _cpuFrequency = useState<double>(0.0);
-    final _cpuModifier = useState<String>("");
-    final _cpuNumberIdentifier = useState<String>("");
-    final _hdd = useState<int>(0);
+    final _cpu= useState<CPU>(const CPU());
+    final _gpu= useState(const GPU());
+    final _ram= useState<int>(0);
+    final _ramType= useState<String>("");
+    final _ramFrequency= useState<double>(0);
+    final _state= useState<int>(0);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Brand')),
+        //appBar: AppBar(title: const Text('Brand')),
         body: Container(
-          padding: const EdgeInsets.all(8.0),
-          alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 10, left: 20, right: 20),
-                child: Form(
-                    key: formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        //TODO ADD A CUSTOM FORMFIELD WIDGET
+      // padding: const EdgeInsets.all(8.0),
+      height: height,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [CustomColors.upperGradientColor, CustomColors.lowerGradientColor],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: SingleChildScrollView(
+          //insert the column here so we can put that logo
+          child: Container(
+              margin: const EdgeInsets.fromLTRB(10, 40, 10, 0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Form(
+                  key: formKey,
+                  child: Column(
 
-                        //BRAND FIELD
-                        //MAYBE PUT A DROPDOWN THING HERE OR SOMETHING
-                        TextFormField(
-                          autofocus: true,
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const SizedBox(
+                      //height: 200 ,
+                      child: Image(image: AssetImage("assets/logo2.png")),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      //MAYBE PUT A DROPDOWN THING HERE OR SOMETHING
+                      CustomTextField(
+                          label: "Brand",
+                          icon: Icons.euro,
                           controller: brandController,
-                          keyboardType: TextInputType.text,
+                          onChanged: (value) => _brand.value= value,
+                          keyboardInputType: TextInputType.text,
+                          autoFocus: true),
+                      const SizedBox(height: 10.0),
+                      //TODO make it a reusable component
+                      TypeAheadFormField<CPU?>(
+                          textFieldConfiguration: TextFieldConfiguration(
+                            controller: cpuController,
+                            decoration: InputDecoration(
+                              labelText: "CPU ",
+                              labelStyle: TextStyle(fontSize: 16.0, color: CustomColors.buttonColor),
+                              prefixIcon: Icon(Icons.car_rental, color: CustomColors.buttonColor),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: CustomColors.buttonColor),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: CustomColors.buttonColor),
+                              ),
+                            ),
+                          ),
+                          onSuggestionSelected: (CPU? suggestion){
+                            final cpu= suggestion!;
+
+                            _cpu.value= _cpu.value.copyWith(
+                              name: cpu.name,
+                              brand: cpu.brand,
+                              modifier: cpu.modifier,
+                              generation: cpu.generation,
+                              numberIdentifier: cpu.numberIdentifier,
+                              family: cpu.family,
+                              frequency: cpu.frequency,
+                            );
+                            cpuController.text= cpu.name;
+                          },
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'brand Must Not Be Embty';
+                            var newValue= value!;
+                            if (newValue.isEmpty) {
+                              return 'CPU Field cant be Empty';
                             }
                           },
-                          onChanged: (value) => _brand.value = value,
+                          itemBuilder: (context, CPU? suggestion){
+                            final cpu = suggestion!;
+                            return ListTile(
+                              title: Text(cpu.name),
+                            );
+                          },
+                          suggestionsCallback: Api.getCpuSuggetions,
+                          noItemsFoundBuilder: (context)=> const SizedBox(
+                            height: 100,
+                            child: Center(
+                              child: Text(
+                                  "No CPU was found.",
+                                  style: TextStyle(fontSize: 24, ),
+                              ),
+                            ),
+                          ),
+                      ),
+                      const SizedBox(height: 10.0),
+                      TypeAheadFormField<GPU?>(
+                        textFieldConfiguration: TextFieldConfiguration(
+                          controller: gpuController,
                           decoration: InputDecoration(
-                              labelText: 'Brand',
-                              hintText: 'Enter The Brand',
-                              suffixIcon: const Icon(Icons.euro_symbol),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
+                            labelText: "GPU",
+                            labelStyle: TextStyle(fontSize: 16.0, color: CustomColors.buttonColor),
+                            prefixIcon: Icon(Icons.cake, color: CustomColors.buttonColor),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: CustomColors.buttonColor),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: CustomColors.buttonColor),
+                            ),
+                          ),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        onSuggestionSelected: (GPU? suggestion){
+                          final gpu= suggestion!;
+
+                          _gpu.value= _gpu.value.copyWith(
+                            name: gpu.name,
+                            brand: gpu.brand,
+                            wordsIdentifier: gpu.wordsIdentifier,
+                            numberIdentifier: gpu.numberIdentifier,
+                            vram: gpu.vram,
+                            frequency: gpu.frequency,
+                          );
+                          gpuController.text= gpu.name;
+                        },
+                        validator: (value) {
+                          var newValue= value!;
+                          if (newValue.isEmpty) {
+                            return 'GPU Field cant be Empty';
+                          }
+                        },
+                        itemBuilder: (context, GPU? suggestion){
+                          final gpu = suggestion!;
+                          return ListTile(
+                            title: Text(gpu.name),
+                          );
+                        },
+                        suggestionsCallback: Api.getGpuSuggetions,
+                        noItemsFoundBuilder: (context)=> const SizedBox(
+                          height: 100,
+                          child: Center(
+                            child: Text(
+                              "No CPU was found.",
+                              style: TextStyle(fontSize: 24, ),
+                            ),
+                          ),
                         ),
-                        //CPU BRAND FIELD
-                        //I THING A 2 VALUE SLIDER WOULD BE NICE
-                        TextFormField(
-                          controller: cpuBrandController,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'CPU Brand Must Not Be Embty';
-                            }
-                          },
-                          onChanged: (value) => _cpuBrand.value = value,
-                          decoration: InputDecoration(
-                              labelText: 'CPU brand',
-                              hintText: 'Enter The CPU Brand',
-                              suffixIcon: const Icon(Icons.microwave),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        //CPU FAMILY
-                        //
-                        TextFormField(
-                          controller: cpuFamilyController,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'The CPU Family Must Not Be Empty';
-                            }
-                          },
-                          onChanged: (value) => _cpuFamily.value = value,
-                          decoration: InputDecoration(
-                              labelText: 'CPU Family',
-                              hintText: 'The CPU Family',
-                              suffixIcon: const Icon(Icons.family_restroom),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        //CPU MODIFIER
-                        //
-                        TextFormField(
-                          controller: cpuModifierController,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'CPU Modifier';
-                            }
-                          },
-                          onChanged: (value) => _cpuModifier.value = value,
-                          decoration: InputDecoration(
-                              labelText: 'CPU Modifier',
-                              hintText: 'Enter The CPU Modifier',
-                              suffixIcon: const Icon(Icons.numbers),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        //CPU FREQUENCY
-                        //
-                        TextFormField(
-                          controller: cpuFrequencyController,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'CPU Frequency Must Not Be Embty';
-                            }
-                          },
-                          onChanged: (value) =>
-                              _cpuFrequency.value = double.parse(value),
-                          decoration: InputDecoration(
-                              labelText: 'CPU Frequency',
-                              hintText: 'Enter The CPU Frequency',
-                              suffixIcon: const Icon(Icons.cake),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        //CPU NUMBER IDENTIFIER
-                        //DO SOME CHANGES TO THE STYLE
-                        TextFormField(
-                          controller: cpuNumberIdentifierController,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'CPU Number Identifier Must Not Be Embty';
-                            }
-                          },
-                          onChanged: (value) =>
-                              _cpuNumberIdentifier.value = value,
-                          decoration: InputDecoration(
-                              labelText: 'CPU Number Identifier',
-                              hintText: 'Enter The CPU Number Identifier',
-                              suffixIcon: const Icon(Icons.airplay),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        // HDD STORAGE
-                        // A SLIDER WOULD LOOK GOOD HERE
-                        TextFormField(
-                          controller: hddController,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'HDD Must Not Be Embty';
-                            }
-                          },
-                          onChanged: (value) => _hdd.value = int.parse(value),
-                          decoration: InputDecoration(
-                              labelText: 'HDD',
-                              hintText: 'Enter HDD Storage size',
-                              suffixIcon: const Icon(Icons.storage),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25))),
-                        ),
-                        const SizedBox(height: 24.0),
-                        ElevatedButton(
-                          child: const Text('Continre'),
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              context.flow<PcInfo>().update((info) =>
-                                  info.copyWith(
-                                      brand: _brand.value,
-                                      cpuBrand: _cpuBrand.value,
-                                      cpuFamily: _cpuFamily.value,
-                                      cpuModifier: _cpuModifier.value,
-                                      cpuFrequency: _cpuFrequency.value,
-                                      cpuNumberIdentifier:
-                                          _cpuNumberIdentifier.value,
-                                      hdd: _hdd.value));
-                            }
-                          },
-                        )
-                      ],
-                    ))),
-          ),
-        ));
+                      ),
+                      const SizedBox(height: 10.0),
+                      // HDD STORAGE
+                      // A SLIDER WOULD LOOK GOOD HERE
+                      CustomTextField(
+                          label: "RAM",
+                          icon: Icons.leaderboard,
+                          controller: ramController,
+                          onChanged: (value)=> _ram.value= int.parse(value),
+                          keyboardInputType: TextInputType.number,
+                          autoFocus: false),
+                      const SizedBox(height: 10.0),
+                      CustomTextField(
+                          label: "RAM Type",
+                          icon: Icons.bookmark_add,
+                          controller: ramTypeController,
+                          onChanged: (value)=>_ramType.value= value,
+                          keyboardInputType: TextInputType.text,
+                          autoFocus: false),
+                      const SizedBox(height: 12.0),
+                      CustomTextField(
+                          label: "RAM Frequency",
+                          icon: Icons.anchor_outlined,
+                          controller: ramFrequencyController,
+                          onChanged: (value)=>_ramFrequency.value= double.parse(value),
+                          keyboardInputType: TextInputType.number,
+                          autoFocus: false),
+                      const SizedBox(height: 12.0),
+                      SelectionField(label: "State", value: _state),
+                      ElevatedButton(
+                        child: const Text('Continre'),
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            context.flow<PcInfo>().update((info) => info.copyWith(
+                                brand: _brand.value,
+                                cpu: _cpu.value,
+                                gpu: _gpu.value,
+                                ram: _ram.value,
+                                ramType: _ramType.value,
+                                ramFrequency: _ramFrequency.value,
+                                state: _state.value));
+                          }
+                        },
+                      )
+                    ],
+                  )))),
+    ));
   }
 }
 
+
+class Api{
+  static Future<List<CPU>> getCpuSuggetions(String query) async{
+    final response= await rootBundle.loadString("assets/cpu_data.json");
+    final List cpus= json.decode(response);
+
+    return cpus.map( (json) => CPU.fromJson(json)).where((cpu){
+      final cpuLower= cpu.name.toLowerCase();
+      final queryLower= query.toLowerCase();
+      return cpuLower.contains(queryLower);
+    }).toList();
+  }
+
+  static Future<List<GPU>> getGpuSuggetions(String query) async{
+    final response= await rootBundle.loadString("assets/gpu_data.json");
+    final List gpus= json.decode(response);
+
+    return gpus.map( (json) => GPU.fromJson(json)).where((gpu){
+      final gpuLower= gpu.name.toLowerCase();
+      final queryLower= query.toLowerCase();
+      return gpuLower.contains(queryLower);
+    }).toList();
+  }
+}

@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 
 import "package:proto/prediction_form/forms/forms.dart";
 import "package:proto/prediction_form/model/pc.model.dart";
+//import "package:proto/components/components.dart";
 
 class PredictionForm extends HookWidget {
   //var formkey = GlobalKey<FormState>();
@@ -13,37 +14,57 @@ class PredictionForm extends HookWidget {
   //var emailController = TextEditingController();
   //var nameController = TextEditingController();
 
-  PredictionForm({Key? key}) : super(key: key);
+  const PredictionForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _pcInfo =
-        useState<dynamic>(const PcInfo(brand: "", cpuBrand: "", gpuBrand: ""));
+    final _pcInfo = useState<dynamic>(const PcInfo());
     final price = useState<int>(0);
 
-    return Scaffold(
-      appBar: CustomAppBar(
-        appBar: AppBar(),
-        titleText: "Predidiction Form",
+    return //Scaffold(
+        //appBar: CustomAppBar(
+        //  appBar: AppBar(),
+        //  titleText: "Predidiction Form",
+        //),
+        //body:
+        SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        alignment: Alignment.center,
+        child: _pcInfo.value == const PcInfo()
+            ? Column(
+                children: [
+                  InkWell(
+                    child: const MainCard(),
+                    onTap: () async {
+                      _pcInfo.value = await Navigator.of(context)
+                          .push(OnboardingFlow.route());
+                      price.value = await getPrice(_pcInfo.value);
+                      print(price.value);
+                    },
+                  ),
+                  InkWell(
+                    child: const MainCard(),
+                    onTap: () async {
+                      _pcInfo.value = await Navigator.of(context)
+                          .push(OnboardingFlow.route());
+                      price.value = await getPrice(_pcInfo.value);
+                      print(price.value);
+                    },
+                  ),
+                ],
+              )
+            : InkWell(
+                child: PredictionCard(
+                //TODO add a field in the pcInfo model to
+                //prevent the load of the prediction card if no
+                //prediction is made
+                price: price.value,
+              )),
       ),
-      body: Container(
-          padding: const EdgeInsets.all(8.0),
-          alignment: Alignment.center,
-          child: _pcInfo.value ==
-                  const PcInfo(brand: "", cpuBrand: "", gpuBrand: "")
-              ? ElevatedButton(
-                  onPressed: () async {
-                    _pcInfo.value = await Navigator.of(context)
-                        .push(OnboardingFlow.route());
-                    price.value = await getPrice(_pcInfo.value);
-                    print(price.value);
-                  },
-                  child: const Text('Oky Lets Goooooo'),
-                )
-              : PredictionCard(
-                  price: price.value,
-                )),
     );
+    ;
+    //);
   }
 }
 
@@ -56,12 +77,13 @@ class OnboardingFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     print('INFO: ${const PcInfo()}');
     return Scaffold(
+      //appBar: AppBar(),
       body: FlowBuilder<PcInfo>(
         state: const PcInfo(),
         onGeneratePages: (pc, pages) {
           return [
             MaterialPage(child: FirstForm()),
-            if (pc.hdd != 0) MaterialPage(child: SeconedForm()),
+            if (pc.brand != "") MaterialPage(child: SeconedForm()),
             if (pc.ramType != "") MaterialPage(child: ThirdForm()),
           ];
         },

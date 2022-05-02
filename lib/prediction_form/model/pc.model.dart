@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import './cpu/cpu.model.dart';
+import './gpu/gpu.model.dart';
 
 part 'pc.model.freezed.dart';
 part 'pc.model.g.dart';
@@ -6,31 +8,33 @@ part 'pc.model.g.dart';
 @freezed
 class PcInfo with _$PcInfo {
   const factory PcInfo({
-    //TODO add these to the FirstFrom
+    //FirstFrom
     @Default("") String brand,
-    @Default("") String cpuBrand,
-    @Default("") String cpuFamily,
-    @Default(0.0) double cpuFrequency,
-    @Default("") String cpuModifier,
-    @Default("") String cpuNumberIdentifier,
-    @Default(0) int hdd,
-    //TODO add these to SeconedForm
-    @Default("") String gpuBrand,
-    @Default("") String gpuNumberIdentifier,
-    @Default(0)
-        int gpuVram, //possibe problem here check it latter <<seconedForm>>
-    @Default("") String gpuWordsIdentifier,
+    @Default(CPU(
+        brand: "",
+        frequency: 0.0,
+        family: "",
+        generation: 0,
+        numberIdentifier: 0,
+        modifier: "")) CPU cpu,
+    @Default(0) int state,
+    @Default(GPU(
+        brand: "",
+        wordsIdentifier: "",
+        numberIdentifier: "",
+        vram: 0,
+        frequency: 0.0)) GPU gpu,
     @Default(0) int ram,
     @Default(0.0) double ramFrequency, //recheck the type (int????)
     @Default("") String ramType,
-    //TODO add these to the ThirdForm
+    //SeconedForm
     @Default(0) int ssd,
+    @Default(0) int hdd,
     @Default(0) int screenRefreshRate,
     @Default(0.0) double screenSize,
     @Default("") String screenResolution,
     @Default(0) int antiGlare,
     @Default(0) int touchScreen,
-    @Default(0) int state,
   }) = _PcInfo;
 
   factory PcInfo.fromJson(Map<String, dynamic> json) => _$PcInfoFromJson(json);

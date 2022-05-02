@@ -24,6 +24,7 @@ dependencies:
   flutter_hooks: ^0.18.3
   freezed_annotation:
   dio: ^4.0.6
+  flutter_typeahead: ^3.2.5
 
 dev_dependencies:
   flutter_test:
@@ -43,11 +44,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - image.png
-    - image.svg.webp
-    - selfy.jpeg
-    - pc.jpeg
-    - office.jpg
+    - assets/
+    #- image.png
+    #- image.svg.webp
+    #- selfy.jpeg
+    #- pc.jpeg
+    #- office.jpg
 
   # fonts:
   #   - family: Schyler

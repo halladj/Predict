@@ -3,6 +3,16 @@ import 'package:flutter/services.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 
+class CustomColors{
+  static final Color buttonColor = HexColor("#726eff");
+  static final Color buttonHighlightColor = HexColor("#393780");
+  //static final Color upperGradientColor = HexColor("#D665E0");
+  //static final Color lowerGradientColor = HexColor("#945FED");
+  static final Color upperGradientColor = HexColor("#C9C9C9");
+  static final Color lowerGradientColor = HexColor("#ffffff");
+}
+
+
 class CustomTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(

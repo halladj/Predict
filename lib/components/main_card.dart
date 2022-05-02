@@ -13,14 +13,16 @@ class MainCard extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-                child:
-                    Text(title, style: Theme.of(context).textTheme.headline4),
-                top: 20, left: 20,),
+              child: Text(title, style: Theme.of(context).textTheme.headline4),
+              top: 20,
+              left: 20,
+            ),
             Positioned(
               child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/predition_form');
-                  },
+                  onPressed: () {},
+                  //onPressed: () {
+                  //  Navigator.pushNamed(context, '/predition_form');
+                  //},
                   child: const Text(
                     "Predition Form",
                   )),
