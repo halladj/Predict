@@ -5,8 +5,8 @@ import 'package:proto/home/home_states.dart';
 import "home.dart";
 import "screens/screens.dart";
 import "./theme.dart";
-import 'package:provider/provider.dart';
 import "./helpers/cache_helper.dart";
+import "package:proto/prediction_form/prediction_form.dart";
 
 Future<void> main() {
   return BlocOverrides.runZoned(() async {
@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
               routes: {
                 '/': (context) => const Home(),
                 "/hub": (context) => const Hub(),
-                '/predition_form': (context) => PreditionForm(),
-                "/predition": (context) => const Predition(),
+                '/predition_form': (context) => PredictionForm(),
+                "/predition": (context) => const Prediction(),
                 "/google": (context) => const GoogleAssistant(),
                 "/generatedQR": (context) => const GeneratedQR(),
               },

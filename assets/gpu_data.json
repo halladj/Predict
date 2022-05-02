@@ -1,0 +1,42 @@
+[
+  {
+    "name": "NVIDIA GeForce RTX 3060",
+    "brand": "nvidia",
+    "wordsIdentifier": "geforce rtx",
+    "numberIdentifier": "3060",
+    "vram": 6,
+    "frequency": 900
+  },
+  {
+  "name": "NVIDIA GeForce RTX 2050",
+  "brand": "nvidia",
+  "wordsIdentifier": "geforce rtx",
+  "numberIdentifier": "2050",
+  "vram": 4,
+  "frequency": 1185
+  },
+  {
+  "name": "NVIDIA GeForce GTX 1050 Ti",
+  "brand": "nvidia",
+  "wordsIdentifier": "geforce gtx",
+  "numberIdentifier": "1050 ti",
+  "vram": 2,
+  "frequency": 1594
+  },
+  {
+    "name": "AMD Radeon RX 470",
+    "brand": "amd",
+    "wordsIdentifier": "redeon rx",
+    "numberIdentifier": "470",
+    "vram": 4,
+    "frequency": 926
+  },
+  {
+    "name": "NVIDIA GeForce GTX 980MX",
+    "brand": "nvidia",
+    "wordsIdentifier": "geforce gtx",
+    "numberIdentifier": "980mx",
+    "vram": 8,
+    "frequency": 1050
+  }
+]
