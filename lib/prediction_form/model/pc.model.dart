@@ -10,20 +10,24 @@ class PcInfo with _$PcInfo {
   const factory PcInfo({
     //FirstFrom
     @Default("") String brand,
-    @Default(CPU(
-        brand: "",
-        frequency: 0.0,
-        family: "",
-        generation: 0,
-        numberIdentifier: 0,
-        modifier: "")) CPU cpu,
+    @Default(
+        CPU(
+            brand: "",
+            frequency: 0.0,
+            family: "",
+            generation: 0,
+            numberIdentifier: 0,
+            modifier: ""))
+        CPU cpu,
     @Default(0) int state,
-    @Default(GPU(
-        brand: "",
-        wordsIdentifier: "",
-        numberIdentifier: "",
-        vram: 0,
-        frequency: 0.0)) GPU gpu,
+    @Default(
+        GPU(
+            brand: "",
+            wordsIdentifier: "",
+            numberIdentifier: "",
+            vram: 0,
+            frequency: 0.0))
+        GPU gpu,
     @Default(0) int ram,
     @Default(0.0) double ramFrequency, //recheck the type (int????)
     @Default("") String ramType,
@@ -39,4 +43,3 @@ class PcInfo with _$PcInfo {
 
   factory PcInfo.fromJson(Map<String, dynamic> json) => _$PcInfoFromJson(json);
 }
-

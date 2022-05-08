@@ -23,13 +23,14 @@ class HomeCubit extends Cubit<HomeState> {
   //the list of the bottom vaigation pages
   List<Widget> pages = <Widget>[
     const QRCodeScanner(),
+    Favorites(),
     const Hub(),
+    const Profile(),
     const GoogleAssistant(),
   ];
-  int selectedIndex = 1;
+  int selectedIndex = 2;
   void changeButtomNavIndex(int index) {
     selectedIndex = index;
     emit(ChangeButtomNavIndexState());
   }
 }
-

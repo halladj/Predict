@@ -14,7 +14,7 @@ class Hub extends StatelessWidget {
       child: Center(
         child: ListView(
           //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             PredictionForm(),
             //const MainCard(),
             //ElevatedButton(

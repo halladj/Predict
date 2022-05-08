@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:proto/theme.dart";
 import 'package:flutter_hooks/flutter_hooks.dart';
-
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 
 class SelectionField extends HookWidget {
   SelectionField({
@@ -15,7 +15,7 @@ class SelectionField extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _state= useState<String?>("used");
+    final _state = useState<String?>("used");
 
     // return Column(
     //   children: [
@@ -38,37 +38,36 @@ class SelectionField extends HookWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.w500,
-            color: CustomColors.buttonColor,
-          ),
-        ),
+        Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(label,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: HexColor("#7f7f7f")))),
         Wrap(
           spacing: 10.0,
           children: [
             ChoiceChip(
-              selectedColor: CustomColors.buttonHighlightColor,
+              //selectedColor: CustomColors.buttonHighlightColor,
+              selectedColor: HexColor("#4589D7"),
               selected: _state.value == "used",
               label: const Text("Used", style: TextStyle(color: Colors.white)),
-              onSelected: (selected)  {
-                _state.value = selected ? "used": null;
-                value.value= "used";
+              onSelected: (selected) {
+                _state.value = selected ? "used" : null;
+                value.value = "used";
               },
             ),
             ChoiceChip(
-              selectedColor: CustomColors.buttonHighlightColor,
+              //selectedColor: CustomColors.buttonHighlightColor,
+              selectedColor: HexColor("#4589D7"),
               selected: _state.value == "new",
-              label:
-              const Text("New", style: TextStyle(color: Colors.white)),
+              label: const Text("New", style: TextStyle(color: Colors.white)),
               onSelected: (bool selected) {
-                _state.value = selected ? "new": null;
-                value.value= "new";
+                _state.value = selected ? "new" : null;
+                value.value = "new";
               },
             ),
-
           ],
         ),
       ],

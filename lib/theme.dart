@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 
-class CustomColors{
+class CustomColors {
   static final Color buttonColor = HexColor("#726eff");
   static final Color buttonHighlightColor = HexColor("#393780");
   //static final Color upperGradientColor = HexColor("#D665E0");
@@ -11,7 +11,6 @@ class CustomColors{
   static final Color upperGradientColor = HexColor("#C9C9C9");
   static final Color lowerGradientColor = HexColor("#ffffff");
 }
-
 
 class CustomTheme {
   static TextTheme lightTextTheme = TextTheme(
@@ -80,6 +79,7 @@ class CustomTheme {
           },
         ),
       ),
+      scaffoldBackgroundColor: HexColor("#fdffff"),
       //Some Global Stuff
       primaryColor: HexColor("#726eff"),
       primarySwatch: Colors.purple,
@@ -101,7 +101,9 @@ class CustomTheme {
       //BottomNav Styles
       //
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedItemColor: coolPurple[100],
+        backgroundColor: HexColor("#FDFFFF"),
+        selectedItemColor: HexColor("#D0A0F7"),
+        unselectedItemColor: HexColor("#C4C4C4"),
       ),
       textTheme: lightTextTheme,
     );
@@ -129,8 +131,8 @@ class CustomTheme {
             selectedItemColor: coolPurple[700]),
         //TextTheme
         textTheme: const TextTheme(
-            headline4:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.w500,fontSize: 18),
+            headline4: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
             bodyText2: TextStyle(
               color: Color(0xffb3b2b2),
             ),
@@ -172,4 +174,3 @@ final Map<int, Color> coolPurple = {
 };
 
 final MaterialColor ourPurple = MaterialColor(50, coolPurple);
-

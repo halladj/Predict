@@ -1,48 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 import "package:proto/theme.dart";
 
-
 class CustomTextField extends StatelessWidget {
-   CustomTextField({
-    Key? key,
-     required this.label,
-     required this.icon,
-     required this.controller,
-     required this.onChanged,
-     required this.keyboardInputType,
-     required this.autoFocus}) : super(key: key);
+  CustomTextField(
+      {Key? key,
+      required this.label,
+      required this.hint,
+      required this.controller,
+      required this.onChanged,
+      required this.keyboardInputType,
+      required this.autoFocus})
+      : super(key: key);
 
   String label;
+  String hint;
   var controller;
-  bool autoFocus= false;
-  IconData icon;
+  bool autoFocus = false;
   Function(String)? onChanged;
   TextInputType keyboardInputType;
 
-
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      autofocus: autoFocus,
-      controller: controller,
-      keyboardType: keyboardInputType,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return '${label} Field Must Not Be Embty';
-        }
-      },
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(fontSize: 16.0, color: CustomColors.buttonColor),
-        prefixIcon: Icon(icon, color: CustomColors.buttonColor),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.buttonColor),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(label,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: HexColor("#7f7f7f")))),
+        TextFormField(
+          autofocus: autoFocus,
+          controller: controller,
+          keyboardType: keyboardInputType,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return '${label} Field Must Not Be Embty';
+            }
+          },
+          onChanged: onChanged,
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(fontSize: 16, color: HexColor("#b4b8bc")),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: HexColor("#848ba3"), width: 2),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: HexColor("#4589D7"), width: 2),
+            ),
+          ),
         ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.buttonColor),
-        ),
-      ),
+      ],
     );
   }
 }
