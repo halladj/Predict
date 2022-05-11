@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/screens/favorites.dart';
 
 class Home extends StatelessWidget {
+  static Page page() => const MaterialPage<void>(child: Home());
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
