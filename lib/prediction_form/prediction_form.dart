@@ -15,11 +15,11 @@ class PredictionForm extends HookWidget {
     // react_hooks TO HANDLE THE PC STATE << Trust Me its way better>>
     //you delare a varaible with flutter_hooks  vai "useVariable_name"
     final _pcInfo = useState<dynamic>(const PcInfo());
-    final price = useState<int>(0);
+    final price = useState<double>(0);
 
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(0),
         alignment: Alignment.center,
         child: _pcInfo.value == const PcInfo()
             ? Column(
@@ -100,9 +100,10 @@ class OnboardingFlow extends StatelessWidget {
 
 getPrice(PcInfo data) async {
   try {
-    var response =
-        await Dio().post('http://192.168.1.18:3000', data: data.toJson());
-    return response.data['price'];
+    var response = await Dio().post('http://192.168.1.18:3000/result',
+        data: data.toJson(),
+        options: Options(contentType: Headers.jsonContentType));
+    return double.parse(response.data['price']);
   } catch (e) {
     print(e);
   }
