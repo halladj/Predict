@@ -13,7 +13,8 @@ class Prediction extends StatelessWidget {
           titleText: "Predicetion Page",
         ),
         body: const Padding(
-            padding: EdgeInsets.all(18.0), child: PredictionCard(price: 10000)
+            padding: EdgeInsets.all(18.0), //child: PredictionCard(price: 10000)
+            child: Text("hahaha")
             /* Container(
             color: Colors.purple,
             child:Center(
@@ -49,4 +50,3 @@ class Prediction extends StatelessWidget {
             ));
   }
 }
-

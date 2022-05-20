@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     //WE USED THE BLOC BUILDER HERE TO ALLOW
     // RERENDER in the widget
-    return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       return Scaffold(
         body: homeCubit.pages[homeCubit.selectedIndex],
         //BOTTOM NAVIGATION STYLING

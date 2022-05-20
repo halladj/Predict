@@ -16,12 +16,13 @@ class PredictionForm extends HookWidget {
     //you delare a varaible with flutter_hooks  vai "useVariable_name"
     final _pcInfo = useState<dynamic>(const PcInfo());
     final price = useState<double>(0);
+    final _condition = useState<bool>(false);
 
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(0),
         alignment: Alignment.center,
-        child: _pcInfo.value == const PcInfo()
+        child: _condition.value == false
             ? Column(
                 children: [
                   InkWell(
@@ -29,6 +30,7 @@ class PredictionForm extends HookWidget {
                     onTap: () async {
                       _pcInfo.value = await Navigator.of(context)
                           .push(OnboardingFlow.route());
+                      _condition.value = true;
                       price.value = await getPrice(_pcInfo.value);
                     },
                   ),
@@ -37,6 +39,7 @@ class PredictionForm extends HookWidget {
                     onTap: () async {
                       _pcInfo.value = await Navigator.of(context)
                           .push(OnboardingFlow.route());
+                      _condition.value = true;
                       price.value = await getPrice(_pcInfo.value);
                     },
                   ),
@@ -47,6 +50,7 @@ class PredictionForm extends HookWidget {
                 //TODO add a field in the pcInfo model to
                 //prevent the load of the prediction card if no
                 //prediction is made
+                pc: _pcInfo.value,
                 price: price.value,
               )),
       ),
@@ -100,7 +104,8 @@ class OnboardingFlow extends StatelessWidget {
 
 getPrice(PcInfo data) async {
   try {
-    var response = await Dio().post('http://192.168.1.18:3000/result',
+    var response = await Dio().post(
+        'https://laptops-prediction.herokuapp.com/result',
         data: data.toJson(),
         options: Options(contentType: Headers.jsonContentType));
     return double.parse(response.data['price']);
