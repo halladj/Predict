@@ -17,17 +17,50 @@ class Favorites extends StatelessWidget {
     return Scaffold(
       body: FlowBuilder<AppStatus>(
         state: context.select((AppBloc bloc) => bloc.state.status),
-        onGeneratePages: onGenerateAppViewPages,
+        onGeneratePages: (AppStatus state, List<Page<dynamic>> pages) {
+          switch (state) {
+            case AppStatus.authenticated:
+              return [GoogleAssistant.page()];
+            case AppStatus.unauthenticated:
+              //homeCubit.changeButtomNavIndex(3);
+              return [MyDialog.page()];
+          }
+        },
       ),
     );
   }
 }
 
-List<Page> onGenerateAppViewPages(AppStatus state, List<Page<dynamic>> pages) {
-  switch (state) {
-    case AppStatus.authenticated:
-      return [GoogleAssistant.page()];
-    case AppStatus.unauthenticated:
-      return [LoginPage.page()];
+class MyDialog extends StatelessWidget {
+  const MyDialog({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: MyDialog());
+
+  @override
+  Widget build(BuildContext context) {
+    final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+    Future.delayed(Duration.zero, () {
+      showAlertDialog(context);
+    });
+    homeCubit.changeButtomNavIndex(3);
+    return const LoginPage();
   }
+}
+
+showAlertDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Auth"),
+        content: const Text(
+            "This action requires Authentication\nplease login to check your Favorites"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('Cancel'),
+          )
+        ],
+      );
+    },
+  );
 }

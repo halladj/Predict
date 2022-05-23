@@ -51,29 +51,6 @@ class _GeneratedQRState extends State<GeneratedQR> {
       ),
     );
   }
-
-  Widget buildTextField(BuildContext context) => TextField(
-      controller: textController,
-      style: const TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-      decoration: InputDecoration(
-          hintText: "EnterData",
-          hintStyle: const TextStyle(color: Colors.grey),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.white)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide:
-                  BorderSide(color: Theme.of(context).secondaryHeaderColor)),
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {});
-              },
-              icon: const Icon(
-                Icons.done,
-                size: 30.0,
-              ))));
 }
 
 class Arguments {
