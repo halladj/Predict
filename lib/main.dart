@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/favorite/favorites.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:proto/app_bloc/app_bloc.dart';

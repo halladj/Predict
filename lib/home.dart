@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proto/screens/favorites.dart';
 
 class Home extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: Home());

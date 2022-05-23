@@ -5,9 +5,7 @@ import 'package:proto/home/home_cubit.dart';
 import 'package:proto/login/login.dart';
 import "package:flow_builder/flow_builder.dart";
 import "package:proto/app_bloc/app_bloc.dart";
-import "package:proto/home.dart";
-
-import 'google_assistant.dart';
+import 'package:proto/screens/google_assistant.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({Key? key}) : super(key: key);
