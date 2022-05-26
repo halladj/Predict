@@ -5,7 +5,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
   final String titleText;
   final HomeCubit homeCubit;
-  const CustomAppBar({Key? key, required this.appBar, required this.titleText, required this.homeCubit})
+  const CustomAppBar(
+      {Key? key,
+      required this.appBar,
+      required this.titleText,
+      required this.homeCubit})
       : super(key: key);
 
   @override
@@ -20,21 +24,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       //   onPressed: () => Scaffold.of(context).openDrawer(),
       // ),
 
-
       flexibleSpace: Center(
         child: Container(
-
-            margin:  EdgeInsets.only(bottom: 5.0),
-            padding: EdgeInsets.symmetric(horizontal: 130.0,vertical: 20.0),
-            child: Image.asset("assets/logo3.png",),),
+          margin: const EdgeInsets.only(bottom: 5.0),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 130.0, vertical: 20.0),
+          child: Image.asset(
+            "assets/logo3.png",
+          ),
+        ),
       ),
 
-      leading:
-      Container(
-        padding: EdgeInsets.only(top: 17.0,bottom: 15.0,left: 12.0),
+      leading: Container(
+        padding: const EdgeInsets.only(top: 17.0, bottom: 15.0, left: 12.0),
         child: IconButton(
-            icon: const Icon(Icons.arrow_back_rounded,
-            size: 30.0),
+            icon: const Icon(Icons.arrow_back_rounded, size: 30.0),
             color: Colors.purple[200],
             iconSize: 34.0,
             onPressed: () {
@@ -42,15 +46,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             }),
       ),
       actions: [
-          Container(
-            padding: EdgeInsets.only(top: 17.0,bottom: 15.0,right: 10.0),
-            child: IconButton(onPressed:() => homeCubit.changeTheme() , icon: Icon(
+        Container(
+          padding: const EdgeInsets.only(top: 17.0, bottom: 15.0, right: 10.0),
+          child: IconButton(
+            onPressed: () => homeCubit.changeTheme(),
+            icon: Icon(
               Icons.wb_sunny_outlined,
               color: Colors.purple[200],
               size: 28.0,
-            ),),
+            ),
           ),
-
+        ),
       ],
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       iconTheme: Theme.of(context).appBarTheme.iconTheme,
@@ -61,6 +67,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(80);
 }
-

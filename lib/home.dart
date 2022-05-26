@@ -8,8 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components/custom_bottom_navigation_bar.dart';
 import 'components/side_bar.dart';
 
-
-
 class Home extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: Home());
   const Home({Key? key}) : super(key: key);
@@ -21,7 +19,7 @@ class Home extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
       return SafeArea(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             // gradient:LinearGradient(
             //   begin: Alignment.topCenter,
             //   end: Alignment.bottomCenter,
@@ -32,8 +30,9 @@ class Home extends StatelessWidget {
             // ],
             //
             // ),
-            image: DecorationImage(image: AssetImage("assets/light_backgrounddd.png"),fit: BoxFit.cover,
-              
+            image: DecorationImage(
+              image: AssetImage("assets/light_backgrounddd.png"),
+              fit: BoxFit.cover,
             ),
 
 //     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
@@ -49,13 +48,12 @@ class Home extends StatelessWidget {
 //             boxShadow: [
 //               BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 6),
 //             ],
-
           ),
           //color: Colors.white,
           child: Scaffold(
             //backgroundColor: kLightBackgroundColor,
             backgroundColor: Colors.transparent,
-            drawer: SideBar(),
+            drawer: const SideBar(),
             appBar: CustomAppBar(
               homeCubit: homeCubit,
               appBar: AppBar(),
@@ -70,4 +68,3 @@ class Home extends StatelessWidget {
     });
   }
 }
-

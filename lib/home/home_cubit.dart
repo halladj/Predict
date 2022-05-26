@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:bloc/bloc.dart";
 import 'package:proto/favorite/favorites.dart';
 import "package:proto/home/home_states.dart";
+import 'package:proto/prediction_form/prediction_form.dart';
 import "package:proto/screens/screens.dart";
 import "package:proto/helpers/cache_helper.dart";
 
@@ -25,11 +26,10 @@ class HomeCubit extends Cubit<HomeState> {
   List<Widget> pages = <Widget>[
     //const Hub(),
     const QRCodeScanner(),
-    Favorites(),
-    Prediction(),
+    const Favorites(),
+    PredictionForm(),
     const GoogleAssistant(),
     const Profile(),
-
   ];
   int selectedIndex = 2;
   void changeButtomNavIndex(int index) {

@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import "package:flutter/material.dart";
@@ -15,8 +14,6 @@ import "package:proto/prediction_form/model/pc.model.dart";
 import '../components/secondary_app_bar.dart';
 
 class PredictionForm extends HookWidget {
-
-
   @override
   Widget build(BuildContext context) {
     //INTEAD OF USING A STATEFULL WIDGET I USED
@@ -29,7 +26,6 @@ class PredictionForm extends HookWidget {
 
     return SingleChildScrollView(
       child: Container(
-
 //         padding: const EdgeInsets.all(0),
 //         alignment: Alignment.topCenter,
 //         child:
@@ -203,7 +199,6 @@ class PredictionForm extends HookWidget {
                 pc: _pcInfo.value,
                 price: price.value,
               ),
-
       ),
     );
   }
@@ -247,11 +242,12 @@ class OnboardingFlow extends StatelessWidget {
             ),
           ),
         ],
-
       ),
-      child: Scaffold(
+      body: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: SecondaryAppBar(title:"Prediction Form",),
+        appBar: const SecondaryAppBar(
+          title: "Prediction Form",
+        ),
         body: FlowBuilder<PcInfo>(
           state: const PcInfo(),
           onGeneratePages: (pc, pages) {
@@ -269,18 +265,13 @@ class OnboardingFlow extends StatelessWidget {
   }
 }
 
-
-
 getPrice(PcInfo data) async {
   try {
-
     var response = await Dio().post(
         'https://laptops-prediction.herokuapp.com/result',
-
         data: data.toJson(),
         options: Options(contentType: Headers.jsonContentType));
     return double.parse(response.data['price']);
-
   } catch (e) {
     print(e);
   }
