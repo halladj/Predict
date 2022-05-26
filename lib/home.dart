@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proto/screens/favorites.dart';
 
 class Home extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: Home());
@@ -12,7 +11,7 @@ class Home extends StatelessWidget {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     //WE USED THE BLOC BUILDER HERE TO ALLOW
     // RERENDER in the widget
-    return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       return Scaffold(
         body: homeCubit.pages[homeCubit.selectedIndex],
         //BOTTOM NAVIGATION STYLING

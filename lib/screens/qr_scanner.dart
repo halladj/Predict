@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
+import 'package:proto/components/prediction_card.dart';
+import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRCodeScanner extends StatefulWidget {
@@ -14,6 +17,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+  double price = 0.0;
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -56,7 +60,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             cutOutSize: MediaQuery.of(context).size.width * 0.8),
       );
 
-  void _onQRViewCreated(QRViewController controller) {
+  void _onQRViewCreated(QRViewController controller) async {
     setState(() {
       this.controller = controller;
     });
@@ -65,6 +69,13 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
         result = scanData;
       });
     });
+    price = await scanQrCode();
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>${price.toString()}");
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                const PredictionCard(pc: PcInfo(), price: 10)));
   }
 
   @override
@@ -128,3 +139,17 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       );
 }
 
+scanQrCode({String hash = "12"}) async {
+  try {
+    var response = await Dio().get('http://192.168.1.18:80/api/qr/scan/${hash}',
+        //data: {"laptop": data.toJson(), "price": price},
+        options: Options(
+          contentType: Headers.jsonContentType,
+          validateStatus: (status) => true,
+        ));
+    print(">>>>>>>>>>>>>>>>>>>>>${response}");
+    return double.parse(response.toString());
+  } catch (e) {
+    print(e);
+  }
+}

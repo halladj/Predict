@@ -4,5 +4,3 @@ export "hub.dart";
 export "qr_scanner.dart";
 export 'google_assistant.dart';
 export 'profile.dart';
-export 'favorites.dart';
-

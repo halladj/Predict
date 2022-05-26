@@ -12,22 +12,8 @@ class Hub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(0),
-      child: Center(
-        child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            PredictionForm(),
-            //const MainCard(),
-            //ElevatedButton(
-            //    onPressed: () {
-            //      Navigator.pushNamed(context, '/predition_form');
-            //},
-            //child: const Text("Predition Form"))
-          ],
-        ),
-      ),
+    return const Center(
+      child: PredictionForm(),
     );
   }
 }
