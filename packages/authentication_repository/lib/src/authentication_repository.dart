@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cache/cache.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:meta/meta.dart';
 
@@ -117,11 +119,24 @@ class AuthenticationRepository {
   ///
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
+  final String url = 'http://localhost/api/';
 
   Stream<User> get user async* {
+//    final user = fetchedUser == null ? User.empty : fetchedUser;
+//    _cache.write(key: userCacheKey, value: user);
+//    return _controller.stream;
+//      return user;
     await Future<void>.delayed(const Duration(seconds: 1));
     yield User.empty;
     yield* _controller.stream;
+    //final dd = {
+    //  "authentication": "Bearer 1|u9jkQig3rq7tpo5OYeUQRNX0YKCv2Fmw0kDc6Jfv"
+    //};
+    //var data = await Dio().get<dynamic>("http://192.168.1.18/check_user",
+    //    options: Options(headers: dd));
+    //print("data");
+    //yield User.empty;
+    //yield* _controller.stream;
     //return; //_firebaseAuth.authStateChanges().map((firebaseUser) {
     //final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
     //_cache.write(key: userCacheKey, value: user);
@@ -140,6 +155,14 @@ class AuthenticationRepository {
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
   Future<void> signUp({required String email, required String password}) async {
     try {
+      final data = {'email': email, 'password': password, 'name': 'hamza'};
+      dynamic response = await Dio()
+          .post<dynamic>('http://192.168.1.18/api/signup', data: data);
+      dynamic newData = jsonDecode(response.toString());
+      final dynamic inter_user = newData["user"];
+
+      //final user = User(token: inter_user["token"].toString());
+      //_controller.add(user);
       //SIGNUP CODE
     } catch (_) {
       throw const SignUpWithEmailAndPasswordFailure();
@@ -154,6 +177,15 @@ class AuthenticationRepository {
     required String password,
   }) async {
     try {
+      final data = {'email': email, 'password': password};
+      dynamic response = await Dio()
+          .post<dynamic>('http://192.168.1.18/api/login', data: data);
+      dynamic newData = jsonDecode(response.toString());
+
+      final user = User(token: newData["token"].toString());
+      _controller.add(user);
+      print(user);
+
       //SIGNIN CODE
     } catch (_) {
       throw const LogInWithEmailAndPasswordFailure();

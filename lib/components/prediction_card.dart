@@ -1,11 +1,15 @@
+import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:proto/components/components.dart';
 import "package:proto/prediction_form/model/pc.model.dart";
+import 'package:proto/screens/generated_qr_code.dart';
 
 class PredictionCard extends StatelessWidget {
-  const PredictionCard({Key? key, required this.price}) : super(key: key);
+  const PredictionCard({Key? key, required this.price, required this.pc})
+      : super(key: key);
   final double price;
+  final PcInfo pc;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +25,10 @@ class PredictionCard extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, "/");
                   }),
               title:
-                  const Text("Predictionpage", style: TextStyle(fontSize: 24)),
+                  const Text("The Prediction", style: TextStyle(fontSize: 24)),
               actions: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                   child: Tab(
                     icon: Image.asset(
                       "assets/logo3.png",
@@ -57,7 +61,8 @@ class PredictionCard extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-                        child: Text("Laptop's Price: \n${price.toString()} DZD",
+                        child: Text(
+                            "Laptop's Price: \n${price.round().toString()} DZD",
                             style: const TextStyle(fontSize: 40)),
                       )),
                   const Image(image: AssetImage("assets/laptop2.png")),
@@ -80,8 +85,12 @@ class PredictionCard extends StatelessWidget {
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0),
                             ))),
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/generatedQR");
+                        onPressed: () async {
+                          //TODO CALL THE GENEARET QR HERE
+                          final response = await generateQr(pc, price);
+                          Navigator.pushNamed(context, "/generatedQR",
+                              arguments:
+                                  Arguments(hash: response, price: price));
                         },
                         child: const Text(
                           "Generate QR code",
@@ -93,5 +102,20 @@ class PredictionCard extends StatelessWidget {
             )
           ]),
     );
+  }
+}
+
+generateQr(PcInfo data, double price) async {
+  try {
+    var response = await Dio().post('http://192.168.1.18:80/api/qr/generate',
+        data: {"laptop": data.toJson(), "price": price},
+        options: Options(
+          contentType: Headers.jsonContentType,
+          validateStatus: (status) => true,
+        ));
+    print(response.toString());
+    return response.toString();
+  } catch (e) {
+    print(e);
   }
 }

@@ -265,8 +265,6 @@ class FirstForm extends HookWidget {
                             ])),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all<Color>(
-                                  Colors.transparent),
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   Colors.transparent),
                               shape: MaterialStateProperty.all<
