@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/favorite/favorites.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:proto/app_bloc/app_bloc.dart';
@@ -20,7 +21,7 @@ Future<void> main() {
     final authenticationRepository = AuthenticationRepository();
     await authenticationRepository.user.first;
     await CacheHelper.init();
-    bool isDarkTheme = CacheHelper.getData(key: 'darkTheme') ?? false;
+    bool isDarkTheme = CacheHelper.getData(key: 'darkTheme') ?? true;
     CacheHelper.getData(key: "darkTheme");
     runApp(MyApp(
         isDarkTheme: isDarkTheme,
@@ -75,8 +76,8 @@ class MyApp extends StatelessWidget {
                   "/predition": (context) => const Prediction(),
                   "/google": (context) => const GoogleAssistant(),
                   "/generatedQR": (context) => const GeneratedQR(),
-                  "/login": (context) => LoginPage(),
-                  "/favorites": (context) => Favorites(),
+                  "/login": (context) => const LoginPage(),
+                  "/favorites": (context) => const Favorites(),
                 },
                 debugShowCheckedModeBanner: false,
               );

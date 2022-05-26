@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:proto/login/login.dart';
 import 'package:proto/sign_up/sign_up.dart';
 import 'package:formz/formz.dart';
@@ -28,17 +29,39 @@ class LoginForm extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/bloc_logo_small.png',
-                height: 120,
+                'assets/logo2.png',
+                height: 60,
               ),
-              const SizedBox(height: 16),
-              _EmailInput(),
-              const SizedBox(height: 8),
-              _PasswordInput(),
-              const SizedBox(height: 8),
-              _LoginButton(),
-              const SizedBox(height: 8),
-              _SignUpButton(),
+              const SizedBox(height: 40),
+              Container(
+                margin: const EdgeInsets.fromLTRB(21, 10, 21, 0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 10.0),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  color: HexColor("#ebf3fb"),
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    _EmailInput(),
+                    const SizedBox(height: 8),
+                    _PasswordInput(),
+                    _RecoverAccountButton(),
+                    const SizedBox(height: 20),
+                    _LoginButton(),
+                    _SignUpButton(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -58,7 +81,15 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+            suffixIcon: Icon(Icons.email_rounded, color: HexColor("#4589d7")),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: HexColor("#4589d7"), width: 1.7),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: HexColor("#23456c"), width: 1.7),
+            ),
             labelText: 'email',
+            labelStyle: TextStyle(color: HexColor("#4589d7")),
             helperText: '',
             errorText: state.email.invalid ? 'invalid email' : null,
           ),
@@ -80,7 +111,15 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
+            suffixIcon: Icon(Icons.password, color: HexColor("#4589d7")),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: HexColor("#4589d7"), width: 1.7),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: HexColor("#23456c"), width: 1.7),
+            ),
             labelText: 'password',
+            labelStyle: TextStyle(color: HexColor("#4589d7")),
             helperText: '',
             errorText: state.password.invalid ? 'invalid password' : null,
           ),
@@ -98,18 +137,32 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('loginForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+            : Container(
+                width: 280,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(80)),
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [HexColor("#4589D7"), HexColor("#D0A0F7")])),
+                child: ElevatedButton(
+                  key: const Key('loginForm_continue_raisedButton'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    primary: HexColor("#726eff"),
                   ),
-                  primary: const Color(0xFFFFD600),
+                  onPressed: state.status.isValidated
+                      ? () => context.read<LoginCubit>().logInWithCredentials()
+                      : null,
+                  child: const Text('Log in',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold)),
                 ),
-                onPressed: state.status.isValidated
-                    ? () => context.read<LoginCubit>().logInWithCredentials()
-                    : null,
-                child: const Text('LOGIN'),
               );
       },
     );
@@ -119,13 +172,46 @@ class _LoginButton extends StatelessWidget {
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return TextButton(
       key: const Key('loginForm_createAccount_flatButton'),
       onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
-      child: Text(
-        'CREATE ACCOUNT',
-        style: TextStyle(color: theme.primaryColor),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'New user',
+            style: TextStyle(
+                color: HexColor("#213063"), fontWeight: FontWeight.w400),
+          ),
+          const SizedBox(width: 5),
+          Text(
+            'Sign up',
+            style: TextStyle(
+                color: HexColor("#213063"), fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RecoverAccountButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      key: const Key('loginForm_Recovery_flatButton'),
+      onPressed: () => {},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            'Forgot username or password',
+            style: TextStyle(
+                color: HexColor("#213063"),
+                fontWeight: FontWeight.w400,
+                decoration: TextDecoration.underline),
+          ),
+        ],
       ),
     );
   }

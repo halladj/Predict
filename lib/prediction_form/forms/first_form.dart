@@ -200,23 +200,98 @@ class FirstForm extends HookWidget {
                               ),
                             ),
                           ),
-                          onSuggestionSelected: (GPU? suggestion) {
-                            final gpu = suggestion!;
 
-                            _gpu.value = _gpu.value.copyWith(
-                              name: gpu.name,
-                              brand: gpu.brand,
-                              wordsIdentifier: gpu.wordsIdentifier,
-                              numberIdentifier: gpu.numberIdentifier,
-                              vram: gpu.vram,
-                              frequency: gpu.frequency,
-                            );
-                            gpuController.text = gpu.name;
-                          },
-                          validator: (value) {
-                            var newValue = value!;
-                            if (newValue.isEmpty) {
-                              return 'GPU Field cant be Empty';
+//                           onSuggestionSelected: (GPU? suggestion) {
+//                             final gpu = suggestion!;
+
+//                             _gpu.value = _gpu.value.copyWith(
+//                               name: gpu.name,
+//                               brand: gpu.brand,
+//                               wordsIdentifier: gpu.wordsIdentifier,
+//                               numberIdentifier: gpu.numberIdentifier,
+//                               vram: gpu.vram,
+//                               frequency: gpu.frequency,
+//                             );
+//                             gpuController.text = gpu.name;
+//                           },
+//                           validator: (value) {
+//                             var newValue = value!;
+//                             if (newValue.isEmpty) {
+//                               return 'GPU Field cant be Empty';
+
+                        ),
+                      ),
+                    ],
+                  ),
+                  // HDD STORAGE
+                  // A SLIDER WOULD LOOK GOOD HERE
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                            label: "RAM",
+                            hint: "8, 16 ...",
+                            controller: ramController,
+                            onChanged: (value) => _ram.value = int.parse(value),
+                            keyboardInputType: TextInputType.number,
+                            autoFocus: false),
+                      ),
+                      const SizedBox(width: 24),
+                      Expanded(
+                        child: CustomTextField(
+                            label: "RAM Type",
+                            hint: "ddr4, ddr3 ....",
+                            controller: ramTypeController,
+                            onChanged: (value) => _ramType.value = value,
+                            keyboardInputType: TextInputType.text,
+                            autoFocus: false),
+                      ),
+                    ],
+                  ),
+                  CustomTextField(
+                      label: "RAM Frequency",
+                      hint: "2999, 3213",
+                      controller: ramFrequencyController,
+                      onChanged: (value) =>
+                          _ramFrequency.value = double.parse(value),
+                      keyboardInputType: TextInputType.number,
+                      autoFocus: false),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    child: Center(
+                      child: Container(
+                        width: 128,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(80)),
+                            gradient: LinearGradient(colors: [
+                              HexColor("#4589D7"),
+                              HexColor("#D0A0F7")
+                            ])),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.transparent),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80.0),
+                              ))),
+                          child: const Text('Continre'),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              context
+                                  .flow<PcInfo>()
+                                  .update((info) => info.copyWith(
+                                        brand: _brand.value,
+                                        cpu: _cpu.value,
+                                        gpu: _gpu.value,
+                                        ram: _ram.value,
+                                        ramType: _ramType.value,
+                                        ramFrequency: _ramFrequency.value,
+                                      ));
+
                             }
                           },
                           itemBuilder: (context, GPU? suggestion) {

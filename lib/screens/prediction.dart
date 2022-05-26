@@ -9,23 +9,38 @@ class Prediction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical:0,horizontal: 8.0),
-      child: Center(
-        child: Container(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          child:
-            PredictionForm(),
-            //const MainCard(),
-            //ElevatedButton(
-            //    onPressed: () {
-            //      Navigator.pushNamed(context, '/predition_form');
-            //},
-            //child: const Text("Predition Form"))
+
+    return Scaffold(
+        appBar: CustomAppBar(
+          appBar: AppBar(),
+          titleText: "Predicetion Page",
+        ),
+        body: const Padding(
+            padding: EdgeInsets.all(18.0), //child: PredictionCard(price: 10000)
+            child: Text("hahaha")
+            /* Container(
+            color: Colors.purple,
+            child:Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                          height: 100,
+                          width: 250,
+                          child: Card(
+                              child:  Center(
+                                  child:Text(
+                                  "Predition Page",
+                                  style: TextStyle(
+                                    fontSize: 24.0,
+                                    fontWeight: 
+                                      FontWeight.bold
+                                    ),
+                              )
+
 
         ),
       ),
     );
   }
 }
-

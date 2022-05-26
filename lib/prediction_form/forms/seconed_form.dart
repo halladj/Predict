@@ -182,16 +182,17 @@ class SeconedForm extends HookWidget {
                                   min: 0,
                                   divisions: 2,
                                   seconedLabel: _touchScreen.value == 1
-                                      ? "touch"
-                                      : "not touch",
+                                      ? "Have touch"
+                                      : "Does Not Have touch",
                                   value: _touchScreen),
                               CustomSlider(
                                   label: "Anti Glare",
                                   max: 1,
                                   min: 0,
                                   divisions: 2,
-                                  seconedLabel:
-                                      _anitGlare.value == 1 ? "Has" : "No have",
+                                  seconedLabel: _anitGlare.value == 1
+                                      ? "Have Anti-Glare"
+                                      : "Does Not Have Anti-Glare",
                                   value: _anitGlare),
                               Row(
                                 mainAxisAlignment:
@@ -199,6 +200,8 @@ class SeconedForm extends HookWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   SelectionField(label: "State", value: _state),
+                                  //TODO TOGGLE SWITCH INSTED OF THE SILDER AND
+                                  //selection fields
                                   Container(
                                     width: 128,
                                     height: 50,

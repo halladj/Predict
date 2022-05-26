@@ -4,26 +4,9 @@ class Hub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
 
-            children: [
-              Card(
-                child: Text('lol'),
-              ),
-              Card(
-                child: Text('lol'),
-              ),
-              Card(
-                child: Text('lol'),
-              ),
-            ],
-          ),
-        ),
-      ],
+    return const Center(
+      child: PredictionForm(),
 
     );
   }

@@ -4,8 +4,11 @@ import 'package:proto/constants.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'components/custom_bottom_navigation_bar.dart';
 import 'components/side_bar.dart';
+
+
 
 class Home extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: Home());
@@ -14,7 +17,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     //WE USED THE BLOC BUILDER HERE TO ALLOW
-    // RERENDER in the widget
+
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
       return SafeArea(
         child: Container(
@@ -32,6 +35,21 @@ class Home extends StatelessWidget {
             image: DecorationImage(image: AssetImage("assets/light_backgrounddd.png"),fit: BoxFit.cover,
               
             ),
+
+//     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+//       return Scaffold(
+//         body: homeCubit.pages[homeCubit.selectedIndex],
+//         //BOTTOM NAVIGATION STYLING
+//         bottomNavigationBar: Container(
+//           height: 68,
+//           decoration: const BoxDecoration(
+//             color: Colors.white,
+//             borderRadius: BorderRadius.only(
+//                 topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+//             boxShadow: [
+//               BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 6),
+//             ],
+
           ),
           //color: Colors.white,
           child: Scaffold(
