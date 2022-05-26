@@ -1,33 +1,30 @@
-import "package:flutter/material.dart";
-import "package:proto/components/components.dart";
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proto/home/home_cubit.dart';
-import "package:proto/prediction_form/prediction_form.dart";
-
+import 'package:flutter/material.dart';
 class Hub extends StatelessWidget {
   const Hub({Key? key}) : super(key: key);
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => const Hub());
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(0),
-      child: Center(
-        child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            PredictionForm(),
-            //const MainCard(),
-            //ElevatedButton(
-            //    onPressed: () {
-            //      Navigator.pushNamed(context, '/predition_form');
-            //},
-            //child: const Text("Predition Form"))
-          ],
+    return ListView(
+      children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+
+            children: [
+              Card(
+                child: Text('lol'),
+              ),
+              Card(
+                child: Text('lol'),
+              ),
+              Card(
+                child: Text('lol'),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
+
     );
   }
 }

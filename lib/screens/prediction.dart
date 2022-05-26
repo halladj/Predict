@@ -1,52 +1,31 @@
-import "package:flutter/material.dart";
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proto/components/components.dart';
+import 'package:flutter/material.dart';
+import "package:proto/prediction_form/prediction_form.dart";
 
 class Prediction extends StatelessWidget {
   const Prediction({Key? key}) : super(key: key);
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const Prediction());
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(
-          appBar: AppBar(),
-          titleText: "Predicetion Page",
-        ),
-        body: const Padding(
-            padding: EdgeInsets.all(18.0), child: PredictionCard(price: 10000)
-            /* Container(
-            color: Colors.purple,
-            child:Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                          height: 100,
-                          width: 250,
-                          child: Card(
-                              child:  Center(
-                                  child:Text(
-                                  "Predition Page",
-                                  style: TextStyle(
-                                    fontSize: 24.0,
-                                    fontWeight: 
-                                      FontWeight.bold
-                                    ),
-                              )
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical:0,horizontal: 8.0),
+      child: Center(
+        child: Container(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          child:
+            PredictionForm(),
+            //const MainCard(),
+            //ElevatedButton(
+            //    onPressed: () {
+            //      Navigator.pushNamed(context, '/predition_form');
+            //},
+            //child: const Text("Predition Form"))
 
-                              )                         ),
-                      ),
-                      ElevatedButton(
-                          onPressed: (){
-                            Navigator.popAndPushNamed(context, '/generatedQR');
-                          },
-                          child: const Text("Generate QR code"),
-                      )
-                    ],
-                ),
-            )
-            ),*/
-            ));
+        ),
+      ),
+    );
   }
 }
 

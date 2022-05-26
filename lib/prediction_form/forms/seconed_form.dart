@@ -6,6 +6,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:proto/components/components.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
+import 'package:proto/prediction_form/prediction_form.dart';
 
 class SeconedForm extends HookWidget {
   var formKey = GlobalKey<FormState>();
@@ -236,6 +237,7 @@ class SeconedForm extends HookWidget {
                                                     screenResolution:
                                                         _screenResolution.value,
                                                     state: _state.value,
+
                                                   ));
                                         }
                                       },

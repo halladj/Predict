@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
+import 'package:proto/components/appbar.dart';
+import 'package:proto/constants.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proto/screens/favorites.dart';
+import 'components/custom_bottom_navigation_bar.dart';
+import 'components/side_bar.dart';
 
 class Home extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: Home());
@@ -13,31 +16,36 @@ class Home extends StatelessWidget {
     //WE USED THE BLOC BUILDER HERE TO ALLOW
     // RERENDER in the widget
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, cubit) {
-      return Scaffold(
-        body: homeCubit.pages[homeCubit.selectedIndex],
-        //BOTTOM NAVIGATION STYLING
-        bottomNavigationBar: Container(
-          height: 68,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-            boxShadow: [
-              BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 6),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              topRight: Radius.circular(30.0),
+      return SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            // gradient:LinearGradient(
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            //   colors: [
+            //
+            //   kLightBackgroundColor,
+            //   Colors.red,
+            // ],
+            //
+            // ),
+            image: DecorationImage(image: AssetImage("assets/light_backgrounddd.png"),fit: BoxFit.cover,
+              
             ),
-            child: BottomNavigationBar(
-                elevation: 0.0,
-                currentIndex: homeCubit.selectedIndex,
-                onTap: (index) {
-                  homeCubit.changeButtomNavIndex(index);
-                },
-                items: bottomNavigationItems),
+          ),
+          //color: Colors.white,
+          child: Scaffold(
+            //backgroundColor: kLightBackgroundColor,
+            backgroundColor: Colors.transparent,
+            drawer: SideBar(),
+            appBar: CustomAppBar(
+              homeCubit: homeCubit,
+              appBar: AppBar(),
+              titleText: '',
+            ),
+            body: homeCubit.pages[homeCubit.selectedIndex],
+            //BOTTOM NAVIGATION STYLING
+            bottomNavigationBar: CustomBottomNavigation(homeCubit: homeCubit),
           ),
         ),
       );
@@ -45,15 +53,3 @@ class Home extends StatelessWidget {
   }
 }
 
-//BottomNavigation Elements
-
-var bottomNavigationItems = const <BottomNavigationBarItem>[
-  BottomNavigationBarItem(
-      icon: Icon(Icons.qr_code_scanner_rounded), label: "QR"),
-  BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-  BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Hub"),
-  BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-  BottomNavigationBarItem(
-      icon: ImageIcon(AssetImage("assets/google.png")),
-      label: "Google Assistant"),
-];

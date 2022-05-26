@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:proto/constants.dart';
 
 class CustomColors {
   static final Color buttonColor = HexColor("#726eff");
@@ -86,10 +87,11 @@ class CustomTheme {
       //AppBar Styles
       //
       appBarTheme: AppBarTheme(
-          iconTheme: const IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.deepPurple),
           //actionsIconTheme: ,
+          elevation: 0,
           foregroundColor: Colors.black,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.white.withOpacity(0.5),
           titleTextStyle: lightTextTheme.headline6,
           systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarBrightness: Brightness.light)),
@@ -103,7 +105,7 @@ class CustomTheme {
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: HexColor("#FDFFFF"),
         selectedItemColor: HexColor("#D0A0F7"),
-        unselectedItemColor: HexColor("#C4C4C4"),
+        unselectedItemColor: Colors.grey[350],
       ),
       textTheme: lightTextTheme,
     );
@@ -145,11 +147,14 @@ class CustomTheme {
         //
         appBarTheme: AppBarTheme(
             iconTheme: IconThemeData(color: coolPurple[50]),
-            elevation: 10,
+            elevation: 0,
             backgroundColor: HexColor('#37465b'),
             titleTextStyle: lightTextTheme.headline6,
             systemOverlayStyle: const SystemUiOverlayStyle(
                 statusBarBrightness: Brightness.dark)),
+
+
+
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor:

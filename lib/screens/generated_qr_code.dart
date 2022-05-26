@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:proto/components/components.dart';
+import 'package:proto/home/home_cubit.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class GeneratedQR extends StatefulWidget {
@@ -16,24 +17,25 @@ class _GeneratedQRState extends State<GeneratedQR> {
     return Scaffold(
       appBar: CustomAppBar(
         appBar: AppBar(),
-        titleText: "Generated QR code",
+        titleText: "Generated QR code", homeCubit: HomeCubit(),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            QrImage(
-              data: textController.text,
-              backgroundColor: Colors.white,
-              size: 320,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            buildTextField(context)
-          ],
-        ),
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QrImage(
+                data: textController.text,
+                backgroundColor: Colors.white,
+                size: 320,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              buildTextField(context)
+            ],
+          ),
+
       ),
     );
   }
