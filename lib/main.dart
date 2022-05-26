@@ -71,8 +71,8 @@ class MyApp extends StatelessWidget {
                 initialRoute: "/",
                 routes: {
                   '/': (context) => const Home(),
-                  "/hub": (context) => const Hub(),
-                  '/predition_form': (context) => const PredictionForm(),
+                  //"/hub": (context) => const Prediction(),
+                  '/predition_form': (context) =>  PredictionForm(),
                   "/predition": (context) => const Prediction(),
                   "/google": (context) => const GoogleAssistant(),
                   "/generatedQR": (context) => const GeneratedQR(),
