@@ -1,9 +1,11 @@
 import 'package:flow_builder/flow_builder.dart';
 import "package:flutter/material.dart";
 import 'package:proto/app_bloc/app_bloc.dart';
+import 'package:proto/favorite/favorites.dart';
 import 'package:proto/login/view/login_page.dart';
 import 'package:proto/screens/google_assistant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/screens/profile_page.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class Profile extends StatelessWidget {
 List<Page> onGenerateViewPages(AppStatus state, List<Page<dynamic>> pages) {
   switch (state) {
     case AppStatus.authenticated:
-      return [GoogleAssistant.page()];
+      return [ProfilePage.page()];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
   }

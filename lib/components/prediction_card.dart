@@ -1,21 +1,11 @@
 import 'dart:ui';
-
 import 'package:dio/dio.dart';
+
 import 'package:flutter/cupertino.dart';
 
 import "package:flutter/material.dart";
-import 'package:flutter_hex_color/flutter_hex_color.dart';
-import 'package:proto/components/components.dart';
-import 'package:proto/constants.dart';
-import 'package:proto/home.dart';
-import 'package:proto/home/home_cubit.dart';
 import "package:proto/prediction_form/model/pc.model.dart";
-
-import 'package:proto/prediction_form/prediction_form.dart';
-import 'package:proto/screens/prediction.dart';
-
 import 'package:proto/screens/generated_qr_code.dart';
-
 
 class PredictionCard extends StatelessWidget {
   const PredictionCard({Key? key, required this.price, required this.pc})
@@ -26,9 +16,85 @@ class PredictionCard extends StatelessWidget {
 
   final PcInfo pc;
 
-
   @override
   Widget build(BuildContext context) {
+
+//     return Column(
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           Padding(
+//             padding:
+//                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+//             child: Column(
+//               children: [
+//                 ClipRRect(
+//                   borderRadius: BorderRadius.circular(20),
+//                   child: BackdropFilter(
+//                     filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+//                     child: Container(
+//                       decoration: BoxDecoration(
+//                         gradient: LinearGradient(
+//                           colors: [
+//                             Colors.blue.withOpacity(0.08),
+//                             Colors.blue.withOpacity(0.025),
+//                           ],
+//                           begin: Alignment.topLeft,
+//                           end: Alignment.bottomRight,
+//                         ),
+//                         border: Border.all(
+//                           color: Colors.white.withOpacity(0.3),
+//                         ),
+//                         borderRadius: BorderRadius.circular(10),
+//                       ),
+//                       constraints: const BoxConstraints(minHeight: 160),
+//                       child: Padding(
+//                         padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+//                         child: Column(
+//                           children: [
+//                             Padding(
+//                               padding:
+//                                   const EdgeInsets.symmetric(vertical: 20.0),
+//                               child: Column(
+//                                 children: [
+//                                   const Text(
+//                                     "Laptop's Price: ",
+//                                     style: TextStyle(
+//                                       fontSize: 26,
+//                                       fontWeight: FontWeight.w500,
+//                                       color: Color(0xff06446C),
+//                                     ),
+//                                     textAlign: TextAlign.start,
+//                                   ),
+//                                   Padding(
+//                                     padding: const EdgeInsets.symmetric(
+//                                         horizontal: 20.0),
+//                                     child: Row(
+//                                       crossAxisAlignment:
+//                                           CrossAxisAlignment.baseline,
+//                                       textBaseline: TextBaseline.alphabetic,
+//                                       children: [
+//                                         Text(
+//                                           // ignore: unnecessary_string_interpolations
+//                                           "${price.toStringAsFixed(2)}",
+//                                           style: const TextStyle(
+//                                             fontSize: 34,
+//                                             fontWeight: FontWeight.w500,
+//                                             color: Color(0xff06446C),
+//                                           ),
+//                                         ),
+//                                         const Text(
+//                                           " DZD",
+//                                           style: TextStyle(
+//                                             fontSize: 26,
+//                                             fontWeight: FontWeight.w500,
+//                                             color: Color(0xff06446C),
+//                                           ),
+//                                         ),
+//                                       ],
+//                                     ),
+//                                   ),
+
     return Container(
       margin: EdgeInsets.only(top:2.0),
       child: Column(
@@ -86,10 +152,38 @@ class PredictionCard extends StatelessWidget {
                                       Text(" DZD",style:Theme.of(context).textTheme.headline2,
                                       ),],
                                   ),
+
                                 ],
                               ),
                             ),
                             Container(
+
+//                                 height: 220,
+//                                 width: 350,
+//                                 padding: const EdgeInsets.symmetric(
+//                                     horizontal: 10.0, vertical: 20.0),
+//                                 child: const Image(
+//                                     image: AssetImage("assets/laptop3.png"))),
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 const SizedBox(height: 60),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                   children: [
+//                     Container(
+//                       height: 50,
+//                       decoration: const BoxDecoration(
+//                         borderRadius: BorderRadius.all(Radius.circular(20)),
+//                         // gradient: LinearGradient(colors: [
+//                         //   HexColor("#4589D7"),
+//                         //   HexColor("#D0A0F7")
+//                         // ]),
+//                         color: Color(0xff00CBBF),
+
                               height: 340,
                                 width: 500,
                                 //padding: EdgeInsets.symmetric(horizontal: 10.0,),
@@ -134,7 +228,44 @@ class PredictionCard extends StatelessWidget {
                               "Generate QR",
                               style: TextStyle(fontSize: 18,color: Colors.white),
                             )),
+
                       ),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.transparent),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ))),
+                          onPressed: () async {
+                            final data = await generateQr(pc, price);
+                            Navigator.pushNamed(context, "/generatedQR",
+                                arguments: Arguments(
+                                    hash: data["hash"].toString(),
+                                    price: price,
+                                    laptop: pc));
+                            //Navigator.pushNamed(context, "/generatedQR");
+                          },
+                          child: const Text(
+                            "Generate QR",
+                            style: TextStyle(fontSize: 18),
+                          )),
+                    ),
+
+
+//                     //SizedBox(width: 1.0,),
+//                     Container(
+//                       height: 50,
+//                       decoration: const BoxDecoration(
+//                         borderRadius: BorderRadius.all(Radius.circular(20)),
+//                         // gradient: LinearGradient(colors: [
+//                         //   Color(0xff4589D7),
+//                         //   Color(0xffD0A0F7)
+//                         // ]),
+//                         //color: Color(0xff874FC4),
+//                         color: Colors.white,
 
                       //SizedBox(width: 1.0,),
                       Container(
@@ -166,9 +297,32 @@ class PredictionCard extends StatelessWidget {
                               style: TextStyle(fontSize: 18,
                               color: Color(0xff00CBBF),),
                             )),
-                      ),
 
-                    ],
+                      ),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                side: const BorderSide(
+                                  color: Color(0xff00CBBF),
+                                ),
+                              ))),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("/");
+                          },
+                          child: const Text(
+                            "Back to main page",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff00CBBF),
+                            ),
+                          )),
+                    ),
+                  ],
 
 //                       child: Padding(
 //                         padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
@@ -207,13 +361,11 @@ class PredictionCard extends StatelessWidget {
 //                           "Generate QR code",
 //                           style: TextStyle(fontSize: 24),
 //                         )),
-
-                  ),
-                ],
-              ),
-            )
-          ]),
-    );
+                ),
+              ],
+            ),
+          )
+        ]);
   }
 }
 
@@ -225,8 +377,8 @@ generateQr(PcInfo data, double price) async {
           contentType: Headers.jsonContentType,
           validateStatus: (status) => true,
         ));
-    print(response.toString());
-    return response.toString();
+    print(response.data["hash"].toString());
+    return response.data;
   } catch (e) {
     print(e);
   }

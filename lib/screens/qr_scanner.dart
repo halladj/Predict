@@ -1,9 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
-import 'package:proto/components/prediction_card.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
+import 'package:proto/screens/generated_qr_code.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRCodeScanner extends StatefulWidget {
@@ -18,6 +17,11 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
   Barcode? result;
   QRViewController? controller;
   double price = 0.0;
+  var data;
+  int condition = 1;
+  //TODO try to find some solution for this bug
+  //the bug is that u have to change the screen from
+  //the buttomnav to be able to recane a new code
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -60,22 +64,33 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             cutOutSize: MediaQuery.of(context).size.width * 0.8),
       );
 
-  void _onQRViewCreated(QRViewController controller) async {
+  void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
     });
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
       setState(() {
         result = scanData;
+        data = result?.code.toString();
       });
+      if (condition == 1) {
+        price = await scanQrCode(hash: data);
+        condition++;
+        Navigator.pushNamed(context, "/generatedQR",
+            arguments: Arguments(
+                hash: data.toString(), price: price, laptop: const PcInfo()));
+      }
     });
-    price = await scanQrCode();
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>${price.toString()}");
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                const PredictionCard(pc: PcInfo(), price: 10)));
+    //print("fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+    //print(data);
+    //price = await scanQrCode(hash: data);
+
+    //print("fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+    //Navigator.push(
+    //    context,
+    //    MaterialPageRoute(
+    //        builder: (context) =>
+    //            PredictionCard(pc: const PcInfo(), price: price)));
   }
 
   @override
@@ -139,7 +154,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       );
 }
 
-scanQrCode({String hash = "12"}) async {
+scanQrCode({required String hash}) async {
   try {
     var response = await Dio().get('http://192.168.1.18:80/api/qr/scan/${hash}',
         //data: {"laptop": data.toJson(), "price": price},
