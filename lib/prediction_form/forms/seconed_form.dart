@@ -8,6 +8,8 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:proto/prediction_form/prediction_form.dart';
 
+import '../../constants.dart';
+
 class SeconedForm extends HookWidget {
   var formKey = GlobalKey<FormState>();
 
@@ -32,21 +34,24 @@ class SeconedForm extends HookWidget {
             child: SingleChildScrollView(
                 //insert the column here so we can put that logo
                 child: Container(
-                    margin: const EdgeInsets.fromLTRB(21, 10, 21, 0),
+                    margin: const EdgeInsets.fromLTRB(21, 40, 21, 0),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 10.0),
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3), // changes position of shadow
+                          ),
                       ],
-                      color: HexColor("#ebf3fb"),
-                      borderRadius: BorderRadius.circular(25.0),
+                      color: Theme.of(context).backgroundColor,
+                      borderRadius: BorderRadius.circular(15.0),
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.1),
+                        width: 2.0,
+                      ),
                     ),
                     child: Form(
                         key: formKey,
@@ -108,18 +113,20 @@ class SeconedForm extends HookWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 2.0),
                                     child: Text("Screen Resolution",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                            color: HexColor("#7f7f7f"))),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.blueGrey.withOpacity(0.8),),),
                                   ),
                                   TypeAheadFormField<String>(
                                     textFieldConfiguration:
                                         TextFieldConfiguration(
                                       controller: screenResolutionController,
                                       decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Theme.of(context).scaffoldBackgroundColor,
                                         hintText: "Full HD",
                                         hintStyle: TextStyle(
                                             fontSize: 16,
@@ -127,16 +134,14 @@ class SeconedForm extends HookWidget {
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                              color: HexColor("#848ba3"),
-                                              width: 2),
+                                          borderSide:BorderSide(
+                                              color: Colors.grey.withOpacity(0.1), width: 2),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           borderSide: BorderSide(
-                                              color: HexColor("#4589D7"),
-                                              width: 2),
+                                              color: Color(0xff35e0d2), width: 2),
                                         ),
                                       ),
                                     ),
@@ -182,7 +187,7 @@ class SeconedForm extends HookWidget {
                                   min: 0,
                                   divisions: 2,
                                   seconedLabel: _touchScreen.value == 1
-                                      ? "Have touch"
+                                      ? "Has touch"
                                       : "Does Not Have touch",
                                   value: _touchScreen),
                               CustomSlider(
@@ -191,7 +196,7 @@ class SeconedForm extends HookWidget {
                                   min: 0,
                                   divisions: 2,
                                   seconedLabel: _anitGlare.value == 1
-                                      ? "Have Anti-Glare"
+                                      ? "Has Anti-Glare"
                                       : "Does Not Have Anti-Glare",
                                   value: _anitGlare),
                               Row(
@@ -203,15 +208,18 @@ class SeconedForm extends HookWidget {
                                   //TODO TOGGLE SWITCH INSTED OF THE SILDER AND
                                   //selection fields
                                   Container(
-                                    width: 128,
-                                    height: 50,
+                                    width: 120,
+                                    height: 48,
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
-                                            Radius.circular(80)),
-                                        gradient: LinearGradient(colors: [
-                                          HexColor("#4589D7"),
-                                          HexColor("#D0A0F7")
-                                        ])),
+                                            Radius.circular(15)),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Theme.of(context).primaryColorDark,
+                                              Theme.of(context).primaryColorLight,
+                                            ])),
                                     child: ElevatedButton(
                                       //TODO FLIP THE BUTON AND THE CONTAINER
                                       style: ButtonStyle(
@@ -222,9 +230,10 @@ class SeconedForm extends HookWidget {
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(80.0),
+                                                BorderRadius.circular(15.0),
                                           ))),
-                                      child: const Text('Predict'),
+                                      child: const Text('Predict',
+                                        style: TextStyle(fontSize: 18,color: Colors.white),),
                                       onPressed: () {
                                         if (formKey.currentState!.validate()) {
                                           context

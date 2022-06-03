@@ -29,10 +29,9 @@ class _GeneratedQRState extends State<GeneratedQR> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          appBar: AppBar(),
-          titleText: "Generated QR code",
-          homeCubit: HomeCubit(),
-        ),
+        appBar: AppBar(),
+        titleText: "Generated QR code", homeCubit: HomeCubit(), icon: true,
+      ),
         // ignore: sized_box_for_whitespace
         body: Container(
           width: double.infinity,
@@ -94,6 +93,7 @@ class _GeneratedQRState extends State<GeneratedQR> {
                             print(
                                 "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
 
+
                             var pc = PcInfo.fromJson(data);
                             setState(() {
                               laptop = pc;
@@ -112,6 +112,7 @@ class _GeneratedQRState extends State<GeneratedQR> {
               ),
               const SizedBox(height: 130)
             ],
+
           ),
         ),
       ),

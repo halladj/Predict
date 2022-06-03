@@ -1,6 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/components/appbar.dart';
+import 'package:proto/components/secondary_app_bar.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:proto/login/login.dart';
@@ -20,35 +22,14 @@ class LoginPage extends StatelessWidget {
       //homeCubit.changeButtomNavIndex(3);
       //TODO CREATE A REDDIREDCT TO THE PROFILE PAGE WHEN
       //THE STATE IS UN AUTHERIZED<< implemented in the favorities page>>
-      return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back, size: 30),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/");
-              }),
-          title: const Text("Log In", style: TextStyle(fontSize: 24)),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-              child: Tab(
-                icon: Image.asset(
-                  "assets/logo3.png",
-                  width: 90,
-                  height: 90,
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: Padding(
+      return
+       Padding(
           padding: const EdgeInsets.all(8),
           child: BlocProvider(
             create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
             child: const LoginForm(),
           ),
-        ),
-      );
+        );
     });
   }
 }

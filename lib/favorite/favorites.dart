@@ -11,6 +11,8 @@ class Favorites extends StatelessWidget {
   const Favorites({Key? key}) : super(key: key);
   static Page page() => const MaterialPage<void>(child: Favorites());
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,9 @@ class MyDialog extends StatelessWidget {
       showAlertDialog(context);
     });
     homeCubit.changeButtomNavIndex(4);
+
+    //homeCubit.changeIcon();
+
     return const LoginPage();
   }
 }

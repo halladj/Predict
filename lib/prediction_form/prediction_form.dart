@@ -1,3 +1,8 @@
+
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+
 import "package:flutter/material.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -20,10 +25,10 @@ class PredictionForm extends HookWidget {
     final _pcInfo = useState<dynamic>(const PcInfo());
     final price = useState<double>(-1);
     final _condition = useState<bool>(false);
+
     dynamic placeHolder;
 
     return SingleChildScrollView(
-      child: Container(
 //         padding: const EdgeInsets.all(0),
 //         alignment: Alignment.topCenter,
 //         child:
@@ -128,68 +133,97 @@ class PredictionForm extends HookWidget {
 //               ],
 //             ),
 
-        alignment: Alignment.center,
-        child: _condition.value == false
-            ? Padding(
-                padding: const EdgeInsets.all(34.0),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/logo2.png',
-                      height: 60,
-                    ),
-                    SizedBox(
-                      height: 431,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 0,
-                            child: Image.asset(
-                              'assets/laptop2.png',
-                            ),
-                          ),
-                          Positioned(
-                            top: 204,
-                            left: 60,
-                            child: Image.asset(
-                              'assets/laptop1.png',
-                            ),
-                          ),
-                        ],
+     // alignment: Alignment.center,
+      child: _condition.value == false || _pcInfo.value == const PcInfo()
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 34.0,vertical: 20.0),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Image.asset(
+                  //     "assets/logo.png"
+                  // ),
+                  Image.asset(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? 'assets/home_dark_mode.png'
+                        : 'assets/homeee.png',
+                    height: 350,
+                  ),
+                  SizedBox(height: 35.0,),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 14.0),
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                    BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),],
+                      //
+                      // gradient: LinearGradient(colors: [
+                      //   Color(0xffabaefa),
+                      //   kLightBackgroundColor,
+                      // ],
+                      //   begin: Alignment.topLeft,
+                      //   end: Alignment.bottomRight,
+                      // ),
+
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.1),
                       ),
+                      borderRadius: BorderRadius.circular(15),
+                      //color: Color(0xffabaffa),
+                      color: Theme.of(context).backgroundColor,
+
                     ),
-                    //TODO EXTRACT THIS WIDGET BOI
-                    //THIS THE BUTTON Gradient thing
-                    Container(
-                      width: 228,
-                      height: 70,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(80)),
-                          gradient: LinearGradient(colors: [
-                            HexColor("#4589D7"),
-                            HexColor("#D0A0F7")
-                          ])),
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.transparent),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80.0),
-                              ))),
-                          child: const Text('Predict Now !',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
-                          onPressed: () async {
-                            placeHolder = await Navigator.of(context)
-                                .push(OnboardingFlow.route());
-                            _pcInfo.value = placeHolder ?? const PcInfo();
-                            _condition.value = true;
-                            price.value = await getPrice(_pcInfo.value);
-                          }),
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Predict now !",
+                          style: Theme.of(context).textTheme.headline1,
                     ),
+                        SizedBox(height: 8.0,),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text('Predict the price of the laptop of your choice in the Algerien market. ',
+
+                                style: Theme.of(context).textTheme.bodyText1,
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+
+                            Container(
+                              height: 65.0,
+                                decoration: BoxDecoration(
+                                  //color: kLightBackgroundColor,
+                                    gradient: LinearGradient(
+                                         begin: Alignment.bottomLeft,
+                                         end: Alignment.topRight,
+
+                                        colors: [
+                                          Theme.of(context).primaryColorDark,
+                                          Theme.of(context).primaryColorLight,
+
+                                    ]),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                child: IconButton( onPressed: () async {
+                                  placeHolder = await Navigator.of(context)
+                                      .push(OnboardingFlow.route());
+                                  _pcInfo.value = placeHolder ?? const PcInfo();
+                                  price.value = await getPrice(_pcInfo.value);
+                                  _condition.value = true;
+                                }, icon: Icon(Icons.arrow_forward_ios),color: Colors.white,highlightColor: Colors.pink,),
+                            ),
+
+                          ],
+                        ),
+                      ],
+                    ),
+
                   ],
                 ),
               )
@@ -200,6 +234,49 @@ class PredictionForm extends HookWidget {
                     price: price.value,
                   ),
       ),
+
+
+
+                  ),
+
+                  //TODO EXTRACT THIS WIDGET BOI
+                  //THIS THE BUTTON Gradient thing
+                  // Container(
+                  //   width: 210,
+                  //   height: 54,
+                  //   decoration: BoxDecoration(
+                  //       borderRadius:
+                  //           const BorderRadius.all(Radius.circular(80)),
+                  //       gradient: LinearGradient(colors: [
+                  //         // HexColor("#4589D7"),
+                  //         // HexColor("#D0A0F7")
+                  //         HexColor("#d8a1f9"),
+                  //         HexColor("#57ebdf"),
+                  //       ])),
+                  //   child: ElevatedButton(
+                  //       style: ButtonStyle(
+                  //           backgroundColor: MaterialStateProperty.all<Color>(
+                  //               Colors.transparent),
+                  //           shape: MaterialStateProperty.all<
+                  //                   RoundedRectangleBorder>(
+                  //               RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(80.0),
+                  //           ))),
+                  //       child: const Text('Predict Now !',
+                  //           style: TextStyle(
+                  //               fontWeight: FontWeight.bold, fontSize: 24)),
+                  //       onPressed: () async {
+                  //         placeHolder = await Navigator.of(context)
+                  //             .push(OnboardingFlow.route());
+                  //         _pcInfo.value = placeHolder ?? const PcInfo();
+                  //         price.value = await getPrice(_pcInfo.value);
+                  //         _condition.value = true;
+                  //       }),
+                  // ),
+                ],
+              ),
+            )
+
     );
   }
 }
@@ -223,31 +300,11 @@ class OnboardingFlow extends StatelessWidget {
 //         ),
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Prediction Form"),
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back, size: 30),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, "/");
-            }),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: Tab(
-              icon: Image.asset(
-                "assets/logo3.png",
-                width: 90,
-                height: 90,
-              ),
-            ),
-          ),
-        ],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: const SecondaryAppBar(
+        title: "",
       ),
-      body: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: const SecondaryAppBar(
-          title: "Prediction Form",
-        ),
+
         body: FlowBuilder<PcInfo>(
           state: const PcInfo(),
           onGeneratePages: (pc, pages) {
@@ -260,8 +317,8 @@ class OnboardingFlow extends StatelessWidget {
             ];
           },
         ),
-      ),
-    );
+      );
+
   }
 }
 
