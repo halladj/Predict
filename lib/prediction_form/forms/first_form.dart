@@ -47,8 +47,7 @@ class FirstForm extends HookWidget {
             children: [
               const SizedBox(
               height: 55 ,
-              child: Image(image: AssetImage("assets/logo2.png",),
-              ),
+              child:FormIcon(),
               ),
               const SizedBox(
                 height: 5,
@@ -67,7 +66,7 @@ class FirstForm extends HookWidget {
                         offset: const Offset(0, 3), // changes position of shadow
                       ),
                     ],
-                color: Colors.white,
+                color: Theme.of(context).backgroundColor,
                   border: Border.all(
                     color: Colors.grey.withOpacity(0.1),
                     width: 2.0,
@@ -128,7 +127,7 @@ class FirstForm extends HookWidget {
                                 controller: cpuController,
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: kLightBackgroundColor,
+                                  fillColor: Theme.of(context).scaffoldBackgroundColor,
                                   hintText: "Intel® Core™ i7 8565U",
                                   hintStyle: TextStyle(
                                       fontSize: 16, color: HexColor("#b4b8bc")),
@@ -201,7 +200,7 @@ class FirstForm extends HookWidget {
                                   controller: gpuController,
                                   decoration: InputDecoration(
                                     filled: true,
-                                    fillColor: kLightBackgroundColor,
+                                    fillColor: Theme.of(context).scaffoldBackgroundColor,
                                     hintText: "NVIDIA GeForce RTX™ 3060",
                                     hintStyle: TextStyle(
                                         fontSize: 16, color: HexColor("#b4b8bc")),
@@ -303,9 +302,8 @@ class FirstForm extends HookWidget {
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
                                       colors: [
-
-                                    Color(0xffd8a1f9),
-                                    Color(0xff57ebdf),
+                                        Theme.of(context).primaryColorDark,
+                                        Theme.of(context).primaryColorLight,
                                   ])),
                               child: ElevatedButton(
 
@@ -324,8 +322,8 @@ class FirstForm extends HookWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     const Text('More specifications',
-                                    style: TextStyle(fontSize: 18),),
-                                    Icon(Icons.arrow_forward_ios,size: 22.0,),
+                                    style: TextStyle(fontSize: 18,color: Colors.white),),
+                                    Icon(Icons.arrow_forward_ios,size: 22.0,color: Colors.white),
                                   ],
                                 ),
                                 onPressed: () {
@@ -354,6 +352,19 @@ class FirstForm extends HookWidget {
         ),
       ),
     );
+  }
+}
+
+class FormIcon extends StatelessWidget {
+  const FormIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ?Image(image: AssetImage("assets/logo_dark3.png",))
+        :Image(image: AssetImage("assets/logo3.png",));
   }
 }
 

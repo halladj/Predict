@@ -20,6 +20,11 @@ class CustomTheme {
       fontWeight: FontWeight.normal,
       color: Colors.blueGrey,
     ),
+   bodyText2: TextStyle(
+     fontSize: 17,
+     fontWeight: FontWeight.normal,
+     color: Colors.blueGrey,
+   ),
 
     headline1: GoogleFonts.openSans(
         fontSize: 29,
@@ -27,15 +32,14 @@ class CustomTheme {
         color: Color(0xff06446C),
 
     ),
-    headline2: GoogleFonts.openSans(
-      fontSize: 21.0,
-      fontWeight: FontWeight.w700,
-      color: Colors.black,
+    headline2: TextStyle(
+      fontSize: 28,
+        fontWeight: FontWeight.w400,
+        color: Colors.blueGrey,
+
     ),
-    headline3: GoogleFonts.openSans(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.black,
+    headline3: TextStyle(fontSize: 38,
+      fontWeight: FontWeight.w500,color: Color(0xff06446C),
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
@@ -51,21 +55,28 @@ class CustomTheme {
       fontWeight: FontWeight.normal,
       color: Colors.white,
     ),
+    bodyText2: TextStyle(
+      fontSize: 17,
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
+    ),
+
     headline1: GoogleFonts.openSans(
       fontSize: 29.0,
       fontWeight: FontWeight.w700,
       color: Color(0xff66fcf1),
     ),
-    headline2: GoogleFonts.openSans(
-      fontSize: 21.0,
-      fontWeight: FontWeight.w700,
-      color: coolPurple[800],
+    headline2: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+      color: Colors.white.withOpacity(0.8),
+
     ),
-    headline3: GoogleFonts.openSans(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w600,
-      color: coolPurple[800],
+    headline3: TextStyle(fontSize: 38,
+      fontWeight: FontWeight.w500,
+      color: Colors.white,
     ),
+
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,

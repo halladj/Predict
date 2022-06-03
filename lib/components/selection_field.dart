@@ -43,14 +43,15 @@ class SelectionField extends HookWidget {
             child: Text(label,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 14,
                     color: HexColor("#7f7f7f")))),
         Wrap(
           spacing: 10.0,
           children: [
             ChoiceChip(
               //selectedColor: CustomColors.buttonHighlightColor,
-              selectedColor: Color(0xff35e0d2),
+              selectedColor: Theme.of(context).primaryColorLight,
+              disabledColor: Theme.of(context).scaffoldBackgroundColor,
               selected: _state.value == "used",
               label: const Text("Used", style: TextStyle(color: Colors.white)),
               onSelected: (selected) {
@@ -60,7 +61,8 @@ class SelectionField extends HookWidget {
             ),
             ChoiceChip(
               //selectedColor: CustomColors.buttonHighlightColor,
-              selectedColor: Color(0xff35e0d2),
+              selectedColor: Theme.of(context).primaryColorLight,
+              disabledColor: Theme.of(context).scaffoldBackgroundColor,
               selected: _state.value == "new",
               label: const Text("New", style: TextStyle(color: Colors.white)),
               onSelected: (bool selected) {

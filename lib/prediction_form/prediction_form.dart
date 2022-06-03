@@ -132,7 +132,7 @@ class PredictionForm extends HookWidget {
 //             ),
 
      // alignment: Alignment.center,
-      child: _condition.value == false|| _pcInfo.value == const PcInfo()
+      child: _condition.value == false || _pcInfo.value == const PcInfo()
           ? Padding(
               padding: const EdgeInsets.symmetric(horizontal: 34.0,vertical: 20.0),
               child: Column(

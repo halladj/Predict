@@ -46,7 +46,7 @@ class SeconedForm extends HookWidget {
                             offset: const Offset(0, 3), // changes position of shadow
                           ),
                       ],
-                      color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                       borderRadius: BorderRadius.circular(15.0),
                       border: Border.all(
                         color: Colors.grey.withOpacity(0.1),
@@ -126,7 +126,7 @@ class SeconedForm extends HookWidget {
                                       controller: screenResolutionController,
                                       decoration: InputDecoration(
                                         filled: true,
-                                        fillColor: kLightBackgroundColor,
+                                        fillColor: Theme.of(context).scaffoldBackgroundColor,
                                         hintText: "Full HD",
                                         hintStyle: TextStyle(
                                             fontSize: 16,
@@ -208,8 +208,8 @@ class SeconedForm extends HookWidget {
                                   //TODO TOGGLE SWITCH INSTED OF THE SILDER AND
                                   //selection fields
                                   Container(
-                                    width: 128,
-                                    height: 50,
+                                    width: 120,
+                                    height: 48,
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(15)),
@@ -217,9 +217,8 @@ class SeconedForm extends HookWidget {
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
-
-                                              Color(0xffd8a1f9),
-                                              Color(0xff57ebdf),
+                                              Theme.of(context).primaryColorDark,
+                                              Theme.of(context).primaryColorLight,
                                             ])),
                                     child: ElevatedButton(
                                       //TODO FLIP THE BUTON AND THE CONTAINER
@@ -234,7 +233,7 @@ class SeconedForm extends HookWidget {
                                                 BorderRadius.circular(15.0),
                                           ))),
                                       child: const Text('Predict',
-                                        style: TextStyle(fontSize: 18),),
+                                        style: TextStyle(fontSize: 18,color: Colors.white),),
                                       onPressed: () {
                                         if (formKey.currentState!.validate()) {
                                           context

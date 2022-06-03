@@ -33,7 +33,7 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
         child: IconButton(
             icon: const Icon(Icons.arrow_back_rounded,
                 size: 30.0),
-            color: Colors.purple[200],
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
             iconSize: 34.0,
             onPressed: () {
               Navigator.of(context).maybePop();
