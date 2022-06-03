@@ -1,14 +1,15 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proto/favorite/favorites_page.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/login/login.dart';
 import "package:flow_builder/flow_builder.dart";
 import "package:proto/app_bloc/app_bloc.dart";
-import 'package:proto/screens/google_assistant.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: Favorites());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Favorites extends StatelessWidget {
         onGeneratePages: (AppStatus state, List<Page<dynamic>> pages) {
           switch (state) {
             case AppStatus.authenticated:
-              return [GoogleAssistant.page()];
+              return [FavoritesPage.page()];
             case AppStatus.unauthenticated:
               //homeCubit.changeButtomNavIndex(3);
               return [MyDialog.page()];
@@ -39,7 +40,7 @@ class MyDialog extends StatelessWidget {
     Future.delayed(Duration.zero, () {
       showAlertDialog(context);
     });
-    homeCubit.changeButtomNavIndex(3);
+    homeCubit.changeButtomNavIndex(4);
     return const LoginPage();
   }
 }

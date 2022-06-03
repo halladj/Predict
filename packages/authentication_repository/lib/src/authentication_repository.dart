@@ -119,7 +119,7 @@ class AuthenticationRepository {
   ///
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
-  final String url = 'http://localhost/api/';
+  final String url = 'http://192.168.66.191/api/';
 
   Stream<User> get user async* {
 //    final user = fetchedUser == null ? User.empty : fetchedUser;
@@ -182,7 +182,12 @@ class AuthenticationRepository {
           .post<dynamic>('http://192.168.1.18/api/login', data: data);
       dynamic newData = jsonDecode(response.toString());
 
-      final user = User(token: newData["token"].toString());
+      final user = User(
+          //name: newData["name"].toString(),
+          email: newData["email"].toString(),
+          token: newData["token"].toString());
+
+      _cache.write<User>(value: user, key: userCacheKey);
       _controller.add(user);
       print(user);
 

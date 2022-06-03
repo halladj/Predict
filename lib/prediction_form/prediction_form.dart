@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import "package:flutter/material.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -20,7 +18,7 @@ class PredictionForm extends HookWidget {
     // react_hooks TO HANDLE THE PC STATE << Trust Me its way better>>
     //you delare a varaible with flutter_hooks  vai "useVariable_name"
     final _pcInfo = useState<dynamic>(const PcInfo());
-    final price = useState<double>(0);
+    final price = useState<double>(-1);
     final _condition = useState<bool>(false);
     dynamic placeHolder;
 
@@ -195,10 +193,12 @@ class PredictionForm extends HookWidget {
                   ],
                 ),
               )
-            : PredictionCard(
-                pc: _pcInfo.value,
-                price: price.value,
-              ),
+            : price.value == -1
+                ? const Center(child: CircularProgressIndicator())
+                : PredictionCard(
+                    pc: _pcInfo.value,
+                    price: price.value,
+                  ),
       ),
     );
   }
