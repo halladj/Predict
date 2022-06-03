@@ -24,7 +24,7 @@ class CustomSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           //crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -33,11 +33,10 @@ class CustomSlider extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: HexColor("#7f7f7f"),
-              ),
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 17,
+        color: Colors.blueGrey.withOpacity(0.8),),
             ),
             const SizedBox(width: 16.0),
             SizedBox(
@@ -57,10 +56,11 @@ class CustomSlider extends StatelessWidget {
         ),
         Text(
           seconedLabel,
+          textAlign: TextAlign.start,
           style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: HexColor("#000000"),
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Color(0xff06446C).withOpacity(0.9),
           ),
         ),
       ],

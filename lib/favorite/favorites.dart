@@ -10,6 +10,8 @@ import 'package:proto/screens/google_assistant.dart';
 class Favorites extends StatelessWidget {
   const Favorites({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,8 @@ class MyDialog extends StatelessWidget {
     Future.delayed(Duration.zero, () {
       showAlertDialog(context);
     });
-    homeCubit.changeButtomNavIndex(3);
+    homeCubit.changeButtomNavIndex(4);
+    //homeCubit.changeIcon();
     return const LoginPage();
   }
 }

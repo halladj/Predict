@@ -12,8 +12,9 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
       padding: const EdgeInsets.only(top:20.0,),
       child: Text(title,
       style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 22.0,
+        color: Color(0xff06446C),
+        fontWeight: FontWeight.w800,
+        fontSize: 20.0,
       ),),
     ),
       centerTitle: true,
@@ -27,7 +28,8 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
 
       leading:
       Container(
-        padding: EdgeInsets.only(top: 17.0,bottom: 15.0,left: 12.0),
+
+        padding: EdgeInsets.only(top: 5.0,bottom: 15.0,left: 12.0),
         child: IconButton(
             icon: const Icon(Icons.arrow_back_rounded,
                 size: 30.0),
@@ -57,5 +59,5 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
     );
   }
   @override
-  Size get preferredSize => Size.fromHeight(80);
+  Size get preferredSize => Size.fromHeight(40);
 }

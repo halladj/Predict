@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 import "package:flutter/material.dart";
 import 'package:flutter_hex_color/flutter_hex_color.dart';
@@ -29,117 +30,100 @@ class PredictionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top:2.0),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-//             AppBar(
-//               leading: IconButton(
-//                   icon: const Icon(Icons.arrow_back, size: 30),
-//                   onPressed: () {
-//                     Navigator.pushReplacementNamed(context, "/");
-//                   }),
-//               title:
-//                   const Text("The Prediction", style: TextStyle(fontSize: 24)),
-//               actions: [
-//                 Padding(
-//                   padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-//                   child: Tab(
-//                     icon: Image.asset(
-//                       "assets/logo3.png",
-//                       width: 90,
-//                       height: 90,
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20.0),
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3,sigmaY: 3),
-                      child: Container(
-                        decoration: BoxDecoration(
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3), // changes position of shadow
+                        ),],
 
-                          gradient: LinearGradient(colors: [
-                            Colors.blue.withOpacity(0.08),
-                            Colors.blue.withOpacity(0.025),
-                          ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.3),
-                          ),
-                          borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.1),
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      //color: Color(0xffabaffa),
+                      color: Colors.white,
 
-                        ),
-                          constraints: const BoxConstraints(minHeight: 160),
+                    ),
+                      constraints: const BoxConstraints(minHeight: 160),
 
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                                  child: Column(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(30, 5, 40, 25),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0,bottom:20.0,left: 25.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text("Laptop's Price: ",
-                                          style: const TextStyle(fontSize: 26,
-                                          fontWeight: FontWeight.w500,
-                                            color: Color(0xff06446C),
+                                          style: const TextStyle(fontSize: 28,
+                                          fontWeight: FontWeight.w400,
+                                            color: Colors.blueGrey,
                                           ),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                                          textBaseline: TextBaseline.alphabetic,
-                                          children: [
-                                            Text("${price.toStringAsFixed(2)}",style: const TextStyle(fontSize: 34,
-                                              fontWeight: FontWeight.w500,color: Color(0xff06446C),),),
-                                            Text(" DZD",style: const TextStyle(fontSize: 26,
-                                              fontWeight: FontWeight.w500,color: Color(0xff06446C),),
-                                            ),],
-                                        ),
+                                        //textAlign: TextAlign.start,
                                       ),
                                     ],
                                   ),
-                                ),
-                                Container(
-                                  height: 220,
-                                    width: 350,
-                                    padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 20.0),
-                                    child: const Image(image: AssetImage("assets/laptop3.png"))),
-                              ],
+                                  SizedBox(height: 10.0,),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: [
+                                      Text("${price.toStringAsFixed(2)}",style: const TextStyle(fontSize: 38,
+                                        fontWeight: FontWeight.w500,color: Color(0xff06446C),),),
+                                      Text(" DZD",style: const TextStyle(fontSize: 28,
+                                        fontWeight: FontWeight.w500,color: Color(0xff06446C),),
+                                      ),],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-
-
+                            Container(
+                              height: 340,
+                                width: 500,
+                                //padding: EdgeInsets.symmetric(horizontal: 10.0,),
+                                child: const Image(image: AssetImage("assets/laptop_pricee.png"))),
+                          ],
+                        ),
                       ),
-                    ),
+
+
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            // gradient: LinearGradient(colors: [
-                            //   HexColor("#4589D7"),
-                            //   HexColor("#D0A0F7")
-                            // ]),
-                            color: Color(0xff00CBBF),
+                                const BorderRadius.all(Radius.circular(15)),
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+
+                              colors: [
+
+                                HexColor("#d8a1f9"),
+                                HexColor("#57ebdf"),
+                              ]),
+                           // color: Color(0xff00CBBF),
                         ),
                         child: ElevatedButton(
                             style: ButtonStyle(
@@ -147,7 +131,7 @@ class PredictionCard extends StatelessWidget {
                                     Colors.transparent),
                                 shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderRadius: BorderRadius.circular(15.0),
                                 ))),
                             onPressed: () {
                               Navigator.pushNamed(context, "/generatedQR");
@@ -163,7 +147,7 @@ class PredictionCard extends StatelessWidget {
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
+                            const BorderRadius.all(Radius.circular(15)),
                             // gradient: LinearGradient(colors: [
                             //   Color(0xff4589D7),
                             //   Color(0xffD0A0F7)
@@ -178,14 +162,14 @@ class PredictionCard extends StatelessWidget {
                                     Colors.white),
                                 shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderRadius: BorderRadius.circular(15.0),
                                   side: BorderSide(
                                     color: Color(0xff00CBBF),
                                   ),
                                 ))),
                             onPressed: ()  {
-
                               Navigator.of(context).pushNamed("/");
+
                             },
                             child: const Text(
                               "Back to main page",

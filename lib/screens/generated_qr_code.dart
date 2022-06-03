@@ -22,7 +22,7 @@ class _GeneratedQRState extends State<GeneratedQR> {
 
       appBar: CustomAppBar(
         appBar: AppBar(),
-        titleText: "Generated QR code", homeCubit: HomeCubit(),
+        titleText: "Generated QR code", homeCubit: HomeCubit(), icon: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),

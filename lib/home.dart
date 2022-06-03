@@ -51,13 +51,16 @@ class Home extends StatelessWidget {
           ),
           //color: Colors.white,
           child: Scaffold(
-            //backgroundColor: kLightBackgroundColor,
-            backgroundColor: Colors.transparent,
+            //backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
+            //backgroundColor: Color(0xff080450),
             drawer: const SideBar(),
             appBar: CustomAppBar(
+
               homeCubit: homeCubit,
               appBar: AppBar(),
-              titleText: '',
+              titleText: '', icon: homeCubit.icon,
             ),
             body: homeCubit.pages[homeCubit.selectedIndex],
             //BOTTOM NAVIGATION STYLING

@@ -17,10 +17,10 @@ class CustomBottomNavigation extends StatelessWidget {
     return Container(
       height: 65,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: [
-          BoxShadow(color: Color(0xffD3D3D3), spreadRadius: 0, blurRadius: 6),
+          BoxShadow(color: Colors.grey, spreadRadius: 0, blurRadius: 6),
         ],
       ),
       child: ClipRRect(
@@ -29,6 +29,9 @@ class CustomBottomNavigation extends StatelessWidget {
 
 
         child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+
+          backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
             currentIndex: homeCubit.selectedIndex,
             onTap: (index) {

@@ -10,6 +10,14 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(InitialHomeState());
 
   bool darkTheme = true;
+  bool icon = true;
+  // void changeIcon(){
+  //   icon =!icon;
+  //
+  //   emit(ChangeIconState());
+  // }
+  //
+
   void changeTheme({isDarkTheme}) {
     if (isDarkTheme != null) {
       darkTheme = isDarkTheme;

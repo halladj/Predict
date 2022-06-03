@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
@@ -36,287 +37,319 @@ class FirstForm extends HookWidget {
     final _ramFrequency = useState<double>(0);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(top: 16.0, right: 5.0, left: 5.0),
-          child: SingleChildScrollView(
-            //insert the column here so we can put that logo
-            child: Container(
-              // height: 360.0,
-              //
-              // width: 500.0,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.purple.withOpacity(0.05),
-                    Colors.purple.withOpacity(0.025),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.3),
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: const EdgeInsets.fromLTRB(21, 10, 21, 0),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-              // decoration: BoxDecoration(
-              //   boxShadow: [
-              //     BoxShadow(
-              //       color: Colors.grey.withOpacity(0.5),
-              //       spreadRadius: 2,
-              //       blurRadius: 5,
-              //       offset: const Offset(0, 3), // changes position of shadow
-              //     ),
-              //   ],
-              //   color: kLightCardColor,
-              //   borderRadius: BorderRadius.circular(25.0),
-              // ),
-              child: Form(
-                  key: formKey,
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // const SizedBox(
-                      // //height: 200 ,
-                      // child: Image(image: AssetImage("assets/logo2.png")),
-                      // ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
-                      //MAYBE PUT A DROPDOWN THING HERE OR SOMETHING
-                      CustomTextField(
-                          label: "Brand",
-                          hint: "hp, dell ......",
-                          controller: brandController,
-                          onChanged: (value) => _brand.value = value,
-                          keyboardInputType: TextInputType.text,
-                          autoFocus: true),
-                      //TODO make it a reusable component
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("CPU",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: HexColor("#7f7f7f"))),
-                          ),
-                          TypeAheadFormField<CPU?>(
-                            textFieldConfiguration: TextFieldConfiguration(
-                              controller: cpuController,
-                              decoration: InputDecoration(
-                                hintText: "Intel® Core™ i7 8565U",
-                                hintStyle: TextStyle(
-                                    fontSize: 16, color: HexColor("#b4b8bc")),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#848ba3"), width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: HexColor("#4589D7"), width: 2),
-                                ),
-                              ),
-                            ),
-                            onSuggestionSelected: (CPU? suggestion) {
-                              final cpu = suggestion!;
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
-                              _cpu.value = _cpu.value.copyWith(
-                                name: cpu.name,
-                                brand: cpu.brand,
-                                modifier: cpu.modifier,
-                                generation: cpu.generation,
-                                numberIdentifier: cpu.numberIdentifier,
-                                family: cpu.family,
-                                frequency: cpu.frequency,
-                              );
-                              cpuController.text = cpu.name;
-                            },
-                            validator: (value) {
-                              var newValue = value!;
-                              if (newValue.isEmpty) {
-                                return 'CPU Field cant be Empty';
-                              }
-                            },
-                            itemBuilder: (context, CPU? suggestion) {
-                              final cpu = suggestion!;
-                              return ListTile(
-                                title: Text(cpu.name),
-                              );
-                            },
-                            suggestionsCallback: Api.getCpuSuggetions,
-                            noItemsFoundBuilder: (context) => const SizedBox(
-                              height: 100,
-                              child: Center(
-                                child: Text(
-                                  "No CPU was found.",
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+      body: Padding(
+        padding: EdgeInsets.only(top: 0, right: 5.0, left: 5.0),
+        child: SingleChildScrollView(
+          //insert the column here so we can put that logo
+          child: Column(
+            children: [
+              const SizedBox(
+              height: 55 ,
+              child: Image(image: AssetImage("assets/logo2.png",),
+              ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Container(
+                // height: 360.0,
+                //
+                // width: 500.0,
+
+                decoration: BoxDecoration(
+                  boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3), // changes position of shadow
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("GPU",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: HexColor("#7f7f7f"))),
-                          ),
-                          TypeAheadFormField<GPU?>(
+                    ],
+                color: Colors.white,
+                  border: Border.all(
+                    color: Colors.grey.withOpacity(0.1),
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                margin: const EdgeInsets.fromLTRB(21, 10, 21, 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                // decoration: BoxDecoration(
+                //   boxShadow: [
+                //     BoxShadow(
+                //       color: Colors.grey.withOpacity(0.5),
+                //       spreadRadius: 2,
+                //       blurRadius: 5,
+                //       offset: const Offset(0, 3), // changes position of shadow
+                //     ),
+                //   ],
+                //   color: kLightCardColor,
+                //   borderRadius: BorderRadius.circular(25.0),
+                // ),
+                child: Form(
+                    key: formKey,
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        // const SizedBox(
+                        // //height: 200 ,
+                        // child: Image(image: AssetImage("assets/logo2.png")),
+                        // ),
+                        // const SizedBox(
+                        //   height: 20,
+                        // ),
+                        //MAYBE PUT A DROPDOWN THING HERE OR SOMETHING
+                        CustomTextField(
+                            label: "Brand",
+                            hint: "hp, dell ......",
+                            controller: brandController,
+                            onChanged: (value) => _brand.value = value,
+                            keyboardInputType: TextInputType.text,
+                            autoFocus: true),
+                        //TODO make it a reusable component
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 2.0),
+                              child: Text("CPU",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    color: Colors.blueGrey.withOpacity(0.8),),),
+                            ),
+                            TypeAheadFormField<CPU?>(
                               textFieldConfiguration: TextFieldConfiguration(
-                                controller: gpuController,
+                                controller: cpuController,
                                 decoration: InputDecoration(
-                                  hintText: "NVIDIA GeForce RTX™ 3060",
+                                  filled: true,
+                                  fillColor: kLightBackgroundColor,
+                                  hintText: "Intel® Core™ i7 8565U",
                                   hintStyle: TextStyle(
                                       fontSize: 16, color: HexColor("#b4b8bc")),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                        color: HexColor("#848ba3"), width: 2),
+                                        color: Colors.grey.withOpacity(0.1), width: 2),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                        color: HexColor("#4589D7"), width: 2),
+                                        color: Color(0xff35e0d2), width: 2),
                                   ),
                                 ),
                               ),
-                              itemBuilder: (context, GPU? suggestion) {
-                                final gpu = suggestion!;
-                                return ListTile(
-                                  title: Text(gpu.name),
-                                );
-                              },
-                              suggestionsCallback: Api.getGpuSuggetions,
-                              noItemsFoundBuilder: (context) => const SizedBox(
-                                    height: 100,
-                                    child: Center(
-                                      child: Text(
-                                        "No CPU was found.",
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                              onSuggestionSelected: (GPU? suggestion) {
-                                final gpu = suggestion!;
+                              onSuggestionSelected: (CPU? suggestion) {
+                                final cpu = suggestion!;
 
-                                _gpu.value = _gpu.value.copyWith(
-                                  name: gpu.name,
-                                  brand: gpu.brand,
-                                  wordsIdentifier: gpu.wordsIdentifier,
-                                  numberIdentifier: gpu.numberIdentifier,
-                                  vram: gpu.vram,
-                                  frequency: gpu.frequency,
+                                _cpu.value = _cpu.value.copyWith(
+                                  name: cpu.name,
+                                  brand: cpu.brand,
+                                  modifier: cpu.modifier,
+                                  generation: cpu.generation,
+                                  numberIdentifier: cpu.numberIdentifier,
+                                  family: cpu.family,
+                                  frequency: cpu.frequency,
                                 );
-                                gpuController.text = gpu.name;
+                                cpuController.text = cpu.name;
                               },
                               validator: (value) {
                                 var newValue = value!;
                                 if (newValue.isEmpty) {
-                                  return 'GPU Field cant be Empty';
-                                }
-                              }),
-                        ],
-                      ),
-                      // HDD STORAGE
-                      // A SLIDER WOULD LOOK GOOD HERE
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                                label: "RAM",
-                                hint: "8, 16 ...",
-                                controller: ramController,
-                                onChanged: (value) =>
-                                    _ram.value = int.parse(value),
-                                keyboardInputType: TextInputType.number,
-                                autoFocus: false),
-                          ),
-                          const SizedBox(width: 24),
-                          Expanded(
-                            child: CustomTextField(
-                                label: "RAM Type",
-                                hint: "ddr4, ddr3 ....",
-                                controller: ramTypeController,
-                                onChanged: (value) => _ramType.value = value,
-                                keyboardInputType: TextInputType.text,
-                                autoFocus: false),
-                          ),
-                        ],
-                      ),
-                      CustomTextField(
-                          label: "RAM Frequency",
-                          hint: "2999, 3213",
-                          controller: ramFrequencyController,
-                          onChanged: (value) =>
-                              _ramFrequency.value = double.parse(value),
-                          keyboardInputType: TextInputType.number,
-                          autoFocus: false),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                          child: Center(
-                              child: Container(
-                            width: 128,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(80)),
-                                gradient: LinearGradient(colors: [
-                                  HexColor("#4589D7"),
-                                  HexColor("#D0A0F7")
-                                ])),
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.transparent),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ))),
-                              child: const Text('Continre'),
-                              onPressed: () {
-                                if (formKey.currentState!.validate()) {
-                                  context
-                                      .flow<PcInfo>()
-                                      .update((info) => info.copyWith(
-                                            brand: _brand.value,
-                                            cpu: _cpu.value,
-                                            gpu: _gpu.value,
-                                            ram: _ram.value,
-                                            ramType: _ramType.value,
-                                            ramFrequency: _ramFrequency.value,
-                                          ));
+                                  return 'CPU Field cant be Empty';
                                 }
                               },
+                              itemBuilder: (context, CPU? suggestion) {
+                                final cpu = suggestion!;
+                                return ListTile(
+                                  title: Text(cpu.name),
+                                );
+                              },
+                              suggestionsCallback: Api.getCpuSuggetions,
+                              noItemsFoundBuilder: (context) => const SizedBox(
+                                height: 100,
+                                child: Center(
+                                  child: Text(
+                                    "No CPU was found.",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                            // HDD STORAGE
-                            // A SLIDER WOULD LOOK GOOD HERE
-                          )))
-                    ],
-                  )),
-            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 2.0),
+                              child: Text("GPU",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    color: Colors.blueGrey.withOpacity(0.8),),),
+                            ),
+                            TypeAheadFormField<GPU?>(
+                                textFieldConfiguration: TextFieldConfiguration(
+                                  controller: gpuController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: kLightBackgroundColor,
+                                    hintText: "NVIDIA GeForce RTX™ 3060",
+                                    hintStyle: TextStyle(
+                                        fontSize: 16, color: HexColor("#b4b8bc")),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                          color: Colors.grey.withOpacity(0.1), width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                          color: Color(0xff35e0d2), width: 2),
+                                    ),
+                                  ),
+                                ),
+                                itemBuilder: (context, GPU? suggestion) {
+                                  final gpu = suggestion!;
+                                  return ListTile(
+                                    title: Text(gpu.name),
+                                  );
+                                },
+                                suggestionsCallback: Api.getGpuSuggetions,
+                                noItemsFoundBuilder: (context) => const SizedBox(
+                                      height: 100,
+                                      child: Center(
+                                        child: Text(
+                                          "No CPU was found.",
+                                          style: TextStyle(
+                                            fontSize: 24,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                onSuggestionSelected: (GPU? suggestion) {
+                                  final gpu = suggestion!;
+
+                                  _gpu.value = _gpu.value.copyWith(
+                                    name: gpu.name,
+                                    brand: gpu.brand,
+                                    wordsIdentifier: gpu.wordsIdentifier,
+                                    numberIdentifier: gpu.numberIdentifier,
+                                    vram: gpu.vram,
+                                    frequency: gpu.frequency,
+                                  );
+                                  gpuController.text = gpu.name;
+                                },
+                                validator: (value) {
+                                  var newValue = value!;
+                                  if (newValue.isEmpty) {
+                                    return 'GPU Field cant be Empty';
+                                  }
+                                }),
+                          ],
+                        ),
+                        // HDD STORAGE
+                        // A SLIDER WOULD LOOK GOOD HERE
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomTextField(
+                                  label: "RAM",
+                                  hint: "8, 16 ...",
+                                  controller: ramController,
+                                  onChanged: (value) =>
+                                      _ram.value = int.parse(value),
+                                  keyboardInputType: TextInputType.number,
+                                  autoFocus: false),
+                            ),
+                            const SizedBox(width: 24),
+                            Expanded(
+                              child: CustomTextField(
+                                  label: "RAM Type",
+                                  hint: "ddr4, ddr3 ....",
+                                  controller: ramTypeController,
+                                  onChanged: (value) => _ramType.value = value,
+                                  keyboardInputType: TextInputType.text,
+                                  autoFocus: false),
+                            ),
+                          ],
+                        ),
+                        CustomTextField(
+                            label: "RAM Frequency",
+                            hint: "2999, 3213",
+                            controller: ramFrequencyController,
+                            onChanged: (value) =>
+                                _ramFrequency.value = double.parse(value),
+                            keyboardInputType: TextInputType.number,
+                            autoFocus: false),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
+                            child: Center(
+                                child: Container(
+                              width: 420,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(15)),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+
+                                    Color(0xffd8a1f9),
+                                    Color(0xff57ebdf),
+                                  ])),
+                              child: ElevatedButton(
+
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.transparent),
+                                    shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                    ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Text('More specifications',
+                                    style: TextStyle(fontSize: 18),),
+                                    Icon(Icons.arrow_forward_ios,size: 22.0,),
+                                  ],
+                                ),
+                                onPressed: () {
+                                  if (formKey.currentState!.validate()) {
+                                    context
+                                        .flow<PcInfo>()
+                                        .update((info) => info.copyWith(
+                                              brand: _brand.value,
+                                              cpu: _cpu.value,
+                                              gpu: _gpu.value,
+                                              ram: _ram.value,
+                                              ramType: _ramType.value,
+                                              ramFrequency: _ramFrequency.value,
+                                            ));
+                                  }
+                                },
+                              ),
+                              // HDD STORAGE
+                              // A SLIDER WOULD LOOK GOOD HERE
+                            )))
+                      ],
+                    )),
+              ),
+            ],
           ),
         ),
       ),

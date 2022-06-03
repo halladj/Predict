@@ -15,15 +15,17 @@ class CustomColors {
 
 class CustomTheme {
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.openSans(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
-      color: Colors.black,
+    bodyText1: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.normal,
+      color: Colors.blueGrey,
     ),
+
     headline1: GoogleFonts.openSans(
-      fontSize: 32.0,
-      fontWeight: FontWeight.bold,
-      color: Colors.black,
+        fontSize: 29,
+        fontWeight: FontWeight.w700,
+        color: Color(0xff06446C),
+
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
@@ -43,15 +45,16 @@ class CustomTheme {
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    bodyText1: GoogleFonts.openSans(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
-      color: coolPurple[800],
+
+    bodyText1: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.normal,
+      color: Colors.white,
     ),
     headline1: GoogleFonts.openSans(
-      fontSize: 32.0,
-      fontWeight: FontWeight.bold,
-      color: coolPurple[800],
+      fontSize: 29.0,
+      fontWeight: FontWeight.w700,
+      color: Color(0xff66fcf1),
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
@@ -71,7 +74,9 @@ class CustomTheme {
   );
 
   static ThemeData light() {
+    String logo='assets/logo_3.png';
     return ThemeData(
+
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith(
@@ -80,18 +85,22 @@ class CustomTheme {
           },
         ),
       ),
-      scaffoldBackgroundColor: HexColor("#fdffff"),
+      scaffoldBackgroundColor: kLightBackgroundColor,
+      backgroundColor: Colors.white,
+      primaryColorDark: Color(0xffd8a1f9),
+      primaryColorLight: Color(0xff57ebdf),
       //Some Global Stuff
       primaryColor: HexColor("#726eff"),
       primarySwatch: Colors.purple,
       //AppBar Styles
       //
       appBarTheme: AppBarTheme(
-          iconTheme: const IconThemeData(color: Colors.deepPurple),
+          iconTheme: const IconThemeData(color: Color(0xffdb4dff),),
           //actionsIconTheme: ,
           elevation: 0,
           foregroundColor: Colors.black,
-          backgroundColor: Colors.white.withOpacity(0.5),
+          //backgroundColor: Colors.white.withOpacity(0.5),
+          backgroundColor: Colors.transparent,
           titleTextStyle: lightTextTheme.headline6,
           systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarBrightness: Brightness.light)),
@@ -112,13 +121,14 @@ class CustomTheme {
   }
 
   static ThemeData dark() {
+    String logo='assets/logo_dark.png';
     //#726eff purple
     //#5affe7
     //#obc6ab
     //#37465b
     //#212b3b
     return ThemeData(
-        //brightness: Brightness.dark,
+        brightness: Brightness.dark,
         //flaotingActiomBotton
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: HexColor("#726eff"),
@@ -126,29 +136,26 @@ class CustomTheme {
         //BottomNav Styles
         //
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: HexColor('#37465b'),
+            backgroundColor: Color(0xff1C2C60),
             //unselectedItemColor: HexColor('#0BC6AB'),
-            unselectedItemColor: HexColor('#5B58CC'),
+            unselectedItemColor: Color(0xff4D6270),
             //selectedItemColor: HexColor('#5affe7')
-            selectedItemColor: coolPurple[700]),
+            selectedItemColor: Color(0xff66fcf1),),
         //TextTheme
-        textTheme: const TextTheme(
-            headline4: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
-            bodyText2: TextStyle(
-              color: Color(0xffb3b2b2),
-            ),
-            headline6: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 18)),
+        textTheme: darkTextTheme,
         //Some Global Stuff
-        scaffoldBackgroundColor: HexColor("#212b3b"),
+        scaffoldBackgroundColor: kDarkgroundColor,
+        backgroundColor: Color(0xff1C2C60),
+        shadowColor: Colors.transparent,
         primarySwatch: ourPurple,
+        primaryColorDark: Color(0xffda3eb4),
+        primaryColorLight: Color(0xff66fcf1),
         //AppBar Styles
         //
         appBarTheme: AppBarTheme(
-            iconTheme: IconThemeData(color: coolPurple[50]),
+            iconTheme: IconThemeData(color: Color(0xff66fcf1),),
             elevation: 0,
-            backgroundColor: HexColor('#37465b'),
+            backgroundColor: Colors.transparent,
             titleTextStyle: lightTextTheme.headline6,
             systemOverlayStyle: const SystemUiOverlayStyle(
                 statusBarBrightness: Brightness.dark)),
