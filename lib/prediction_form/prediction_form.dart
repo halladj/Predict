@@ -1,16 +1,8 @@
-
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
-
 import "package:flutter/material.dart";
-import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:proto/components/components.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:dio/dio.dart';
-import 'package:proto/constants.dart';
-import 'package:proto/home.dart';
 import "package:proto/prediction_form/forms/forms.dart";
 import "package:proto/prediction_form/model/pc.model.dart";
 
@@ -133,10 +125,11 @@ class PredictionForm extends HookWidget {
 //               ],
 //             ),
 
-     // alignment: Alignment.center,
+      // alignment: Alignment.center,
       child: _condition.value == false || _pcInfo.value == const PcInfo()
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 34.0,vertical: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 34.0, vertical: 20.0),
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -149,17 +142,22 @@ class PredictionForm extends HookWidget {
                         : 'assets/homeee.png',
                     height: 350,
                   ),
-                  SizedBox(height: 35.0,),
+                  const SizedBox(
+                    height: 35.0,
+                  ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 14.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0, vertical: 14.0),
                     decoration: BoxDecoration(
-                        boxShadow: [
-                    BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       //
                       // gradient: LinearGradient(colors: [
                       //   Color(0xffabaefa),
@@ -175,109 +173,109 @@ class PredictionForm extends HookWidget {
                       borderRadius: BorderRadius.circular(15),
                       //color: Color(0xffabaffa),
                       color: Theme.of(context).backgroundColor,
-
                     ),
-
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Predict now !",
+                        Text(
+                          "Predict now !",
                           style: Theme.of(context).textTheme.headline1,
-                    ),
-                        SizedBox(height: 8.0,),
+                        ),
+                        const SizedBox(
+                          height: 8.0,
+                        ),
                         Row(
                           children: [
                             Expanded(
-                              child: Text('Predict the price of the laptop of your choice in the Algerien market. ',
-
+                              child: Text(
+                                'Predict the price of the laptop of your choice in the Algerien market. ',
                                 style: Theme.of(context).textTheme.bodyText1,
                                 textAlign: TextAlign.start,
                               ),
                             ),
-
                             Container(
                               height: 65.0,
-                                decoration: BoxDecoration(
-                                  //color: kLightBackgroundColor,
-                                    gradient: LinearGradient(
-                                         begin: Alignment.bottomLeft,
-                                         end: Alignment.topRight,
-
-                                        colors: [
-                                          Theme.of(context).primaryColorDark,
-                                          Theme.of(context).primaryColorLight,
-
+                              decoration: BoxDecoration(
+                                //color: kLightBackgroundColor,
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomLeft,
+                                    end: Alignment.topRight,
+                                    colors: [
+                                      Theme.of(context).primaryColorDark,
+                                      Theme.of(context).primaryColorLight,
                                     ]),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: IconButton( onPressed: () async {
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: IconButton(
+                                onPressed: () async {
                                   placeHolder = await Navigator.of(context)
                                       .push(OnboardingFlow.route());
                                   _pcInfo.value = placeHolder ?? const PcInfo();
                                   price.value = await getPrice(_pcInfo.value);
                                   _condition.value = true;
-                                }, icon: Icon(Icons.arrow_forward_ios),color: Colors.white,highlightColor: Colors.pink,),
+                                },
+                                icon: Icon(Icons.arrow_forward_ios),
+                                color: Colors.white,
+                                highlightColor: Colors.pink,
+                              ),
                             ),
-
                           ],
                         ),
                       ],
                     ),
-
-                  ],
-                ),
-              )
-            : price.value == -1
-                ? const Center(child: CircularProgressIndicator())
-                : PredictionCard(
-                    pc: _pcInfo.value,
-                    price: price.value,
-                  ),
-      ),
-
-
-
-                  ),
-
-                  //TODO EXTRACT THIS WIDGET BOI
-                  //THIS THE BUTTON Gradient thing
-                  // Container(
-                  //   width: 210,
-                  //   height: 54,
-                  //   decoration: BoxDecoration(
-                  //       borderRadius:
-                  //           const BorderRadius.all(Radius.circular(80)),
-                  //       gradient: LinearGradient(colors: [
-                  //         // HexColor("#4589D7"),
-                  //         // HexColor("#D0A0F7")
-                  //         HexColor("#d8a1f9"),
-                  //         HexColor("#57ebdf"),
-                  //       ])),
-                  //   child: ElevatedButton(
-                  //       style: ButtonStyle(
-                  //           backgroundColor: MaterialStateProperty.all<Color>(
-                  //               Colors.transparent),
-                  //           shape: MaterialStateProperty.all<
-                  //                   RoundedRectangleBorder>(
-                  //               RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(80.0),
-                  //           ))),
-                  //       child: const Text('Predict Now !',
-                  //           style: TextStyle(
-                  //               fontWeight: FontWeight.bold, fontSize: 24)),
-                  //       onPressed: () async {
-                  //         placeHolder = await Navigator.of(context)
-                  //             .push(OnboardingFlow.route());
-                  //         _pcInfo.value = placeHolder ?? const PcInfo();
-                  //         price.value = await getPrice(_pcInfo.value);
-                  //         _condition.value = true;
-                  //       }),
-                  // ),
+                  )
                 ],
               ),
             )
-
+          : price.value == -1
+              ? const Center(child: CircularProgressIndicator())
+              : PredictionCard(
+                  pc: _pcInfo.value,
+                  price: price.value,
+                ),
     );
+
+//                  ),
+
+    //TODO EXTRACT THIS WIDGET BOI
+    //THIS THE BUTTON Gradient thing
+    // Container(
+    //   width: 210,
+    //   height: 54,
+    //   decoration: BoxDecoration(
+    //       borderRadius:
+    //           const BorderRadius.all(Radius.circular(80)),
+    //       gradient: LinearGradient(colors: [
+    //         // HexColor("#4589D7"),
+    //         // HexColor("#D0A0F7")
+    //         HexColor("#d8a1f9"),
+    //         HexColor("#57ebdf"),
+    //       ])),
+    //   child: ElevatedButton(
+    //       style: ButtonStyle(
+    //           backgroundColor: MaterialStateProperty.all<Color>(
+    //               Colors.transparent),
+    //           shape: MaterialStateProperty.all<
+    //                   RoundedRectangleBorder>(
+    //               RoundedRectangleBorder(
+    //             borderRadius: BorderRadius.circular(80.0),
+    //           ))),
+    //       child: const Text('Predict Now !',
+    //           style: TextStyle(
+    //               fontWeight: FontWeight.bold, fontSize: 24)),
+    //       onPressed: () async {
+    //         placeHolder = await Navigator.of(context)
+    //             .push(OnboardingFlow.route());
+    //         _pcInfo.value = placeHolder ?? const PcInfo();
+    //         price.value = await getPrice(_pcInfo.value);
+    //         _condition.value = true;
+    //       }),
+    // ),
+//                ],
+//              ),
+//            )
+
+//    );
   }
 }
 
@@ -304,21 +302,19 @@ class OnboardingFlow extends StatelessWidget {
       appBar: const SecondaryAppBar(
         title: "",
       ),
-
-        body: FlowBuilder<PcInfo>(
-          state: const PcInfo(),
-          onGeneratePages: (pc, pages) {
-            return [
-              MaterialPage(
-                child: FirstForm(),
-              ),
-              if (pc.brand != "") MaterialPage(child: SeconedForm()),
-              //if (pc.ramType != "") MaterialPage(child: ThirdForm()),
-            ];
-          },
-        ),
-      );
-
+      body: FlowBuilder<PcInfo>(
+        state: const PcInfo(),
+        onGeneratePages: (pc, pages) {
+          return [
+            MaterialPage(
+              child: FirstForm(),
+            ),
+            if (pc.brand != "") MaterialPage(child: SeconedForm()),
+            //if (pc.ramType != "") MaterialPage(child: ThirdForm()),
+          ];
+        },
+      ),
+    );
   }
 }
 

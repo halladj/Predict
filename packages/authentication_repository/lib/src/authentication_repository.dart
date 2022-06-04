@@ -119,7 +119,8 @@ class AuthenticationRepository {
   ///
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
-  final String url = 'http://192.168.66.191/api/';
+  //this is the var
+  final String url = 'http://192.168.1.18/api';
 
   Stream<User> get user async* {
 //    final user = fetchedUser == null ? User.empty : fetchedUser;
@@ -156,8 +157,7 @@ class AuthenticationRepository {
   Future<void> signUp({required String email, required String password}) async {
     try {
       final data = {'email': email, 'password': password, 'name': 'hamza'};
-      dynamic response = await Dio()
-          .post<dynamic>('http://192.168.1.18/api/signup', data: data);
+      dynamic response = await Dio().post<dynamic>('$url/signup', data: data);
       dynamic newData = jsonDecode(response.toString());
       final dynamic inter_user = newData["user"];
 
@@ -178,8 +178,7 @@ class AuthenticationRepository {
   }) async {
     try {
       final data = {'email': email, 'password': password};
-      dynamic response = await Dio()
-          .post<dynamic>('http://192.168.1.18/api/login', data: data);
+      dynamic response = await Dio().post<dynamic>('$url/login', data: data);
       dynamic newData = jsonDecode(response.toString());
 
       final user = User(

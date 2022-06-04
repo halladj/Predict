@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
+import 'package:proto/helpers/api/predictions.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:proto/screens/generated_qr_code.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -74,7 +75,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
         data = result?.code.toString();
       });
       if (condition == 1) {
-        price = await scanQrCode(hash: data);
+        price = await QrCodeApi.scanQrCode(hash: data);
         condition++;
         Navigator.pushNamed(context, "/generatedQR",
             arguments: Arguments(
@@ -152,19 +153,4 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
           ],
         ),
       );
-}
-
-scanQrCode({required String hash}) async {
-  try {
-    var response = await Dio().get('http://192.168.1.18:80/api/qr/scan/${hash}',
-        //data: {"laptop": data.toJson(), "price": price},
-        options: Options(
-          contentType: Headers.jsonContentType,
-          validateStatus: (status) => true,
-        ));
-    print(">>>>>>>>>>>>>>>>>>>>>${response}");
-    return double.parse(response.toString());
-  } catch (e) {
-    print(e);
-  }
 }
