@@ -63,6 +63,7 @@ class LoginForm extends StatelessWidget {
                 _PasswordInput(),
                 _RecoverAccountButton(),
                 const SizedBox(height: 20),
+
                 _LoginButton(),
                 _SignUpButton(),
               ],
@@ -139,7 +140,8 @@ class _LoginButton extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return state.status.isSubmissionInProgress
+        return Center(
+          child: state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
             : Container(
                 width: 280,
@@ -169,7 +171,9 @@ class _LoginButton extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
                 ),
+        ),
               );
+
       },
     );
   }

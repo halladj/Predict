@@ -33,10 +33,11 @@ class QrCodeApi {
             contentType: Headers.jsonContentType,
             validateStatus: (status) => true,
           ));
+
       if (response.statusCode == 200) {
-        return response.toString();
+        return response.data;
       } else {
-        print(response);
+        print(response.data);
         throw Exception('this is an exception mate ${response.statusCode}');
       }
     } catch (e) {
@@ -44,7 +45,7 @@ class QrCodeApi {
     }
   }
 
-  static scanQrCode({String hash = "12"}) async {
+  static scanQrCode({required String hash}) async {
     try {
       var response = await Dio().get('${qrCodeURL}scan/${hash}',
           //data: {"laptop": data.toJson(), "price": price},
@@ -121,7 +122,7 @@ class FavoriteApi {
       required double price,
       required String token}) async {
     try {
-      var response = await Dio().post('http://192.168.1.18/api/favorite',
+      var response = await Dio().post(favoriteURL,
           data: {"laptop": pc.toJson(), "price": price},
           options: Options(
             contentType: Headers.jsonContentType,
@@ -139,7 +140,7 @@ class FavoriteApi {
 
   static deleteFavorite(int id, String token) async {
     try {
-      final response = await Dio().post('${favoriteURL}/$id',
+      final response = await Dio().post('$favoriteURL/$id',
           options: Options(
             headers: {
               "authorization": "Bearer $token",

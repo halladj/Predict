@@ -176,8 +176,11 @@ class _SignUpButton extends StatelessWidget {
     return BlocBuilder<SignUpCubit, SignUpState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
+        return Center(
+          child:state.status.isSubmissionInProgress
+            ? const CircularProgressIndicator(
+            color: Colors.tealAccent,
+          )
             : Container(
                 width: 280,
                 height: 50,
@@ -206,6 +209,7 @@ class _SignUpButton extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
                 ),
+        ),
               );
       },
     );
