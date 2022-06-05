@@ -27,7 +27,6 @@ class HomeCubit extends Cubit<HomeState> {
     CacheHelper.insertData(key: 'darkTheme', value: darkTheme).then((value) {
       emit(DarkModeState());
     });
-    print(CacheHelper.getData(key: "darkTheme"));
   }
 
   //the list of the bottom vaigation pages

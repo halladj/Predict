@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+import 'package:proto/helpers/cache_helper.dart';
 
 part 'login_state.dart';
 
@@ -39,6 +40,13 @@ class LoginCubit extends Cubit<LoginState> {
         email: state.email.value,
         password: state.password.value,
       );
+      final user = _authenticationRepository.currentUser;
+      print(">>>>>>>>>>>>>>>current user$user");
+      CacheHelper.insertData(
+          key: 'user',
+          value: User(
+              token: user.token, email: state.email.value, name: user.name));
+      print(">>>>>>>>>>>>>>>>${CacheHelper.getData(key: "user")}");
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(

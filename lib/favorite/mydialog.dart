@@ -13,7 +13,7 @@ class MyDialog extends StatelessWidget {
     Future.delayed(Duration.zero, () {
       showAlertDialog(context);
     });
-    homeCubit.changeButtomNavIndex(3);
+    homeCubit.changeButtomNavIndex(4);
     return const LoginPage();
   }
 }

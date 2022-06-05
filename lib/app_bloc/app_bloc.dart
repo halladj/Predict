@@ -4,6 +4,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:proto/helpers/cache_helper.dart';
 import 'package:very_good_analysis/very_good_analysis.dart';
 
 part 'app_event.dart';
@@ -36,6 +37,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
+    CacheHelper.removdata(key: "user");
     unawaited(_authenticationRepository.logOut());
   }
 
