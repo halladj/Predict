@@ -120,7 +120,7 @@ class AuthenticationRepository {
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
   //this is the var
-  final String url = 'http://192.168.1.18/api';
+  final String url = 'http://192.168.225.191/api';
 
   Stream<User> get user async* {
 //    final user = fetchedUser == null ? User.empty : fetchedUser;

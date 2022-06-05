@@ -211,10 +211,10 @@ class PredictionForm extends HookWidget {
                                   placeHolder = await Navigator.of(context)
                                       .push(OnboardingFlow.route());
                                   _pcInfo.value = placeHolder ?? const PcInfo();
-                                  price.value = await getPrice(_pcInfo.value);
                                   _condition.value = true;
+                                  price.value = await getPrice(_pcInfo.value);
                                 },
-                                icon: Icon(Icons.arrow_forward_ios),
+                                icon: const Icon(Icons.arrow_forward_ios),
                                 color: Colors.white,
                                 highlightColor: Colors.pink,
                               ),
@@ -227,7 +227,7 @@ class PredictionForm extends HookWidget {
                 ],
               ),
             )
-          : price.value == -1
+          : price.value == -1.toDouble()
               ? const Center(child: CircularProgressIndicator())
               : PredictionCard(
                   pc: _pcInfo.value,
@@ -288,31 +288,24 @@ class OnboardingFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('INFO: ${const PcInfo()}');
-
-//     return Container(
-//       decoration: BoxDecoration(
-
-//         image: DecorationImage(image: AssetImage("assets/light_backgrounddd.png"),fit: BoxFit.fitHeight,
-
-//         ),
-
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: const SecondaryAppBar(
-        title: "",
-      ),
-      body: FlowBuilder<PcInfo>(
-        state: const PcInfo(),
-        onGeneratePages: (pc, pages) {
-          return [
-            MaterialPage(
-              child: FirstForm(),
-            ),
-            if (pc.brand != "") MaterialPage(child: SeconedForm()),
-            //if (pc.ramType != "") MaterialPage(child: ThirdForm()),
-          ];
-        },
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appBar: const SecondaryAppBar(
+          title: "",
+        ),
+        body: FlowBuilder<PcInfo>(
+          state: const PcInfo(),
+          onGeneratePages: (pc, pages) {
+            return [
+              MaterialPage(
+                child: FirstForm(),
+              ),
+              if (pc.brand != "") MaterialPage(child: SeconedForm()),
+              //if (pc.ramType != "") MaterialPage(child: ThirdForm()),
+            ];
+          },
+        ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
 import 'package:proto/helpers/api/predictions.dart';
 import "package:proto/prediction_form/model/pc.model.dart";
@@ -244,6 +243,37 @@ class PredictionCard extends StatelessWidget {
                                   TextStyle(fontSize: 18, color: Colors.white),
                             )),
                       ),
+                      Container(
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+
+                          //color: Theme.of(context).backgroundColor,
+                        ),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  side: const BorderSide(
+                                    color: Color(0xff00CBBF),
+                                  ),
+                                ))),
+                            onPressed: () {
+                              Navigator.of(context).pushNamed("/");
+                            },
+                            child: const Text(
+                              "Back to main page",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xff00CBBF),
+                              ),
+                            )),
+                      ),
                     ]),
 
 //                     //SizedBox(width: 1.0,),
@@ -259,36 +289,6 @@ class PredictionCard extends StatelessWidget {
 //                         color: Colors.white,
 
                 //SizedBox(width: 1.0,),
-                Container(
-                  height: 50,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-
-                    //color: Theme.of(context).backgroundColor,
-                  ),
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            side: const BorderSide(
-                              color: Color(0xff00CBBF),
-                            ),
-                          ))),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/");
-                      },
-                      child: const Text(
-                        "Back to main page",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xff00CBBF),
-                        ),
-                      )),
-                ),
               ],
 
 //                       child: Padding(

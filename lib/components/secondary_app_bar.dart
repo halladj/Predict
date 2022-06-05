@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+
 class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
 
-  const SecondaryAppBar( {Key? key, required this.title}) : super(key: key);
-
+  const SecondaryAppBar({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-    title: Padding(
-      padding: const EdgeInsets.only(top:20.0,),
-      child: Text(title,
-      style: TextStyle(
-        color: Color(0xff06446C),
-        fontWeight: FontWeight.w800,
-        fontSize: 20.0,
-      ),),
-    ),
+      title: Padding(
+        padding: const EdgeInsets.only(
+          top: 0.0,
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Color(0xff06446C),
+            fontWeight: FontWeight.w800,
+            fontSize: 20.0,
+          ),
+        ),
+      ),
       centerTitle: true,
       // flexibleSpace: Center(
       //   child: Container(
@@ -26,13 +30,10 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
       //     child: Image.asset("assets/logo3.png",),),
       // ),
 
-      leading:
-      Container(
-
-        padding: EdgeInsets.only(top: 5.0,bottom: 15.0,left: 12.0),
+      leading: Container(
+        padding: const EdgeInsets.only(top: 5.0, bottom: 15.0, left: 12.0),
         child: IconButton(
-            icon: const Icon(Icons.arrow_back_rounded,
-                size: 30.0),
+            icon: const Icon(Icons.arrow_back_rounded, size: 30.0),
             color: Theme.of(context).appBarTheme.iconTheme?.color,
             iconSize: 34.0,
             onPressed: () {
@@ -58,6 +59,8 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
       titleTextStyle: Theme.of(context).appBarTheme.titleTextStyle,
     );
   }
+
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(40);
 }
+

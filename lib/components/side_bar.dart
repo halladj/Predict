@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
 
@@ -8,43 +9,45 @@ class SideBar extends StatelessWidget {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("accountName"),
-            accountEmail: Text("accountEmail"),
+            accountName: const Text("accountName"),
+            accountEmail: const Text("accountEmail"),
             currentAccountPicture: CircleAvatar(
-              child: Image.asset('assets/laptop1.png',fit: BoxFit.cover,),
+              child: Image.asset(
+                'assets/laptop1.png',
+                fit: BoxFit.cover,
+              ),
             ),
             // decoration: BoxDecoration(
             //   color: Colors.teal,
             // ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorites"),
-            onTap: (){},
+            leading: const Icon(Icons.favorite),
+            title: const Text("Favorites"),
+            onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.history),
-            title: Text("History"),
-            onTap: (){},
+            leading: const Icon(Icons.history),
+            title: const Text("History"),
+            onTap: () {},
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text("Settings"),
-            onTap: (){},
+            leading: const Icon(Icons.settings),
+            title: const Text("Settings"),
+            onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text("Policies"),
-            onTap: (){},
+            leading: const Icon(Icons.description),
+            title: const Text("Policies"),
+            onTap: () {},
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text("Exit"),
-            onTap: (){},
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text("Exit"),
+            onTap: () {},
           ),
-
         ],
       ),
     );

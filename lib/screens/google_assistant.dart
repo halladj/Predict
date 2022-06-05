@@ -85,7 +85,11 @@ class _GoogleAssistantState extends State<GoogleAssistant> {
     });
 
     DetectIntentResponse data = await dialogflow!.detectIntent(text, 'en-US');
-    String fulfillmentText = data.queryResult.fulfillmentText;
+    print(data);
+    //String fulfillmentText = data.queryResult.fulfillmentText.toString();
+    String fulfillmentText =
+        data.queryResult.fulfillmentMessages[0].text.text[0];
+    print(fulfillmentText);
     if (fulfillmentText.isNotEmpty) {
       ChatMessage botMessage = ChatMessage(
         text: fulfillmentText,
@@ -131,7 +135,7 @@ class _GoogleAssistantState extends State<GoogleAssistant> {
 
     // TODO Get the transcript and detectedIntent and show on screen
     responseStream.listen((data) {
-      //print('----');
+      //print(data);
       setState(() {
         //print(data);
         String transcript = data.recognitionResult.transcript;
