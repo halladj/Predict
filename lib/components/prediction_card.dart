@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
 import 'package:proto/helpers/api/predictions.dart';
 import "package:proto/prediction_form/model/pc.model.dart";
@@ -229,7 +228,6 @@ class PredictionCard extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15.0),
                                 ))),
                             onPressed: () async {
-                              //TODO CALL THE GENEARET QR HERE
                               final data =
                                   await QrCodeApi.generateQr(pc, price);
                               Navigator.pushNamed(context, "/generatedQR",
@@ -245,7 +243,6 @@ class PredictionCard extends StatelessWidget {
                                   TextStyle(fontSize: 18, color: Colors.white),
                             )),
                       ),
-
                       Container(
                         height: 50,
                         decoration: const BoxDecoration(
@@ -256,15 +253,16 @@ class PredictionCard extends StatelessWidget {
                         child: ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
-                                shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      side: const BorderSide(
-                                        color: Color(0xff00CBBF),
-                                      ),
-                                    ))),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  side: const BorderSide(
+                                    color: Color(0xff00CBBF),
+                                  ),
+                                ))),
                             onPressed: () {
                               Navigator.of(context).pushNamed("/");
                             },
@@ -276,9 +274,7 @@ class PredictionCard extends StatelessWidget {
                               ),
                             )),
                       ),
-                    ]
-
-                ),
+                    ]),
 
 //                     //SizedBox(width: 1.0,),
 //                     Container(
@@ -293,7 +289,6 @@ class PredictionCard extends StatelessWidget {
 //                         color: Colors.white,
 
                 //SizedBox(width: 1.0,),
-
               ],
 
 //                       child: Padding(

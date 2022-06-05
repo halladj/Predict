@@ -34,24 +34,25 @@ class SignUpForm extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 30.0, vertical: 10.0),
                 decoration: BoxDecoration(
-              boxShadow: [
-              BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-          spreadRadius: 2,
-          blurRadius: 5,
-          offset: const Offset(0, 3), // changes position of shadow
-        ),
-          ],
-          color: Theme.of(context).backgroundColor,
-      //color: HexColor("#ebf3fb"),
-      borderRadius: BorderRadius.circular(15.0),
-    ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                  color: Theme.of(context).backgroundColor,
+                  //color: HexColor("#ebf3fb"),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top:30.0,bottom: 20.0),
-                      child: Text("Create Account",
+                      padding: const EdgeInsets.only(top: 30.0, bottom: 20.0),
+                      child: Text(
+                        "Create Account",
                         style: Theme.of(context).textTheme.headline1,
                       ),
                     ),
@@ -176,28 +177,28 @@ class _SignUpButton extends StatelessWidget {
     return BlocBuilder<SignUpCubit, SignUpState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return Center(
-          child:state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator(
-            color: Colors.tealAccent,
-          )
+        return state.status.isSubmissionInProgress
+            ? const Center(child: CircularProgressIndicator())
             : Container(
                 width: 280,
                 height: 50,
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [Theme.of(context).primaryColorDark,
-                          Theme.of(context).primaryColorLight,]),),
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Theme.of(context).primaryColorDark,
+                        Theme.of(context).primaryColorLight,
+                      ]),
+                ),
                 child: ElevatedButton(
                   key: const Key('signUpForm_continue_raisedButton'),
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.transparent),
-                      shape: MaterialStateProperty.all<
-                          RoundedRectangleBorder>(RoundedRectangleBorder(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.transparent),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ))),
                   onPressed: state.status.isValidated
@@ -209,7 +210,6 @@ class _SignUpButton extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
                 ),
-        ),
               );
       },
     );
@@ -228,13 +228,15 @@ class _SignInButton extends StatelessWidget {
           Text(
             'Already have an account?',
             style: TextStyle(
-                color: Colors.grey.withOpacity(0.8), fontWeight: FontWeight.w400),
+                color: Colors.grey.withOpacity(0.8),
+                fontWeight: FontWeight.w400),
           ),
           const SizedBox(width: 5),
           Text(
             'Sign in',
             style: TextStyle(
-                color: Theme.of(context).primaryColorDark, fontWeight: FontWeight.bold),
+                color: Theme.of(context).primaryColorDark,
+                fontWeight: FontWeight.bold),
           ),
         ],
       ),

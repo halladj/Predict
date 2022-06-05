@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proto/home/home_cubit.dart';
 
@@ -11,44 +10,45 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       {Key? key,
       required this.appBar,
       required this.titleText,
-      required this.homeCubit, required this.icon})
+      required this.homeCubit,
+      required this.icon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return AppBar(
-      leading:  Container(
-        padding: EdgeInsets.only(top: 15.0,left: 5.0),
+      leading: Container(
+        padding: const EdgeInsets.only(top: 15.0, left: 5.0),
         child: IconButton(
-          icon: Icon(Icons.menu,size: 30.0,),
+          icon: const Icon(
+            Icons.menu,
+            size: 30.0,
+          ),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       ),
 
       flexibleSpace: Center(
-        child:
-        Container(
-          margin: const EdgeInsets.only(bottom: 5.0),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 130.0, vertical: 20.0),
-          child:Image.asset(
-            Theme.of(context).brightness == Brightness.dark
-                ? 'assets/logo_dark3.png'
-                : 'assets/logo3.png',
-            fit: BoxFit.cover,
-          )
-        ),
+        child: Container(
+            margin: const EdgeInsets.only(bottom: 5.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 130.0, vertical: 20.0),
+            child: Image.asset(
+              Theme.of(context).brightness == Brightness.dark
+                  ? 'assets/logo_dark3.png'
+                  : 'assets/logo3.png',
+              fit: BoxFit.cover,
+            )),
       ),
-    //  leadingWidth: 150.0,
-   //
-   // leading: Container(
-   //
-   //   padding: EdgeInsets.only(top:15.0,left: 15.0,right: 10.0),
-   //   child: Image.asset(
-   //            "assets/logo3.png",
-   //          ),
-   // ),
+      //  leadingWidth: 150.0,
+      //
+      // leading: Container(
+      //
+      //   padding: EdgeInsets.only(top:15.0,left: 15.0,right: 10.0),
+      //   child: Image.asset(
+      //            "assets/logo3.png",
+      //          ),
+      // ),
 
       //leading:
       // Container(

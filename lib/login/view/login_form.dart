@@ -27,8 +27,8 @@ class LoginForm extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            padding: const EdgeInsets.symmetric(
-                horizontal: 25.0, vertical: 35.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 35.0),
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -47,13 +47,15 @@ class LoginForm extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(0),
-                  child: Text("Welcome back ! ",
+                  child: Text(
+                    "Welcome back ! ",
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(0),
-                  child: Text("Sign in to your account",
+                  child: Text(
+                    "Sign in to your account",
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
@@ -151,15 +153,17 @@ class _LoginButton extends StatelessWidget {
                     gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
-                        colors: [Theme.of(context).primaryColorDark,
-                          Theme.of(context).primaryColorLight,])),
+                        colors: [
+                          Theme.of(context).primaryColorDark,
+                          Theme.of(context).primaryColorLight,
+                        ])),
                 child: ElevatedButton(
                   key: const Key('loginForm_continue_raisedButton'),
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.transparent),
-                      shape: MaterialStateProperty.all<
-                          RoundedRectangleBorder>(RoundedRectangleBorder(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.transparent),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ))),
                   onPressed: state.status.isValidated
@@ -188,16 +192,17 @@ class _SignUpButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'New user',
-            style: TextStyle(
-                color: Colors.blueGrey, fontWeight: FontWeight.w400),
+            style:
+                TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w400),
           ),
           const SizedBox(width: 5),
           Text(
             'Sign up',
             style: TextStyle(
-                color: Theme.of(context).primaryColorDark, fontWeight: FontWeight.bold),
+                color: Theme.of(context).primaryColorDark,
+                fontWeight: FontWeight.bold),
           ),
         ],
       ),

@@ -90,7 +90,12 @@ class LogInWithEmailAndPasswordFailure implements Exception {
 }
 
 /// Thrown during the logout process if a failure occurs.
-class LogOutFailure implements Exception {}
+class LogOutFailure implements Exception {
+  final String message;
+  const LogOutFailure([
+    this.message = 'An unknown exception occurred.',
+  ]);
+}
 
 /// {@template authentication_repository}
 /// Repository which manages user authentication.
@@ -120,7 +125,7 @@ class AuthenticationRepository {
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
   //this is the var
-  final String url = 'http://192.168.1.109/api';
+  final String url = 'http://172.20.10.12/api';
 
   Stream<User> get user async* {
 //    final user = fetchedUser == null ? User.empty : fetchedUser;
@@ -128,7 +133,7 @@ class AuthenticationRepository {
 //    return _controller.stream;
 //      return user;
     await Future<void>.delayed(const Duration(seconds: 1));
-    yield User.empty;
+    yield currentUser;
     yield* _controller.stream;
     //final dd = {
     //  "authentication": "Bearer 1|u9jkQig3rq7tpo5OYeUQRNX0YKCv2Fmw0kDc6Jfv"
@@ -188,9 +193,6 @@ class AuthenticationRepository {
 
       _cache.write<User>(value: user, key: userCacheKey);
       _controller.add(user);
-      print(user);
-
-      //SIGNIN CODE
     } catch (_) {
       throw const LogInWithEmailAndPasswordFailure();
     }
@@ -202,6 +204,15 @@ class AuthenticationRepository {
   /// Throws a [LogOutFailure] if an exception occurs.
   Future<void> logOut() async {
     try {
+      dynamic response = await Dio().get<dynamic>('$url/logout',
+          options: Options(
+            headers: <String, String>{
+              'authorization': 'Bearer ${currentUser.token}',
+            },
+            contentType: Headers.jsonContentType,
+            validateStatus: (status) => true,
+          ));
+      _controller.add(User.empty);
       //LOGout CODE
     } catch (_) {
       throw LogOutFailure();

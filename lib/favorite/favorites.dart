@@ -11,8 +11,6 @@ class Favorites extends StatelessWidget {
   const Favorites({Key? key}) : super(key: key);
   static Page page() => const MaterialPage<void>(child: Favorites());
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
