@@ -25,13 +25,16 @@ class _GeneratedQRState extends State<GeneratedQR> {
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
+    var authState = context.select((AppBloc bloc) => bloc.state.status);
     final params = ModalRoute.of(context)!.settings.arguments as Arguments;
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-        appBar: AppBar(),
-        titleText: "Generated QR code", homeCubit: HomeCubit(), icon: true,
-      ),
+          appBar: AppBar(),
+          titleText: "Generated QR code",
+          homeCubit: HomeCubit(),
+          icon: true,
+        ),
         // ignore: sized_box_for_whitespace
         body: Container(
           width: double.infinity,
@@ -77,42 +80,42 @@ class _GeneratedQRState extends State<GeneratedQR> {
                             const BorderRadius.all(Radius.circular(20))),
                   ),
                   const SizedBox(width: 30),
-                  !isFetched
-                      ? IconButton(
-                          padding: const EdgeInsets.all(0),
-                          icon: const Icon(Icons.favorite_border),
-                          //TODO HERE IS THE FUNCTION CALL
-                          onPressed: () async {
-                            print(params.laptop.runtimeType);
-                            print(
-                                "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
-                            var data = await FavoriteApi.addToFavorites(
-                                token: user.token,
-                                pc: params.laptop,
-                                price: params.price);
-                            print(
-                                "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+                  authState == AppStatus.authenticated
+                      ? !isFetched
+                          ? IconButton(
+                              padding: const EdgeInsets.all(0),
+                              icon: const Icon(Icons.favorite_border),
+                              //TODO HERE IS THE FUNCTION CALL
+                              onPressed: () async {
+                                print(params.laptop.runtimeType);
+                                print(
+                                    "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+                                var data = await FavoriteApi.addToFavorites(
+                                    token: user.token,
+                                    pc: params.laptop,
+                                    price: params.price);
+                                print(
+                                    "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
 
-
-                            var pc = PcInfo.fromJson(data);
-                            setState(() {
-                              laptop = pc;
-                              isFetched = true;
-                            });
-                          },
-                          iconSize: 48)
-                      : const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: SpinKitPumpingHeart(
-                            color: Colors.red,
-                            size: 48.0,
-                          ),
-                        ),
+                                var pc = PcInfo.fromJson(data);
+                                setState(() {
+                                  laptop = pc;
+                                  isFetched = true;
+                                });
+                              },
+                              iconSize: 48)
+                          : const Padding(
+                              padding: EdgeInsets.all(12.0),
+                              child: SpinKitPumpingHeart(
+                                color: Colors.red,
+                                size: 48.0,
+                              ),
+                            )
+                      : Container(),
                 ],
               ),
               const SizedBox(height: 130)
             ],
-
           ),
         ),
       ),
