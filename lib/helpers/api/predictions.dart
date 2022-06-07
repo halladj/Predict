@@ -68,7 +68,7 @@ class QrCodeApi {
 class FavoriteApi {
   static fetchFavorite(String token) async {
     try {
-      final response = await Dio().get('${favoriteURL}/',
+      final response = await Dio().get('${favoriteURL}',
           //data: {"laptop": data.toJson(), "price": price},
           options: Options(
             headers: {

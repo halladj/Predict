@@ -11,6 +11,12 @@ class HomeCubit extends Cubit<HomeState> {
 
   bool darkTheme = true;
   bool icon = true;
+  bool condition = false;
+
+  void changePredictionFormCondition({required bool value}) {
+    condition = value;
+    emit(ChangePredictionFormCondition());
+  }
   // void changeIcon(){
   //   icon =!icon;
   //

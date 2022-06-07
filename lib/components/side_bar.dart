@@ -1,11 +1,8 @@
 import 'dart:io';
-
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/app_bloc/app_bloc.dart';
 import 'package:proto/home/home_cubit.dart';
-import 'package:proto/login/cubit/login_cubit.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -13,72 +10,65 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeCubit homeCubit = context.watch<HomeCubit>();
-    return BlocProvider(
-      create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
-      child: BlocConsumer<AppBloc, AppState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var authState = context.select((AppBloc bloc) => bloc.state.status);
-            var user = context.select((AppBloc bloc) => bloc.state.user);
-            return authState == AppStatus.unauthenticated
-                ? const DrawerDialog()
-                : Drawer(
-                    child: ListView(
-                      children: [
-                        UserAccountsDrawerHeader(
-                          accountName: Text(user.name ?? "userName"),
-                          accountEmail: Text(user.email ?? "userEmail"),
-                          currentAccountPicture: CircleAvatar(
-                            child: Image.asset(
-                              'assets/laptop1.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          // decoration: BoxDecoration(
-                          //   color: Colors.teal,
-                          // ),
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.favorite),
-                          title: const Text("Favorites"),
-                          onTap: () {
-                            homeCubit.changeButtomNavIndex(1);
-                            Scaffold.of(context).openEndDrawer();
-                          },
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.history),
-                          title: const Text("History"),
-                          onTap: () {},
-                        ),
-                        const Divider(),
-                        ListTile(
-                          leading: const Icon(Icons.settings),
-                          title: const Text("Settings"),
-                          onTap: () {},
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.description),
-                          title: const Text("Policies"),
-                          onTap: () {},
-                        ),
-                        const Divider(),
-                        ListTile(
-                          leading: const Icon(Icons.exit_to_app),
-                          title: const Text("Exit"),
-                          onTap: () async {
-                            //TODO create a logout diaglog
-                            Scaffold.of(context).openEndDrawer();
-                            homeCubit.changeButtomNavIndex(2);
-                            sleep(Duration.zero);
-                            context.read<AppBloc>().add(AppLogoutRequested());
-                          },
-                        ),
-                      ],
+    var authState = context.select((AppBloc bloc) => bloc.state.status);
+    var user = context.select((AppBloc bloc) => bloc.state.user);
+    return authState == AppStatus.unauthenticated
+        ? const DrawerDialog()
+        : Drawer(
+            child: ListView(
+              children: [
+                UserAccountsDrawerHeader(
+                  accountName: Text(user.name ?? "userName"),
+                  accountEmail: Text(user.email ?? "userEmail"),
+                  currentAccountPicture: CircleAvatar(
+                    child: Image.asset(
+                      'assets/laptop1.png',
+                      fit: BoxFit.cover,
                     ),
-                  );
-          }),
-    );
+                  ),
+                  // decoration: BoxDecoration(
+                  //   color: Colors.teal,
+                  // ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.favorite),
+                  title: const Text("Favorites"),
+                  onTap: () {
+                    homeCubit.changeButtomNavIndex(1);
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.history),
+                  title: const Text("History"),
+                  onTap: () {},
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text("Settings"),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.description),
+                  title: const Text("Policies"),
+                  onTap: () {},
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.exit_to_app),
+                  title: const Text("Exit"),
+                  onTap: () async {
+                    //TODO create a logout diaglog
+                    Scaffold.of(context).openEndDrawer();
+                    homeCubit.changeButtomNavIndex(2);
+                    sleep(Duration.zero);
+                    context.read<AppBloc>().add(AppLogoutRequested());
+                  },
+                ),
+              ],
+            ),
+          );
   }
 }
 
@@ -90,7 +80,7 @@ class DrawerDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     //final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     Future.delayed(Duration.zero, () {
-      showAlertDialog(context);
+      //showAlertDialog(context);
     });
     //homeCubit.changeButtomNavIndex(4);
     //return const LoginPage();
@@ -126,7 +116,8 @@ class PageOne extends StatelessWidget {
     final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
     return Center(
       child: Container(
-        height: 400,
+        height: 260,
+        width: 340,
         margin: const EdgeInsets.fromLTRB(0, 60, 0, 60),
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 35.0),
         decoration: BoxDecoration(
@@ -159,19 +150,24 @@ class PageOne extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-                child: const Text("go to signin"),
-                onPressed: () {
-                  homeCubit.changeButtomNavIndex(4);
-                  Scaffold.of(context).openEndDrawer();
-                }),
-            ElevatedButton(
-                child: const Text("cancel"),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                  //Navigator.pop(context);
-                }),
+            const SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    child: const Text("go to signin"),
+                    onPressed: () {
+                      homeCubit.changeButtomNavIndex(4);
+                      Scaffold.of(context).openEndDrawer();
+                    }),
+                ElevatedButton(
+                    child: const Text("cancel"),
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                      //Navigator.pop(context);
+                    }),
+              ],
+            ),
           ],
         ),
       ),

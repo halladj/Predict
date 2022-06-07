@@ -1,6 +1,7 @@
 const predictionServiceURL = "https://laptops-prediction.herokuapp.com/result";
-const qrCodeURL = "http://$laravel:80/api/qr/";
-const favoriteURL = "http://$laravel:80/api/favorite"
-    "";
+const qrCodeURL = "$laravel/api/qr/";
+const favoriteURL = "$laravel/api/favorite";
 
-const laravel = "192.168.1.109";
+//const laravel = "192.168.1.18";
+
+const laravel = "https://shielded-taiga-35329.herokuapp.com";
