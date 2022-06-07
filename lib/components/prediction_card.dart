@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/helpers/api/predictions.dart';
+import 'package:proto/home/home_cubit.dart';
 import "package:proto/prediction_form/model/pc.model.dart";
 import 'package:proto/screens/generated_qr_code.dart';
 
@@ -14,6 +16,7 @@ class PredictionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeCubit homeCubit = context.watch<HomeCubit>();
 //     return Column(
 //         mainAxisAlignment: MainAxisAlignment.start,
 //         crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,7 +267,9 @@ class PredictionCard extends StatelessWidget {
                                   ),
                                 ))),
                             onPressed: () {
-                              Navigator.of(context).pushNamed("/");
+                              //Navigator.of(context).pushNamed("/");
+                              homeCubit.changePredictionFormCondition(
+                                  value: false);
                             },
                             child: const Text(
                               "Back to main page",

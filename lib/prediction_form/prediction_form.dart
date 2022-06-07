@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:proto/components/components.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:dio/dio.dart';
+import 'package:proto/home/home_cubit.dart';
 import "package:proto/prediction_form/forms/forms.dart";
 import "package:proto/prediction_form/model/pc.model.dart";
 
@@ -16,7 +18,7 @@ class PredictionForm extends HookWidget {
     //you delare a varaible with flutter_hooks  vai "useVariable_name"
     final _pcInfo = useState<dynamic>(const PcInfo());
     final price = useState<double>(-1);
-    final _condition = useState<bool>(false);
+    HomeCubit homeCubit = context.watch<HomeCubit>();
 
     dynamic placeHolder;
 
@@ -126,7 +128,7 @@ class PredictionForm extends HookWidget {
 //             ),
 
       // alignment: Alignment.center,
-      child: _condition.value == false || _pcInfo.value == const PcInfo()
+      child: homeCubit.condition == false || _pcInfo.value == const PcInfo()
           ? Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 34.0, vertical: 20.0),
@@ -211,7 +213,8 @@ class PredictionForm extends HookWidget {
                                   placeHolder = await Navigator.of(context)
                                       .push(OnboardingFlow.route());
                                   _pcInfo.value = placeHolder ?? const PcInfo();
-                                  _condition.value = true;
+                                  homeCubit.changePredictionFormCondition(
+                                      value: true);
                                   price.value = await getPrice(_pcInfo.value);
                                 },
                                 icon: const Icon(Icons.arrow_forward_ios),

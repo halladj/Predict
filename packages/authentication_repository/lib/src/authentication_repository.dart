@@ -125,7 +125,7 @@ class AuthenticationRepository {
   /// Emits [User.empty] if the user is not authenticated.
   final _controller = StreamController<User>();
   //this is the var
-  final String url = 'http://192.168.1.18/api';
+  final String url = 'https://shielded-taiga-35329.herokuapp.com/api';
 
   Stream<User> get user async* {
 //    final user = fetchedUser == null ? User.empty : fetchedUser;
