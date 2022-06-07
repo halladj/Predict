@@ -1,47 +1,818 @@
 [
   {
-    "name": "intel core i5-10350h",
-    "brand": "intel",
-    "family": "h",
-    "frequency": 2.3,
-    "generation": 10,
-    "modifier": "i5",
-    "numberId": 350
+    "name":"amd A4 91250",
+    "brand":"amd",
+    "generation":"0",
+    "modifier":"A4 ",
+    "numberIdentifier":"91250",
+    "family":"0"
   },
   {
-    "name": "intel core i5-11313u",
-    "brand": "intel",
-    "family": "u",
-    "frequency": 1.3,
-    "generation": 11,
-    "modifier": "i5",
-    "numberId": 313
+    "name":"amd A9 94200",
+    "brand":"amd",
+    "generation":"0",
+    "modifier":"A9 ",
+    "numberIdentifier":"94200",
+    "family":"0"
   },
   {
-    "name": "intel core i7-8032",
-    "brand": "intel",
-    "family": "g1",
-    "frequency": 2.7,
-    "generation": 8,
-    "modifier": "i7",
-    "numberId": 32
+    "name":"amd Athlon 3150u",
+    "brand":"amd",
+    "generation":"0",
+    "modifier":"Athlon ",
+    "numberIdentifier":"3150",
+    "family":"u"
   },
   {
-    "name": "amd ryzen5 5035h",
-    "brand": "amd",
-    "family": "h",
-    "frequency": 2.3,
-    "generation": 5,
-    "modifier": "ryzen5",
-    "numberId": 35
+    "name":"amd Athlon Gold 3150u",
+    "brand":"amd",
+    "generation":"0",
+    "modifier":"Athlon Gold ",
+    "numberIdentifier":"3150",
+    "family":"u"
   },
   {
-    "name": "intel core i9-12115h",
-    "brand": "intel",
-    "family": "h",
-    "frequency": 2.3,
-    "generation": 12,
-    "modifier": "i9",
-    "numberId":115
+    "name":"amd ryzen3 3200u",
+    "brand":"amd",
+    "generation":"3",
+    "modifier":"ryzen3 ",
+    "numberIdentifier":"3200",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen5 2500u",
+    "brand":"amd",
+    "generation":"2",
+    "modifier":"ryzen5 ",
+    "numberIdentifier":"2500",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen5 3500u",
+    "brand":"amd",
+    "generation":"3",
+    "modifier":"ryzen5 ",
+    "numberIdentifier":"3500",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen5 4600h",
+    "brand":"amd",
+    "generation":"4",
+    "modifier":"ryzen5",
+    "numberIdentifier":"4600",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen5 4650u",
+    "brand":"amd",
+    "generation":"4",
+    "modifier":"ryzen5 ",
+    "numberIdentifier":"4650",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen5 5500u",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen5",
+    "numberIdentifier":"5500",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen5 5600h",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen5 ",
+    "numberIdentifier":"5600",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen5 5600u",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen5 ",
+    "numberIdentifier":"5600",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen7 3750h",
+    "brand":"amd",
+    "generation":"3",
+    "modifier":"ryzen7 ",
+    "numberIdentifier":"3750",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen7 4700u",
+    "brand":"amd",
+    "generation":"4",
+    "modifier":"ryzen7 ",
+    "numberIdentifier":"4700",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen7 4800h",
+    "brand":"amd",
+    "generation":"4",
+    "modifier":"ryzen7 ",
+    "numberIdentifier":"4800",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen7 5700u",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen7 ",
+    "numberIdentifier":"5700",
+    "family":"u"
+  },
+  {
+    "name":"amd ryzen7 5800h",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen7 ",
+    "numberIdentifier":"5800",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen9 5900h",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen9 ",
+    "numberIdentifier":"5900",
+    "family":"h"
+  },
+  {
+    "name":"amd ryzen9 5900hx",
+    "brand":"amd",
+    "generation":"5",
+    "modifier":"ryzen9 ",
+    "numberIdentifier":"5900h",
+    "family":"hx"
+  },
+  {
+    "name":"intel celeron 3350n",
+    "brand":"intel",
+    "generation":"3350n",
+    "modifier":"celeron ",
+    "numberIdentifier":"3350",
+    "family":"n"
+  },
+  {
+    "name":"intel celeron 4020n",
+    "brand":"intel",
+    "generation":"4020n",
+    "modifier":"celeron ",
+    "numberIdentifier":"4020",
+    "family":"n"
+  },
+  {
+    "name":"intel i3-10110u",
+    "brand":"intel ",
+    "generation":"10",
+    "modifier":"i3",
+    "numberIdentifier":"10110",
+    "family":"u"
+  },
+  {
+    "name":"intel i3-1035g1",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i3",
+    "numberIdentifier":"1035",
+    "family":"g1"
+  },
+  {
+    "name":"intel i3-1050g1",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i3",
+    "numberIdentifier":"1050",
+    "family":"g1"
+  },
+  {
+    "name":"intel i3-1115g",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i3",
+    "numberIdentifier":"1115",
+    "family":"g"
+  },
+  {
+    "name":"intel i3-1115g4",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i3",
+    "numberIdentifier":"1115",
+    "family":"g4"
+  },
+  {
+    "name":"intel i3-5500u",
+    "brand":"intel",
+    "generation":"5",
+    "modifier":"i3",
+    "numberIdentifier":"5500",
+    "family":"u"
+  },
+  {
+    "name":"intel i3-6600u",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i3",
+    "numberIdentifier":"6600",
+    "family":"u"
+  },
+  {
+    "name":"intel i3-7100u",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i3",
+    "numberIdentifier":"7100",
+    "family":"u"
+  },
+  {
+    "name":"intel i3-7160u",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i3",
+    "numberIdentifier":"7160",
+    "family":"u"
+  },
+  {
+    "name":"intel i3-8130u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i3",
+    "numberIdentifier":"8130",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-10210u",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"10210",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-10300h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"10300",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-10310u",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"10310",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-1035g1",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"1035",
+    "family":"g1"
+  },
+  {
+    "name":"intel i5-1035g4",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"1035",
+    "family":"g4"
+  },
+  {
+    "name":"intel i5-10500h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"10500",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-11260h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i5",
+    "numberIdentifier":"11260",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-11300h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i5",
+    "numberIdentifier":"11300",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-1135g7",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i5",
+    "numberIdentifier":"1135g",
+    "family":"g7"
+  },
+  {
+    "name":"intel i5-11400h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i5",
+    "numberIdentifier":"11400",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-1145g7",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i5",
+    "numberIdentifier":"1145",
+    "family":"g7"
+  },
+  {
+    "name":"intel i5-4300u",
+    "brand":"intel",
+    "generation":"4",
+    "modifier":"i5",
+    "numberIdentifier":"4300",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-6200u",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i5",
+    "numberIdentifier":"6200",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-6300hq",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i5",
+    "numberIdentifier":"6300",
+    "family":"hq"
+  },
+  {
+    "name":"intel i5-6300u",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i5",
+    "numberIdentifier":"6300",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-7200u",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i5",
+    "numberIdentifier":"7200",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-7300hq",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i5",
+    "numberIdentifier":"7300",
+    "family":"hq"
+  },
+  {
+    "name":"intel i5-7300u",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i5",
+    "numberIdentifier":"7300",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-7440hq",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i5",
+    "numberIdentifier":"7440",
+    "family":"hq"
+  },
+  {
+    "name":"intel i5-7700hq",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i5",
+    "numberIdentifier":"7700",
+    "family":"hq"
+  },
+  {
+    "name":"intel i5-8250u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8250",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8259u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8259",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8265u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8265",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8300h",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8300",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-8350u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8350",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8365u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8365",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8550u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8550",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-8850u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i5",
+    "numberIdentifier":"8850",
+    "family":"u"
+  },
+  {
+    "name":"intel i5-9300h",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i5",
+    "numberIdentifier":"9300",
+    "family":"h"
+  },
+  {
+    "name":"intel i5-9300hf",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i5",
+    "numberIdentifier":"9300",
+    "family":"hf"
+  },
+  {
+    "name":"intel i7-10510u",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10510",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-10610u",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10610",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-1065g7",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"1065",
+    "family":"g7"
+  },
+  {
+    "name":"intel i7-10710u",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10710",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-10749h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10749",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-10750h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10750",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-10750hq",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10750",
+    "family":"hq"
+  },
+  {
+    "name":"intel i7-10850h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10850",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-10870h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10870",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-10875h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"10875",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-11370h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i7",
+    "numberIdentifier":"11370",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-11390h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i7",
+    "numberIdentifier":"11390",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-1165g7",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"1165",
+    "family":"g7"
+  },
+  {
+    "name":"intel i7-11800h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i7",
+    "numberIdentifier":"11800",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-1185g7",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i7",
+    "numberIdentifier":"1185",
+    "family":"g7"
+  },
+  {
+    "name":"intel i7-1195g7",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i7",
+    "numberIdentifier":"1195",
+    "family":"g7"
+  },
+  {
+    "name":"intel i7-12700h",
+    "brand":"intel",
+    "generation":"12",
+    "modifier":"i7",
+    "numberIdentifier":"12700",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-4510u",
+    "brand":"intel",
+    "generation":"4",
+    "modifier":"i7",
+    "numberIdentifier":"4510",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-6500u",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i7",
+    "numberIdentifier":"6500",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-6700hq",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i7",
+    "numberIdentifier":"6700",
+    "family":"hq"
+  },
+  {
+    "name":"intel i7-6820hq",
+    "brand":"intel",
+    "generation":"6",
+    "modifier":"i7",
+    "numberIdentifier":"6820",
+    "family":"hq"
+  },
+  {
+    "name":"intel i7-7500u",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i7",
+    "numberIdentifier":"7500",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-7700hq",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i7",
+    "numberIdentifier":"7700",
+    "family":"hq"
+  },
+  {
+    "name":"intel i7-7700q",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i7",
+    "numberIdentifier":"7700",
+    "family":"q"
+  },
+  {
+    "name":"intel i7-7820hk",
+    "brand":"intel",
+    "generation":"7",
+    "modifier":"i7",
+    "numberIdentifier":"7820",
+    "family":"hk"
+  },
+  {
+    "name":"intel i7-8550u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i7",
+    "numberIdentifier":"8550",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-8559u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i7",
+    "numberIdentifier":"8559",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-8565u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i7",
+    "numberIdentifier":"8565",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-8665u",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i7",
+    "numberIdentifier":"8665",
+    "family":"u"
+  },
+  {
+    "name":"intel i7-8750h",
+    "brand":"intel",
+    "generation":"8",
+    "modifier":"i7",
+    "numberIdentifier":"8750",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-9750h",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i7",
+    "numberIdentifier":"9750",
+    "family":"h"
+  },
+  {
+    "name":"intel i7-9750hq",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i7",
+    "numberIdentifier":"9750",
+    "family":"hq"
+  },
+  {
+    "name":"intel i7-9850h",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i7",
+    "numberIdentifier":"9850",
+    "family":"h"
+  },
+  {
+    "name":"intel i9-10885h",
+    "brand":"intel",
+    "generation":"10",
+    "modifier":"i9",
+    "numberIdentifier":"10885",
+    "family":"h"
+  },
+  {
+    "name":"intel i9-11900h",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i9",
+    "numberIdentifier":"11900",
+    "family":"h"
+  },
+  {
+    "name":"intel i9-11900k",
+    "brand":"intel",
+    "generation":"11",
+    "modifier":"i9",
+    "numberIdentifier":"11900",
+    "family":"k"
+  },
+  {
+    "name":"intel i9-9880h",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i9",
+    "numberIdentifier":"9880",
+    "family":"h"
+  },
+  {
+    "name":"intel i9-9980hk",
+    "brand":"intel",
+    "generation":"9",
+    "modifier":"i9",
+    "numberIdentifier":"9980",
+    "family":"hk"
+  },
+  {
+    "name":"intel pentium silver 5240n",
+    "brand":"intel",
+    "generation":"0",
+    "modifier":"pentium silver ",
+    "numberIdentifier":"5240",
+    "family":"n"
+  },
+  {
+    "name":"intel pentium 4200n",
+    "brand":"intel",
+    "generation":"0",
+    "modifier":"pentium",
+    "numberIdentifier":"4200",
+    "family":"n"
+  },
+  {
+    "name":"intel pentium 5000n",
+    "brand":"intel",
+    "generation":"0",
+    "modifier":"pentium ",
+    "numberIdentifier":"5000",
+    "family":"n"
   }
 ]

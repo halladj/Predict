@@ -33,6 +33,7 @@ class QrCodeApi {
             contentType: Headers.jsonContentType,
             validateStatus: (status) => true,
           ));
+      print(response);
 
       if (response.statusCode == 200) {
         return response.data;
@@ -84,16 +85,14 @@ class FavoriteApi {
             pc: PcInfo(
                 brand: data["brand"],
                 cpu: CPU(
-                    brand: data["cpu_brand"],
-                    family: data["cpu_family"],
-                    generation: data["cpu_generation"],
-                    modifier: data["cpu_modifier"],
-                    numberIdentifier: data["cpu_number_identifier"],
-                    frequency: double.parse(data["cpu_frequency"].toString())),
+                  brand: data["cpu_brand"],
+                  family: data["cpu_family"],
+                  modifier: data["cpu_modifier"],
+                  numberIdentifier: data["cpu_number_identifier"],
+                ),
                 gpu: GPU(
                     brand: data["gpu_brand"],
                     numberIdentifier: data["cpu_number_identifier"].toString(),
-                    wordsIdentifier: data["gpu_words_identifier"],
                     vram: data["gpu_vram"]),
                 ram: data["ram"],
                 ramType: data["ram_type"],
@@ -104,7 +103,6 @@ class FavoriteApi {
                 screenResolution: data["screen_resolution"],
                 screenRefreshRate: data["screen_refresh_rate"],
                 state: data["state"],
-                antiGlare: data["anti_glare"],
                 touchScreen: data["touch_screen"]),
             price: double.parse(data["price"].toString())));
       } else {

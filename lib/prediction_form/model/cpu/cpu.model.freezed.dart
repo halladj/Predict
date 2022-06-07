@@ -25,18 +25,14 @@ class _$CPUTearOff {
       {String name = "",
       String brand = "",
       String family = "",
-      double frequency = 0.0,
       String modifier = "",
-      int numberIdentifier = 0,
-      int generation = 0}) {
+      String numberIdentifier = ""}) {
     return _CPU(
       name: name,
       brand: brand,
       family: family,
-      frequency: frequency,
       modifier: modifier,
       numberIdentifier: numberIdentifier,
-      generation: generation,
     );
   }
 
@@ -53,10 +49,8 @@ mixin _$CPU {
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
   String get family => throw _privateConstructorUsedError;
-  double get frequency => throw _privateConstructorUsedError;
   String get modifier => throw _privateConstructorUsedError;
-  int get numberIdentifier => throw _privateConstructorUsedError;
-  int get generation => throw _privateConstructorUsedError;
+  String get numberIdentifier => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,10 +65,8 @@ abstract class $CPUCopyWith<$Res> {
       {String name,
       String brand,
       String family,
-      double frequency,
       String modifier,
-      int numberIdentifier,
-      int generation});
+      String numberIdentifier});
 }
 
 /// @nodoc
@@ -90,10 +82,8 @@ class _$CPUCopyWithImpl<$Res> implements $CPUCopyWith<$Res> {
     Object? name = freezed,
     Object? brand = freezed,
     Object? family = freezed,
-    Object? frequency = freezed,
     Object? modifier = freezed,
     Object? numberIdentifier = freezed,
-    Object? generation = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -108,10 +98,6 @@ class _$CPUCopyWithImpl<$Res> implements $CPUCopyWith<$Res> {
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
               as String,
-      frequency: frequency == freezed
-          ? _value.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as double,
       modifier: modifier == freezed
           ? _value.modifier
           : modifier // ignore: cast_nullable_to_non_nullable
@@ -119,11 +105,7 @@ class _$CPUCopyWithImpl<$Res> implements $CPUCopyWith<$Res> {
       numberIdentifier: numberIdentifier == freezed
           ? _value.numberIdentifier
           : numberIdentifier // ignore: cast_nullable_to_non_nullable
-              as int,
-      generation: generation == freezed
-          ? _value.generation
-          : generation // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -137,10 +119,8 @@ abstract class _$CPUCopyWith<$Res> implements $CPUCopyWith<$Res> {
       {String name,
       String brand,
       String family,
-      double frequency,
       String modifier,
-      int numberIdentifier,
-      int generation});
+      String numberIdentifier});
 }
 
 /// @nodoc
@@ -157,10 +137,8 @@ class __$CPUCopyWithImpl<$Res> extends _$CPUCopyWithImpl<$Res>
     Object? name = freezed,
     Object? brand = freezed,
     Object? family = freezed,
-    Object? frequency = freezed,
     Object? modifier = freezed,
     Object? numberIdentifier = freezed,
-    Object? generation = freezed,
   }) {
     return _then(_CPU(
       name: name == freezed
@@ -175,10 +153,6 @@ class __$CPUCopyWithImpl<$Res> extends _$CPUCopyWithImpl<$Res>
           ? _value.family
           : family // ignore: cast_nullable_to_non_nullable
               as String,
-      frequency: frequency == freezed
-          ? _value.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as double,
       modifier: modifier == freezed
           ? _value.modifier
           : modifier // ignore: cast_nullable_to_non_nullable
@@ -186,11 +160,7 @@ class __$CPUCopyWithImpl<$Res> extends _$CPUCopyWithImpl<$Res>
       numberIdentifier: numberIdentifier == freezed
           ? _value.numberIdentifier
           : numberIdentifier // ignore: cast_nullable_to_non_nullable
-              as int,
-      generation: generation == freezed
-          ? _value.generation
-          : generation // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -202,10 +172,8 @@ class _$_CPU implements _CPU {
       {this.name = "",
       this.brand = "",
       this.family = "",
-      this.frequency = 0.0,
       this.modifier = "",
-      this.numberIdentifier = 0,
-      this.generation = 0});
+      this.numberIdentifier = ""});
 
   factory _$_CPU.fromJson(Map<String, dynamic> json) => _$$_CPUFromJson(json);
 
@@ -220,20 +188,14 @@ class _$_CPU implements _CPU {
   final String family;
   @JsonKey()
   @override
-  final double frequency;
-  @JsonKey()
-  @override
   final String modifier;
   @JsonKey()
   @override
-  final int numberIdentifier;
-  @JsonKey()
-  @override
-  final int generation;
+  final String numberIdentifier;
 
   @override
   String toString() {
-    return 'CPU(name: $name, brand: $brand, family: $family, frequency: $frequency, modifier: $modifier, numberIdentifier: $numberIdentifier, generation: $generation)';
+    return 'CPU(name: $name, brand: $brand, family: $family, modifier: $modifier, numberIdentifier: $numberIdentifier)';
   }
 
   @override
@@ -244,12 +206,9 @@ class _$_CPU implements _CPU {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.family, family) &&
-            const DeepCollectionEquality().equals(other.frequency, frequency) &&
             const DeepCollectionEquality().equals(other.modifier, modifier) &&
             const DeepCollectionEquality()
-                .equals(other.numberIdentifier, numberIdentifier) &&
-            const DeepCollectionEquality()
-                .equals(other.generation, generation));
+                .equals(other.numberIdentifier, numberIdentifier));
   }
 
   @override
@@ -258,10 +217,8 @@ class _$_CPU implements _CPU {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(family),
-      const DeepCollectionEquality().hash(frequency),
       const DeepCollectionEquality().hash(modifier),
-      const DeepCollectionEquality().hash(numberIdentifier),
-      const DeepCollectionEquality().hash(generation));
+      const DeepCollectionEquality().hash(numberIdentifier));
 
   @JsonKey(ignore: true)
   @override
@@ -279,10 +236,8 @@ abstract class _CPU implements CPU {
       {String name,
       String brand,
       String family,
-      double frequency,
       String modifier,
-      int numberIdentifier,
-      int generation}) = _$_CPU;
+      String numberIdentifier}) = _$_CPU;
 
   factory _CPU.fromJson(Map<String, dynamic> json) = _$_CPU.fromJson;
 
@@ -293,13 +248,9 @@ abstract class _CPU implements CPU {
   @override
   String get family;
   @override
-  double get frequency;
-  @override
   String get modifier;
   @override
-  int get numberIdentifier;
-  @override
-  int get generation;
+  String get numberIdentifier;
   @override
   @JsonKey(ignore: true)
   _$CPUCopyWith<_CPU> get copyWith => throw _privateConstructorUsedError;

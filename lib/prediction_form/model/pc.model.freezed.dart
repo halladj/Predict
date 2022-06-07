@@ -23,45 +23,33 @@ class _$PcInfoTearOff {
 
   _PcInfo call(
       {String brand = "",
-      CPU cpu = const CPU(
-          brand: "",
-          frequency: 0.0,
-          family: "",
-          generation: 0,
-          numberIdentifier: 0,
-          modifier: ""),
-      int hdd = 0,
-      GPU gpu = const GPU(
-          brand: "",
-          wordsIdentifier: "",
-          numberIdentifier: "",
-          vram: 0,
-          frequency: 0.0),
+      CPU cpu =
+          const CPU(brand: "", family: "", numberIdentifier: "", modifier: ""),
+      int state = 0,
+      GPU gpu = const GPU(brand: "", numberIdentifier: "", vram: 0),
       int ram = 0,
       double ramFrequency = 0.0,
       String ramType = "",
       int ssd = 0,
+      int hdd = 0,
       int screenRefreshRate = 0,
       double screenSize = 0.0,
       String screenResolution = "",
-      int antiGlare = 0,
-      int touchScreen = 0,
-      int state = 0}) {
+      int touchScreen = 0}) {
     return _PcInfo(
       brand: brand,
       cpu: cpu,
-      hdd: hdd,
+      state: state,
       gpu: gpu,
       ram: ram,
       ramFrequency: ramFrequency,
       ramType: ramType,
       ssd: ssd,
+      hdd: hdd,
       screenRefreshRate: screenRefreshRate,
       screenSize: screenSize,
       screenResolution: screenResolution,
-      antiGlare: antiGlare,
       touchScreen: touchScreen,
-      state: state,
     );
   }
 
@@ -76,32 +64,20 @@ const $PcInfo = _$PcInfoTearOff();
 /// @nodoc
 mixin _$PcInfo {
 //FirstFrom
-  String get brand =>
-      throw _privateConstructorUsedError; //TODO create a CPU model
-// @Default("") String cpuBrand,
-// @Default("") String cpuFamily,
-// @Default(0.0) double cpuFrequency,
-// @Default("") String cpuModifier,
-// @Default("") String cpuNumberIdentifier,
+  String get brand => throw _privateConstructorUsedError;
   CPU get cpu => throw _privateConstructorUsedError;
-  int get hdd => throw _privateConstructorUsedError; //SeconedForm
-// @Default("") String gpuBrand,
-// @Default("") String gpuNumberIdentifier,
-// @Default(0) int gpuVram, //possibe problem here check it latter <<seconedForm>>
-// @Default("") String gpuWordsIdentifier,
-//
+  int get state => throw _privateConstructorUsedError;
   GPU get gpu => throw _privateConstructorUsedError;
   int get ram => throw _privateConstructorUsedError;
   double get ramFrequency =>
       throw _privateConstructorUsedError; //recheck the type (int????)
-  String get ramType => throw _privateConstructorUsedError; //ThirdForm
+  String get ramType => throw _privateConstructorUsedError; //SeconedForm
   int get ssd => throw _privateConstructorUsedError;
+  int get hdd => throw _privateConstructorUsedError;
   int get screenRefreshRate => throw _privateConstructorUsedError;
   double get screenSize => throw _privateConstructorUsedError;
   String get screenResolution => throw _privateConstructorUsedError;
-  int get antiGlare => throw _privateConstructorUsedError;
   int get touchScreen => throw _privateConstructorUsedError;
-  int get state => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -115,18 +91,17 @@ abstract class $PcInfoCopyWith<$Res> {
   $Res call(
       {String brand,
       CPU cpu,
-      int hdd,
+      int state,
       GPU gpu,
       int ram,
       double ramFrequency,
       String ramType,
       int ssd,
+      int hdd,
       int screenRefreshRate,
       double screenSize,
       String screenResolution,
-      int antiGlare,
-      int touchScreen,
-      int state});
+      int touchScreen});
 
   $CPUCopyWith<$Res> get cpu;
   $GPUCopyWith<$Res> get gpu;
@@ -144,18 +119,17 @@ class _$PcInfoCopyWithImpl<$Res> implements $PcInfoCopyWith<$Res> {
   $Res call({
     Object? brand = freezed,
     Object? cpu = freezed,
-    Object? hdd = freezed,
+    Object? state = freezed,
     Object? gpu = freezed,
     Object? ram = freezed,
     Object? ramFrequency = freezed,
     Object? ramType = freezed,
     Object? ssd = freezed,
+    Object? hdd = freezed,
     Object? screenRefreshRate = freezed,
     Object? screenSize = freezed,
     Object? screenResolution = freezed,
-    Object? antiGlare = freezed,
     Object? touchScreen = freezed,
-    Object? state = freezed,
   }) {
     return _then(_value.copyWith(
       brand: brand == freezed
@@ -166,9 +140,9 @@ class _$PcInfoCopyWithImpl<$Res> implements $PcInfoCopyWith<$Res> {
           ? _value.cpu
           : cpu // ignore: cast_nullable_to_non_nullable
               as CPU,
-      hdd: hdd == freezed
-          ? _value.hdd
-          : hdd // ignore: cast_nullable_to_non_nullable
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
               as int,
       gpu: gpu == freezed
           ? _value.gpu
@@ -190,6 +164,10 @@ class _$PcInfoCopyWithImpl<$Res> implements $PcInfoCopyWith<$Res> {
           ? _value.ssd
           : ssd // ignore: cast_nullable_to_non_nullable
               as int,
+      hdd: hdd == freezed
+          ? _value.hdd
+          : hdd // ignore: cast_nullable_to_non_nullable
+              as int,
       screenRefreshRate: screenRefreshRate == freezed
           ? _value.screenRefreshRate
           : screenRefreshRate // ignore: cast_nullable_to_non_nullable
@@ -202,17 +180,9 @@ class _$PcInfoCopyWithImpl<$Res> implements $PcInfoCopyWith<$Res> {
           ? _value.screenResolution
           : screenResolution // ignore: cast_nullable_to_non_nullable
               as String,
-      antiGlare: antiGlare == freezed
-          ? _value.antiGlare
-          : antiGlare // ignore: cast_nullable_to_non_nullable
-              as int,
       touchScreen: touchScreen == freezed
           ? _value.touchScreen
           : touchScreen // ignore: cast_nullable_to_non_nullable
-              as int,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -240,18 +210,17 @@ abstract class _$PcInfoCopyWith<$Res> implements $PcInfoCopyWith<$Res> {
   $Res call(
       {String brand,
       CPU cpu,
-      int hdd,
+      int state,
       GPU gpu,
       int ram,
       double ramFrequency,
       String ramType,
       int ssd,
+      int hdd,
       int screenRefreshRate,
       double screenSize,
       String screenResolution,
-      int antiGlare,
-      int touchScreen,
-      int state});
+      int touchScreen});
 
   @override
   $CPUCopyWith<$Res> get cpu;
@@ -272,18 +241,17 @@ class __$PcInfoCopyWithImpl<$Res> extends _$PcInfoCopyWithImpl<$Res>
   $Res call({
     Object? brand = freezed,
     Object? cpu = freezed,
-    Object? hdd = freezed,
+    Object? state = freezed,
     Object? gpu = freezed,
     Object? ram = freezed,
     Object? ramFrequency = freezed,
     Object? ramType = freezed,
     Object? ssd = freezed,
+    Object? hdd = freezed,
     Object? screenRefreshRate = freezed,
     Object? screenSize = freezed,
     Object? screenResolution = freezed,
-    Object? antiGlare = freezed,
     Object? touchScreen = freezed,
-    Object? state = freezed,
   }) {
     return _then(_PcInfo(
       brand: brand == freezed
@@ -294,9 +262,9 @@ class __$PcInfoCopyWithImpl<$Res> extends _$PcInfoCopyWithImpl<$Res>
           ? _value.cpu
           : cpu // ignore: cast_nullable_to_non_nullable
               as CPU,
-      hdd: hdd == freezed
-          ? _value.hdd
-          : hdd // ignore: cast_nullable_to_non_nullable
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
               as int,
       gpu: gpu == freezed
           ? _value.gpu
@@ -318,6 +286,10 @@ class __$PcInfoCopyWithImpl<$Res> extends _$PcInfoCopyWithImpl<$Res>
           ? _value.ssd
           : ssd // ignore: cast_nullable_to_non_nullable
               as int,
+      hdd: hdd == freezed
+          ? _value.hdd
+          : hdd // ignore: cast_nullable_to_non_nullable
+              as int,
       screenRefreshRate: screenRefreshRate == freezed
           ? _value.screenRefreshRate
           : screenRefreshRate // ignore: cast_nullable_to_non_nullable
@@ -330,17 +302,9 @@ class __$PcInfoCopyWithImpl<$Res> extends _$PcInfoCopyWithImpl<$Res>
           ? _value.screenResolution
           : screenResolution // ignore: cast_nullable_to_non_nullable
               as String,
-      antiGlare: antiGlare == freezed
-          ? _value.antiGlare
-          : antiGlare // ignore: cast_nullable_to_non_nullable
-              as int,
       touchScreen: touchScreen == freezed
           ? _value.touchScreen
           : touchScreen // ignore: cast_nullable_to_non_nullable
-              as int,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -351,30 +315,19 @@ class __$PcInfoCopyWithImpl<$Res> extends _$PcInfoCopyWithImpl<$Res>
 class _$_PcInfo implements _PcInfo {
   const _$_PcInfo(
       {this.brand = "",
-      this.cpu = const CPU(
-          brand: "",
-          frequency: 0.0,
-          family: "",
-          generation: 0,
-          numberIdentifier: 0,
-          modifier: ""),
-      this.hdd = 0,
-      this.gpu = const GPU(
-          brand: "",
-          wordsIdentifier: "",
-          numberIdentifier: "",
-          vram: 0,
-          frequency: 0.0),
+      this.cpu =
+          const CPU(brand: "", family: "", numberIdentifier: "", modifier: ""),
+      this.state = 0,
+      this.gpu = const GPU(brand: "", numberIdentifier: "", vram: 0),
       this.ram = 0,
       this.ramFrequency = 0.0,
       this.ramType = "",
       this.ssd = 0,
+      this.hdd = 0,
       this.screenRefreshRate = 0,
       this.screenSize = 0.0,
       this.screenResolution = "",
-      this.antiGlare = 0,
-      this.touchScreen = 0,
-      this.state = 0});
+      this.touchScreen = 0});
 
   factory _$_PcInfo.fromJson(Map<String, dynamic> json) =>
       _$$_PcInfoFromJson(json);
@@ -383,23 +336,13 @@ class _$_PcInfo implements _PcInfo {
   @override //FirstFrom
   final String brand;
   @JsonKey()
-  @override //TODO create a CPU model
-// @Default("") String cpuBrand,
-// @Default("") String cpuFamily,
-// @Default(0.0) double cpuFrequency,
-// @Default("") String cpuModifier,
-// @Default("") String cpuNumberIdentifier,
+  @override
   final CPU cpu;
   @JsonKey()
   @override
-  final int hdd;
+  final int state;
   @JsonKey()
-  @override //SeconedForm
-// @Default("") String gpuBrand,
-// @Default("") String gpuNumberIdentifier,
-// @Default(0) int gpuVram, //possibe problem here check it latter <<seconedForm>>
-// @Default("") String gpuWordsIdentifier,
-//
+  @override
   final GPU gpu;
   @JsonKey()
   @override
@@ -411,8 +354,11 @@ class _$_PcInfo implements _PcInfo {
   @override //recheck the type (int????)
   final String ramType;
   @JsonKey()
-  @override //ThirdForm
+  @override //SeconedForm
   final int ssd;
+  @JsonKey()
+  @override
+  final int hdd;
   @JsonKey()
   @override
   final int screenRefreshRate;
@@ -424,17 +370,11 @@ class _$_PcInfo implements _PcInfo {
   final String screenResolution;
   @JsonKey()
   @override
-  final int antiGlare;
-  @JsonKey()
-  @override
   final int touchScreen;
-  @JsonKey()
-  @override
-  final int state;
 
   @override
   String toString() {
-    return 'PcInfo(brand: $brand, cpu: $cpu, hdd: $hdd, gpu: $gpu, ram: $ram, ramFrequency: $ramFrequency, ramType: $ramType, ssd: $ssd, screenRefreshRate: $screenRefreshRate, screenSize: $screenSize, screenResolution: $screenResolution, antiGlare: $antiGlare, touchScreen: $touchScreen, state: $state)';
+    return 'PcInfo(brand: $brand, cpu: $cpu, state: $state, gpu: $gpu, ram: $ram, ramFrequency: $ramFrequency, ramType: $ramType, ssd: $ssd, hdd: $hdd, screenRefreshRate: $screenRefreshRate, screenSize: $screenSize, screenResolution: $screenResolution, touchScreen: $touchScreen)';
   }
 
   @override
@@ -444,23 +384,22 @@ class _$_PcInfo implements _PcInfo {
             other is _PcInfo &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.cpu, cpu) &&
-            const DeepCollectionEquality().equals(other.hdd, hdd) &&
+            const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.gpu, gpu) &&
             const DeepCollectionEquality().equals(other.ram, ram) &&
             const DeepCollectionEquality()
                 .equals(other.ramFrequency, ramFrequency) &&
             const DeepCollectionEquality().equals(other.ramType, ramType) &&
             const DeepCollectionEquality().equals(other.ssd, ssd) &&
+            const DeepCollectionEquality().equals(other.hdd, hdd) &&
             const DeepCollectionEquality()
                 .equals(other.screenRefreshRate, screenRefreshRate) &&
             const DeepCollectionEquality()
                 .equals(other.screenSize, screenSize) &&
             const DeepCollectionEquality()
                 .equals(other.screenResolution, screenResolution) &&
-            const DeepCollectionEquality().equals(other.antiGlare, antiGlare) &&
             const DeepCollectionEquality()
-                .equals(other.touchScreen, touchScreen) &&
-            const DeepCollectionEquality().equals(other.state, state));
+                .equals(other.touchScreen, touchScreen));
   }
 
   @override
@@ -468,18 +407,17 @@ class _$_PcInfo implements _PcInfo {
       runtimeType,
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(cpu),
-      const DeepCollectionEquality().hash(hdd),
+      const DeepCollectionEquality().hash(state),
       const DeepCollectionEquality().hash(gpu),
       const DeepCollectionEquality().hash(ram),
       const DeepCollectionEquality().hash(ramFrequency),
       const DeepCollectionEquality().hash(ramType),
       const DeepCollectionEquality().hash(ssd),
+      const DeepCollectionEquality().hash(hdd),
       const DeepCollectionEquality().hash(screenRefreshRate),
       const DeepCollectionEquality().hash(screenSize),
       const DeepCollectionEquality().hash(screenResolution),
-      const DeepCollectionEquality().hash(antiGlare),
-      const DeepCollectionEquality().hash(touchScreen),
-      const DeepCollectionEquality().hash(state));
+      const DeepCollectionEquality().hash(touchScreen));
 
   @JsonKey(ignore: true)
   @override
@@ -496,38 +434,27 @@ abstract class _PcInfo implements PcInfo {
   const factory _PcInfo(
       {String brand,
       CPU cpu,
-      int hdd,
+      int state,
       GPU gpu,
       int ram,
       double ramFrequency,
       String ramType,
       int ssd,
+      int hdd,
       int screenRefreshRate,
       double screenSize,
       String screenResolution,
-      int antiGlare,
-      int touchScreen,
-      int state}) = _$_PcInfo;
+      int touchScreen}) = _$_PcInfo;
 
   factory _PcInfo.fromJson(Map<String, dynamic> json) = _$_PcInfo.fromJson;
 
   @override //FirstFrom
   String get brand;
-  @override //TODO create a CPU model
-// @Default("") String cpuBrand,
-// @Default("") String cpuFamily,
-// @Default(0.0) double cpuFrequency,
-// @Default("") String cpuModifier,
-// @Default("") String cpuNumberIdentifier,
+  @override
   CPU get cpu;
   @override
-  int get hdd;
-  @override //SeconedForm
-// @Default("") String gpuBrand,
-// @Default("") String gpuNumberIdentifier,
-// @Default(0) int gpuVram, //possibe problem here check it latter <<seconedForm>>
-// @Default("") String gpuWordsIdentifier,
-//
+  int get state;
+  @override
   GPU get gpu;
   @override
   int get ram;
@@ -535,8 +462,10 @@ abstract class _PcInfo implements PcInfo {
   double get ramFrequency;
   @override //recheck the type (int????)
   String get ramType;
-  @override //ThirdForm
+  @override //SeconedForm
   int get ssd;
+  @override
+  int get hdd;
   @override
   int get screenRefreshRate;
   @override
@@ -544,11 +473,7 @@ abstract class _PcInfo implements PcInfo {
   @override
   String get screenResolution;
   @override
-  int get antiGlare;
-  @override
   int get touchScreen;
-  @override
-  int get state;
   @override
   @JsonKey(ignore: true)
   _$PcInfoCopyWith<_PcInfo> get copyWith => throw _privateConstructorUsedError;

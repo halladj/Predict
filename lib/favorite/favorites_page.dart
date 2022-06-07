@@ -43,6 +43,7 @@ class FavoritesPage extends HookWidget {
                 return const Divider(height: 3);
               },
               itemBuilder: (BuildContext context, index) {
+                var condition = true;
                 return Dismissible(
                     direction: DismissDirection.endToStart,
                     background: Container(
@@ -52,13 +53,17 @@ class FavoritesPage extends HookWidget {
                             color: Colors.white, size: 50)),
                     key: Key(index.toString()),
                     onDismissed: (direction) async {
+                      condition = false;
                       await FavoriteApi.deleteFavorite(
                           futuerFavorite.value[index].id, user.token);
+                      condition = true;
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text(
                               "this Prediction was removerd from your favorite")));
                     },
-                    child: FavoriteItem(favorite: futuerFavorite.value[index]));
+                    child: !condition
+                        ? const CircularProgressIndicator()
+                        : FavoriteItem(favorite: futuerFavorite.value[index]));
               }),
     );
   }
