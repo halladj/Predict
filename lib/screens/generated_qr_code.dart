@@ -35,6 +35,7 @@ class _GeneratedQRState extends State<GeneratedQR> {
     final user = context.select((AppBloc bloc) => bloc.state.user);
     var authState = context.select((AppBloc bloc) => bloc.state.status);
     final params = ModalRoute.of(context)!.settings.arguments as Arguments;
+    HomeCubit homeCubit = context.watch<HomeCubit>();
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -73,7 +74,7 @@ class _GeneratedQRState extends State<GeneratedQR> {
               ),
               const SizedBox(height: 12),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     width: 140,
@@ -94,18 +95,28 @@ class _GeneratedQRState extends State<GeneratedQR> {
                       ? !isFetched
                           ? IconButton(
                               padding: const EdgeInsets.all(0),
-                              icon: const Icon(Icons.favorite_border),
+                              icon: !homeCubit.favoriteCondition
+                                  ? const Icon(Icons.favorite_border)
+                                  : Container(
+                                      margin:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: const Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: SpinKitPumpingHeart(
+                                          color: Colors.red,
+                                          size: 48.0,
+                                        ),
+                                      ),
+                                    ),
                               //TODO HERE IS THE FUNCTION CALL
                               onPressed: () async {
-                                print(params.laptop.runtimeType);
-                                print(
-                                    "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+                                homeCubit.changeFavoriteCondition(value: true);
                                 var data = await FavoriteApi.addToFavorites(
                                     token: user.token,
                                     pc: params.laptop,
                                     price: params.price);
-                                print(
-                                    "fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
+                                homeCubit.changeFavoriteCondition(value: false);
 
                                 var pc = PcInfo.fromJson(data);
                                 setState(() {
@@ -114,13 +125,8 @@ class _GeneratedQRState extends State<GeneratedQR> {
                                 });
                               },
                               iconSize: 48)
-                          : const Padding(
-                              padding: EdgeInsets.all(12.0),
-                              child: SpinKitPumpingHeart(
-                                color: Colors.red,
-                                size: 48.0,
-                              ),
-                            )
+                          : const Icon(Icons.favorite,
+                              color: Colors.red, size: 48)
                       : const SizedBox(width: 10),
                   Container(
                     width: 50,

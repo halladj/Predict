@@ -1,9 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:proto/app_bloc/app_bloc.dart';
 import 'package:proto/components/components.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:dio/dio.dart';
+import 'package:proto/helpers/api/predictions.dart';
 import 'package:proto/home/home_cubit.dart';
 import "package:proto/prediction_form/forms/forms.dart";
 import "package:proto/prediction_form/model/pc.model.dart";
@@ -19,6 +21,8 @@ class PredictionForm extends HookWidget {
     final _pcInfo = useState<dynamic>(const PcInfo());
     final price = useState<double>(-1);
     HomeCubit homeCubit = context.watch<HomeCubit>();
+    AppStatus status = context.select((AppBloc bloc) => bloc.state.status);
+    final user = context.select((AppBloc bloc) => bloc.state.user);
 
     dynamic placeHolder;
     //TODO MAKE A USEEFFECT TO RESET THE _pcInfo var
@@ -217,6 +221,11 @@ class PredictionForm extends HookWidget {
                                   homeCubit.changePredictionFormCondition(
                                       value: true);
                                   price.value = await getPrice(_pcInfo.value);
+                                  if (status == AppStatus.authenticated) {}
+                                  HistoryApi.addToHistory(
+                                      pc: _pcInfo.value,
+                                      price: price.value,
+                                      token: user.token);
                                 },
                                 icon: const Icon(Icons.arrow_forward_ios),
                                 color: Colors.white,
@@ -295,9 +304,6 @@ class OnboardingFlow extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appBar: const SecondaryAppBar(
-          title: "",
-        ),
         body: FlowBuilder<PcInfo>(
           state: const PcInfo(),
           onGeneratePages: (pc, pages) {

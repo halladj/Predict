@@ -13,14 +13,20 @@ class HomeCubit extends Cubit<HomeState> {
   bool icon = true;
   bool condition = false;
   bool qrCondition = false;
+  bool favoriteCondition = false;
 
   void changePredictionFormCondition({required bool value}) {
     condition = value;
-    emit(ChangePredictionFormCondition());
+    emit(ChangeFavoriteCondition());
   }
 
   void changeQrCodeCondition({required bool value}) {
     qrCondition = value;
+    emit(ChangePredictionFormCondition());
+  }
+
+  void changeFavoriteCondition({required bool value}) {
+    favoriteCondition = value;
     emit(ChangePredictionFormCondition());
   }
   // void changeIcon(){
@@ -48,7 +54,7 @@ class HomeCubit extends Cubit<HomeState> {
     const Favorites(),
     PredictionForm(),
     const GoogleAssistant(),
-    const Profile(),
+    //const Profile(),
   ];
   int selectedIndex = 2;
   void changeButtomNavIndex(int index) {

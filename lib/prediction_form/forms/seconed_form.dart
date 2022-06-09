@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
+import 'package:proto/components/secondary_app_bar.dart';
+import 'package:proto/home/home_cubit.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:proto/components/components.dart';
@@ -14,6 +17,7 @@ class SeconedForm extends HookWidget {
   var screenSizeController = TextEditingController();
   var screenRefreshRateController = TextEditingController();
   var screenResolutionController = TextEditingController();
+  var ramFrequencyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final _ssd = useState<int>(0);
@@ -23,12 +27,14 @@ class SeconedForm extends HookWidget {
     final _screenResolution = useState<String>("");
     final _touchScreen = useState<int>(0);
     final _state = useState<int>(0);
+    final _ramFrequency = useState<double>(0);
 
     return Scaffold(
+        appBar: SecondaryAppBar(title: "Prediction Form(2/2)"),
         body: SingleChildScrollView(
             //insert the column here so we can put that logo
             child: Container(
-                margin: const EdgeInsets.fromLTRB(21, 40, 21, 0),
+                margin: const EdgeInsets.fromLTRB(21, 0, 21, 0),
                 padding: const EdgeInsets.symmetric(
                     horizontal: 30.0, vertical: 10.0),
                 decoration: BoxDecoration(
@@ -52,6 +58,14 @@ class SeconedForm extends HookWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          CustomTextField(
+                              label: "RAM Frequency",
+                              hint: "2999, 3213",
+                              controller: ramFrequencyController,
+                              onChanged: (value) =>
+                                  _ramFrequency.value = double.parse(value),
+                              keyboardInputType: TextInputType.number,
+                              autoFocus: false),
                           Row(
                             children: [
                               Expanded(
@@ -228,6 +242,8 @@ class SeconedForm extends HookWidget {
                                       context
                                           .flow<PcInfo>()
                                           .complete((info) => info.copyWith(
+                                                ramFrequency:
+                                                    _ramFrequency.value,
                                                 ssd: _ssd.value,
                                                 hdd: _hdd.value,
                                                 screenSize: _screenSize.value,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/favorite/favorites.dart';
+import 'package:proto/history/history.dart';
 import 'package:proto/home/home_cubit.dart';
 import 'package:proto/home/home_states.dart';
 import 'package:proto/app_bloc/app_bloc.dart';
@@ -72,12 +73,13 @@ class MyApp extends StatelessWidget {
                 routes: {
                   '/': (context) => const Home(),
                   //"/hub": (context) => const Prediction(),
-                  '/predition_form': (context) =>  PredictionForm(),
+                  '/predition_form': (context) => PredictionForm(),
                   "/predition": (context) => const Prediction(),
                   "/google": (context) => const GoogleAssistant(),
                   "/generatedQR": (context) => const GeneratedQR(),
                   "/login": (context) => const LoginPage(),
                   "/favorites": (context) => const Favorites(),
+                  "/history": (context) => const HistoryMain()
                 },
                 debugShowCheckedModeBanner: false,
               );
