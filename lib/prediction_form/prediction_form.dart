@@ -145,7 +145,7 @@ class PredictionForm extends HookWidget {
                     height: 350,
                   ),
                   const SizedBox(
-                    height: 35.0,
+                    height: 45.0,
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -176,6 +176,7 @@ class PredictionForm extends HookWidget {
                       //color: Color(0xffabaffa),
                       color: Theme.of(context).backgroundColor,
                     ),
+
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -230,8 +231,7 @@ class PredictionForm extends HookWidget {
                 ],
               ),
             )
-          : price.value == -1.toDouble()
-              ? const Center(child: CircularProgressIndicator())
+
               : PredictionCard(
                   pc: _pcInfo.value,
                   price: price.value,

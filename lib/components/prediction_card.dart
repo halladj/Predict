@@ -100,7 +100,7 @@ class PredictionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
             child: Column(
               children: [
                 Container(
@@ -202,7 +202,7 @@ class PredictionCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

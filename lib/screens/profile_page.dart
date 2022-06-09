@@ -5,6 +5,6 @@ class ProfilePage extends StatelessWidget {
   static Page page() => const MaterialPage<void>(child: ProfilePage());
 
   Widget build(BuildContext context) {
-    return Container(color: Colors.blue);
+    return Container(color: Colors.transparent);
   }
 }
