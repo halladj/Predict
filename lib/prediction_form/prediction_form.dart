@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -131,112 +132,117 @@ class PredictionForm extends HookWidget {
       // alignment: Alignment.center,
       child: homeCubit.condition == false || _pcInfo.value == const PcInfo()
           ? Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 34.0, vertical: 20.0),
+        padding:
+        const EdgeInsets.symmetric(horizontal: 34.0, vertical: 20.0),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            // Image.asset(
+            //     "assets/logo.png"
+            // ),
+            Image.asset(
+              Theme.of(context).brightness == Brightness.dark
+                  ? 'assets/home_dark_mode.png'
+                  : 'assets/homeee.png',
+              height: 350,
+            ),
+            const SizedBox(
+              height: 35.0,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0, vertical: 14.0),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset:
+                    const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                //
+                // gradient: LinearGradient(colors: [
+                //   Color(0xffabaefa),
+                //   kLightBackgroundColor,
+                // ],
+                //   begin: Alignment.topLeft,
+                //   end: Alignment.bottomRight,
+                // ),
+
+                border: Border.all(
+                  color: Colors.grey.withOpacity(0.1),
+                ),
+                borderRadius: BorderRadius.circular(15),
+                //color: Color(0xffabaffa),
+                color: Theme.of(context).backgroundColor,
+              ),
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image.asset(
-                  //     "assets/logo.png"
-                  // ),
-                  Image.asset(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? 'assets/home_dark_mode.png'
-                        : 'assets/homeee.png',
-                    height: 350,
+                  Text(
+                    "Predict now !",
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   const SizedBox(
-                    height: 45.0,
+                    height: 8.0,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0, vertical: 14.0),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Predict the price of the laptop of your choice in the Algerien market. ',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.start,
                         ),
-                      ],
-                      //
-                      // gradient: LinearGradient(colors: [
-                      //   Color(0xffabaefa),
-                      //   kLightBackgroundColor,
-                      // ],
-                      //   begin: Alignment.topLeft,
-                      //   end: Alignment.bottomRight,
-                      // ),
-
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.1),
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                      //color: Color(0xffabaffa),
-                      color: Theme.of(context).backgroundColor,
-                    ),
-
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Predict now !",
-                          style: Theme.of(context).textTheme.headline1,
+                      Container(
+                        height: 65.0,
+                        decoration: BoxDecoration(
+                          //color: kLightBackgroundColor,
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              colors: [
+                                Theme.of(context).primaryColorDark,
+                                Theme.of(context).primaryColorLight,
+                              ]),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        const SizedBox(
-                          height: 8.0,
+                        child: IconButton(
+                          onPressed: () async {
+                            placeHolder = await Navigator.of(context)
+                                .push(OnboardingFlow.route());
+                            _pcInfo.value = placeHolder ?? const PcInfo();
+                            homeCubit.changePredictionFormCondition(
+                                value: true);
+                            price.value = await getPrice(_pcInfo.value);
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios),
+                          color: Colors.white,
+                          highlightColor: Colors.pink,
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Predict the price of the laptop of your choice in the Algerien market. ',
-                                style: Theme.of(context).textTheme.bodyText1,
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Container(
-                              height: 65.0,
-                              decoration: BoxDecoration(
-                                //color: kLightBackgroundColor,
-                                gradient: LinearGradient(
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight,
-                                    colors: [
-                                      Theme.of(context).primaryColorDark,
-                                      Theme.of(context).primaryColorLight,
-                                    ]),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  placeHolder = await Navigator.of(context)
-                                      .push(OnboardingFlow.route());
-                                  _pcInfo.value = placeHolder ?? const PcInfo();
-                                  homeCubit.changePredictionFormCondition(
-                                      value: true);
-                                  price.value = await getPrice(_pcInfo.value);
-                                },
-                                icon: const Icon(Icons.arrow_forward_ios),
-                                color: Colors.white,
-                                highlightColor: Colors.pink,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
+                      ),
+                    ],
+                  ),
                 ],
               ),
             )
-
-              : PredictionCard(
-                  pc: _pcInfo.value,
-                  price: price.value,
-                ),
+          ],
+        ),
+      )
+          : price.value == -1.toDouble()
+          ? SizedBox(
+        height: MediaQuery.of(context).size.height / 1.3,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      )
+          : PredictionCard(
+        pc: _pcInfo.value,
+        price: price.value,
+      ),
     );
 
 //                  ),

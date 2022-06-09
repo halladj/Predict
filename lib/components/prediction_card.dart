@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proto/helpers/api/predictions.dart';
@@ -94,7 +95,12 @@ class PredictionCard extends StatelessWidget {
 //                                   ),
 
     return homeCubit.qrCondition
-        ? const Center(child: CircularProgressIndicator())
+        ? SizedBox(
+      height: MediaQuery.of(context).size.height / 1.3,
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    )
         : Container(
             margin: const EdgeInsets.only(top: 2.0),
             child: Column(
