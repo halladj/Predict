@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto/home/home_cubit.dart';
 
 class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -10,14 +11,14 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Padding(
         padding: const EdgeInsets.only(
-          top: 0.0,
+          top: 10.0,
         ),
         child: Text(
           title,
           style: const TextStyle(
             color: Color(0xff06446C),
             fontWeight: FontWeight.w800,
-            fontSize: 20.0,
+            fontSize: 22.0,
           ),
         ),
       ),
@@ -30,14 +31,15 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
       //     child: Image.asset("assets/logo3.png",),),
       // ),
 
-      leading: Container(
-        padding: const EdgeInsets.only(top: 5.0, bottom: 15.0, left: 12.0),
+      leading: Padding(
+        padding: const EdgeInsets.only(top: 10.0, left: 5.0),
         child: IconButton(
             icon: const Icon(Icons.arrow_back_rounded, size: 30.0),
             color: Theme.of(context).appBarTheme.iconTheme?.color,
             iconSize: 34.0,
             onPressed: () {
               Navigator.of(context).maybePop();
+              //Navigator.pop(context);
             }),
       ),
 
@@ -61,6 +63,5 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(80);
 }
-

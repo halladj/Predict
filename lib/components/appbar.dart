@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Container(
+      leading: Padding(
         padding: const EdgeInsets.only(top: 15.0, left: 5.0),
         child: IconButton(
           icon: const Icon(
@@ -62,8 +62,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       //       }),
       // ),
       actions: [
-        Container(
-          padding: const EdgeInsets.only(top: 18.0, bottom: 15.0, right: 10.0),
+        Padding(
+          // padding: const EdgeInsets.only(top: 18.0, bottom: 15.0, right: 10.0),
+          padding: const EdgeInsets.only(top: 20.0, right: 10.0),
           child: IconButton(
             onPressed: () => homeCubit.changeTheme(),
             icon: Icon(

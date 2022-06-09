@@ -41,7 +41,9 @@ class SideBar extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.history),
                   title: const Text("History"),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, "/history");
+                  },
                 ),
                 const Divider(),
                 ListTile(
@@ -113,7 +115,7 @@ class PageOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+    final HomeCubit homeCubit = context.watch<HomeCubit>();
     return Center(
       child: Container(
         height: 260,
@@ -154,18 +156,68 @@ class PageOne extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                    child: const Text("go to signin"),
-                    onPressed: () {
-                      homeCubit.changeButtomNavIndex(4);
-                      Scaffold.of(context).openEndDrawer();
-                    }),
-                ElevatedButton(
-                    child: const Text("cancel"),
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                      //Navigator.pop(context);
-                    }),
+                Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
+                          Theme.of(context).primaryColorDark,
+                          Theme.of(context).primaryColorLight,
+                        ]),
+                    // color: Color(0xff00CBBF),
+                  ),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.transparent),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ))),
+                      onPressed: () {
+                        homeCubit.changeButtomNavIndex(1);
+                        Scaffold.of(context).openEndDrawer();
+                      },
+                      child: const Text(
+                        "go to signin",
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      )),
+                ),
+                Container(
+                  height: 50,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+
+                    //color: Theme.of(context).backgroundColor,
+                  ),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                            side: const BorderSide(
+                              color: Color(0xff00CBBF),
+                            ),
+                          ))),
+                      onPressed: () {
+                        Scaffold.of(context).openEndDrawer();
+                        //Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xff00CBBF),
+                        ),
+                      )),
+                ),
               ],
             ),
           ],

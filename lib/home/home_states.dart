@@ -10,6 +10,8 @@ class ChangePredictionFormCondition extends HomeState {}
 
 class ChangeQrCodeCondition extends HomeState {}
 
+class ChangeFavoriteCondition extends HomeState {}
+
 //class ChangeIconState extends HomeState {}
 
 

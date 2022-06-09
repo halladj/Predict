@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hex_color/flutter_hex_color.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:proto/components/secondary_app_bar.dart';
+import 'package:proto/home/home_cubit.dart';
 
 import 'package:proto/prediction_form/model/cpu/cpu.model.dart';
 import 'package:proto/prediction_form/model/gpu/gpu.model.dart';
@@ -20,7 +23,7 @@ class FirstForm extends HookWidget {
   var gpuController = TextEditingController();
   var ramController = TextEditingController();
   var ramTypeController = TextEditingController();
-  var ramFrequencyController = TextEditingController();
+  //var ramFrequencyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +34,10 @@ class FirstForm extends HookWidget {
     final _gpu = useState(const GPU());
     final _ram = useState<int>(0);
     final _ramType = useState<String>("");
-    final _ramFrequency = useState<double>(0);
+    //final _ramFrequency = useState<double>(0);
 
     return Scaffold(
+      appBar: SecondaryAppBar(title: "Prediction Form(1/2)"),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.only(top: 0, right: 5.0, left: 5.0),
@@ -290,14 +294,14 @@ class FirstForm extends HookWidget {
                             ),
                           ],
                         ),
-                        CustomTextField(
-                            label: "RAM Frequency",
-                            hint: "2999, 3213",
-                            controller: ramFrequencyController,
-                            onChanged: (value) =>
-                                _ramFrequency.value = double.parse(value),
-                            keyboardInputType: TextInputType.number,
-                            autoFocus: false),
+                        //CustomTextField(
+                        //    label: "RAM Frequency",
+                        //    hint: "2999, 3213",
+                        //    controller: ramFrequencyController,
+                        //    onChanged: (value) =>
+                        //        _ramFrequency.value = double.parse(value),
+                        //    keyboardInputType: TextInputType.number,
+                        //    autoFocus: false),
                         Padding(
                             padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                             child: Center(
@@ -349,7 +353,7 @@ class FirstForm extends HookWidget {
                                               gpu: _gpu.value,
                                               ram: _ram.value,
                                               ramType: _ramType.value,
-                                              ramFrequency: _ramFrequency.value,
+                                              //ramFrequency: _ramFrequency.value,
                                             ));
                                   }
                                 },

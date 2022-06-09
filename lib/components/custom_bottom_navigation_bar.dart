@@ -24,15 +24,16 @@ class CustomBottomNavigation extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(20.0),
+          topLeft: Radius.circular(20.0),
         ),
-
-
         child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-
-          backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-          unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            unselectedItemColor:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
             currentIndex: homeCubit.selectedIndex,
             onTap: (index) {
               homeCubit.changeButtomNavIndex(index);
@@ -47,12 +48,20 @@ class CustomBottomNavigation extends StatelessWidget {
 
 var bottomNavigationItems = const <BottomNavigationBarItem>[
   //BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-  BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_rounded), label: "QR"),
+  BottomNavigationBarItem(
+      icon: Icon(Icons.qr_code_scanner_rounded), label: "QR"),
   BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-  BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/p_filled.png'),
-    size: 22.0,), label: "Predict"),
-  BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/google.png"),size: 24,), label: "Assistant"),
-  BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-
-
+  BottomNavigationBarItem(
+      icon: ImageIcon(
+        AssetImage('assets/p_filled.png'),
+        size: 22.0,
+      ),
+      label: "Predict"),
+  BottomNavigationBarItem(
+      icon: ImageIcon(
+        AssetImage("assets/google.png"),
+        size: 24,
+      ),
+      label: "Assistant"),
+  //BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
 ];
