@@ -118,10 +118,10 @@ class PageOne extends StatelessWidget {
     final HomeCubit homeCubit = context.watch<HomeCubit>();
     return Center(
       child: Container(
-        height: 260,
+        height: 210,
         width: 340,
         margin: const EdgeInsets.fromLTRB(0, 60, 0, 60),
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 35.0),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -146,15 +146,15 @@ class PageOne extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(0),
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
               child: Text(
                 "Sign in to your account\nOr Create a New Account",
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
-            const SizedBox(height: 50),
+            //const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   height: 50,
@@ -183,7 +183,7 @@ class PageOne extends StatelessWidget {
                         Scaffold.of(context).openEndDrawer();
                       },
                       child: const Text(
-                        "go to signin",
+                        "go to Sign in",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       )),
                 ),

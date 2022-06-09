@@ -150,7 +150,7 @@ class PredictionForm extends HookWidget {
                     height: 350,
                   ),
                   const SizedBox(
-                    height: 35.0,
+                    height: 45.0,
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -203,15 +203,22 @@ class PredictionForm extends HookWidget {
                             Container(
                               height: 65.0,
                               decoration: BoxDecoration(
-                                //color: kLightBackgroundColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(Radius.circular(15)),
                                 gradient: LinearGradient(
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight,
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
                                     colors: [
                                       Theme.of(context).primaryColorDark,
                                       Theme.of(context).primaryColorLight,
                                     ]),
-                                borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: IconButton(
                                 onPressed: () async {
@@ -241,7 +248,10 @@ class PredictionForm extends HookWidget {
               ),
             )
           : price.value == -1.toDouble()
-              ? const Center(child: CircularProgressIndicator())
+              ? Padding(
+        padding: EdgeInsets.symmetric(horizontal: 180,vertical: 250),
+          child: CircularProgressIndicator(),
+      )
               : PredictionCard(
                   pc: _pcInfo.value,
                   price: price.value,
@@ -303,7 +313,10 @@ class OnboardingFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: SecondaryAppBar(
+        title: 'Prediction Form',
+      ),
+
         body: FlowBuilder<PcInfo>(
           state: const PcInfo(),
           onGeneratePages: (pc, pages) {

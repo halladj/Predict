@@ -37,21 +37,22 @@ class FirstForm extends HookWidget {
     //final _ramFrequency = useState<double>(0);
 
     return Scaffold(
-      appBar: SecondaryAppBar(title: "Prediction Form(1/2)"),
+      //appBar: SecondaryAppBar(title: "Prediction Form(1/2)"),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
-        padding: const EdgeInsets.only(top: 0, right: 5.0, left: 5.0),
+        padding: const EdgeInsets.only(top: 24, right: 5.0, left: 5.0),
         child: SingleChildScrollView(
           //insert the column here so we can put that logo
           child: Column(
             children: [
-              const SizedBox(
-                height: 55,
-                child: FormIcon(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: const SizedBox(
+                  height: 55,
+                  child: FormIcon(),
+                ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+
               Container(
                 // height: 360.0,
                 //
@@ -308,17 +309,25 @@ class FirstForm extends HookWidget {
                                 child: Container(
                               width: 420,
                               height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15)),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Theme.of(context).primaryColorDark,
-                                        Theme.of(context).primaryColorLight,
-                                      ])),
-                              child: ElevatedButton(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.2),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Theme.of(context).primaryColorDark,
+                                          Theme.of(context).primaryColorLight,
+                                        ]),
+                                  ),
+                              child: TextButton(
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(

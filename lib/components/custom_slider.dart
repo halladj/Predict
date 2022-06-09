@@ -44,8 +44,9 @@ class CustomSlider extends StatelessWidget {
               child: Slider(
                 value: value.value.toDouble(),
                 onChanged: (value2) => value.value = value2.toInt(),
-                inactiveColor: CustomColors.buttonColor,
-                activeColor: CustomColors.buttonHighlightColor,
+                thumbColor: Theme.of(context).primaryColorLight,
+                activeColor: Theme.of(context).primaryColorLight,
+                inactiveColor: Colors.grey.withOpacity(0.5),
                 max: max,
                 min: min,
                 divisions: divisions,
@@ -54,13 +55,15 @@ class CustomSlider extends StatelessWidget {
             ),
           ],
         ),
-        Text(
-          seconedLabel,
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: Color(0xff06446C).withOpacity(0.9),
+        Center(
+          child: Text(
+            seconedLabel,
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Color(0xff06446C).withOpacity(0.9),
+            ),
           ),
         ),
       ],

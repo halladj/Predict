@@ -157,7 +157,7 @@ class _LoginButton extends StatelessWidget {
                           Theme.of(context).primaryColorDark,
                           Theme.of(context).primaryColorLight,
                         ])),
-                child: ElevatedButton(
+                child: TextButton(
                   key: const Key('loginForm_continue_raisedButton'),
                   style: ButtonStyle(
                       backgroundColor:

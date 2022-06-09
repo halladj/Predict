@@ -30,13 +30,13 @@ class SeconedForm extends HookWidget {
     final _ramFrequency = useState<double>(0);
 
     return Scaffold(
-        appBar: SecondaryAppBar(title: "Prediction Form(2/2)"),
+        //appBar: SecondaryAppBar(title: "Prediction Form(2/2)"),
         body: SingleChildScrollView(
             //insert the column here so we can put that logo
             child: Container(
-                margin: const EdgeInsets.fromLTRB(21, 0, 21, 0),
+                margin: const EdgeInsets.fromLTRB(21, 30, 21, 0),
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
+                    horizontal: 30.0, vertical: 20.0),
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -192,13 +192,13 @@ class SeconedForm extends HookWidget {
                             ],
                           ),
                           CustomSlider(
-                              label: "touch screen",
+                              label: "Touch screen",
                               max: 1,
                               min: 0,
                               divisions: 2,
                               seconedLabel: _touchScreen.value == 1
-                                  ? "Has touch"
-                                  : "Does Not Have touch",
+                                  ? "Has touch screen"
+                                  : "Does Not Have touch screen",
                               value: _touchScreen),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -211,16 +211,24 @@ class SeconedForm extends HookWidget {
                                 width: 120,
                                 height: 48,
                                 decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          Theme.of(context).primaryColorDark,
-                                          Theme.of(context).primaryColorLight,
-                                        ])),
-                                child: ElevatedButton(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topRight,
+                                      end: Alignment.bottomLeft,
+                                      colors: [
+                                        Theme.of(context).primaryColorDark,
+                                        Theme.of(context).primaryColorLight,
+                                      ]),
+                                ),
+                                child: TextButton(
                                   //TODO FLIP THE BUTON AND THE CONTAINER
                                   style: ButtonStyle(
                                       backgroundColor:

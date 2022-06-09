@@ -192,7 +192,7 @@ class _SignUpButton extends StatelessWidget {
                         Theme.of(context).primaryColorLight,
                       ]),
                 ),
-                child: ElevatedButton(
+                child: TextButton(
                   key: const Key('signUpForm_continue_raisedButton'),
                   style: ButtonStyle(
                       backgroundColor:

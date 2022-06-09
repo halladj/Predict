@@ -42,9 +42,10 @@ class CustomTheme {
       fontWeight: FontWeight.w500,color: Color(0xff06446C),
     ),
     headline6: GoogleFonts.openSans(
+      letterSpacing: 0.5,
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: Color(0xff06446C),
     ),
   );
 
@@ -73,14 +74,15 @@ class CustomTheme {
 
     ),
     headline3: TextStyle(fontSize: 38,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
 
     headline6: GoogleFonts.openSans(
+      letterSpacing: 1,
       fontSize: 20.0,
-      fontWeight: FontWeight.w600,
-      color: coolPurple[800],
+      fontWeight: FontWeight.w500,
+      color: Colors.white,
     ),
   );
 
@@ -99,7 +101,7 @@ class CustomTheme {
       scaffoldBackgroundColor: kLightBackgroundColor,
       backgroundColor: Colors.white,
       primaryColorDark: Color(0xffd8a1f9),
-      primaryColorLight: Color(0xff57ebdf),
+      primaryColorLight: Colors.teal.shade300,
       //Some Global Stuff
       primaryColor: HexColor("#726eff"),
       primarySwatch: Colors.purple,
@@ -160,7 +162,7 @@ class CustomTheme {
         shadowColor: Colors.transparent,
         primarySwatch: ourPurple,
         primaryColorDark: Color(0xffda3eb4),
-        primaryColorLight: Color(0xff66fcf1),
+        primaryColorLight: Color(0xff66fcf1).withOpacity(0.6),
         //AppBar Styles
         //
         appBarTheme: AppBarTheme(

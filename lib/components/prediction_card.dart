@@ -224,18 +224,24 @@ class PredictionCard extends StatelessWidget {
                             Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: const Offset(0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(Radius.circular(15)),
                                 gradient: LinearGradient(
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight,
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
                                     colors: [
                                       Theme.of(context).primaryColorDark,
                                       Theme.of(context).primaryColorLight,
                                     ]),
-                                // color: Color(0xff00CBBF),
                               ),
-                              child: ElevatedButton(
+                              child: TextButton(
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all<Color>(

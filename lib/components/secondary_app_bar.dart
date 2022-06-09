@@ -15,11 +15,7 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         child: Text(
           title,
-          style: const TextStyle(
-            color: Color(0xff06446C),
-            fontWeight: FontWeight.w800,
-            fontSize: 22.0,
-          ),
+          style: Theme.of(context).textTheme.headline6,
         ),
       ),
       centerTitle: true,
@@ -38,7 +34,8 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
             color: Theme.of(context).appBarTheme.iconTheme?.color,
             iconSize: 34.0,
             onPressed: () {
-              Navigator.of(context).maybePop();
+
+              Navigator.of(context).pop();
               //Navigator.pop(context);
             }),
       ),
@@ -54,7 +51,7 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
       //   ),
       //
       // ],
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white.withOpacity(0.2),
       iconTheme: Theme.of(context).appBarTheme.iconTheme,
       systemOverlayStyle: Theme.of(context).appBarTheme.systemOverlayStyle,
       elevation: Theme.of(context).appBarTheme.elevation,
@@ -63,5 +60,5 @@ class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(50);
 }
