@@ -21,6 +21,7 @@ class PredictionForm extends HookWidget {
     HomeCubit homeCubit = context.watch<HomeCubit>();
 
     dynamic placeHolder;
+    //TODO MAKE A USEEFFECT TO RESET THE _pcInfo var
 
     return SingleChildScrollView(
 //         padding: const EdgeInsets.all(0),
@@ -320,7 +321,7 @@ getPrice(PcInfo data) async {
         'https://laptops-prediction.herokuapp.com/result',
         data: data.toJson(),
         options: Options(contentType: Headers.jsonContentType));
-    return double.parse(response.data['price']);
+    return response.data['price'];
   } catch (e) {
     print(e);
   }

@@ -12,9 +12,15 @@ class HomeCubit extends Cubit<HomeState> {
   bool darkTheme = true;
   bool icon = true;
   bool condition = false;
+  bool qrCondition = false;
 
   void changePredictionFormCondition({required bool value}) {
     condition = value;
+    emit(ChangePredictionFormCondition());
+  }
+
+  void changeQrCodeCondition({required bool value}) {
+    qrCondition = value;
     emit(ChangePredictionFormCondition());
   }
   // void changeIcon(){

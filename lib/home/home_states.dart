@@ -8,6 +8,8 @@ class ChangeButtomNavIndexState extends HomeState {}
 
 class ChangePredictionFormCondition extends HomeState {}
 
+class ChangeQrCodeCondition extends HomeState {}
+
 //class ChangeIconState extends HomeState {}
 
 

@@ -148,14 +148,13 @@ class FirstForm extends HookWidget {
                               onSuggestionSelected: (CPU? suggestion) {
                                 final cpu = suggestion!;
 
+                                print(cpu);
                                 _cpu.value = _cpu.value.copyWith(
                                   name: cpu.name,
                                   brand: cpu.brand,
                                   modifier: cpu.modifier,
-                                  generation: cpu.generation,
                                   numberIdentifier: cpu.numberIdentifier,
                                   family: cpu.family,
-                                  frequency: cpu.frequency,
                                 );
                                 cpuController.text = cpu.name;
                               },
@@ -251,10 +250,8 @@ class FirstForm extends HookWidget {
                                   _gpu.value = _gpu.value.copyWith(
                                     name: gpu.name,
                                     brand: gpu.brand,
-                                    wordsIdentifier: gpu.wordsIdentifier,
                                     numberIdentifier: gpu.numberIdentifier,
                                     vram: gpu.vram,
-                                    frequency: gpu.frequency,
                                   );
                                   gpuController.text = gpu.name;
                                 },

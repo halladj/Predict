@@ -22,7 +22,6 @@ class SeconedForm extends HookWidget {
     final _screenRefreshRate = useState<int>(0);
     final _screenResolution = useState<String>("");
     final _touchScreen = useState<int>(0);
-    final _anitGlare = useState<int>(0);
     final _state = useState<int>(0);
 
     return Scaffold(
@@ -187,15 +186,6 @@ class SeconedForm extends HookWidget {
                                   ? "Has touch"
                                   : "Does Not Have touch",
                               value: _touchScreen),
-                          CustomSlider(
-                              label: "Anti Glare",
-                              max: 1,
-                              min: 0,
-                              divisions: 2,
-                              seconedLabel: _anitGlare.value == 1
-                                  ? "Has Anti-Glare"
-                                  : "Does Not Have Anti-Glare",
-                              value: _anitGlare),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,

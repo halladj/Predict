@@ -93,79 +93,87 @@ class PredictionCard extends StatelessWidget {
 //                                     ),
 //                                   ),
 
-    return Container(
-      margin: const EdgeInsets.only(top: 2.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+    return homeCubit.qrCondition
+        ? const Center(child: CircularProgressIndicator())
+        : Container(
+            margin: const EdgeInsets.only(top: 2.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 20.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
 
-                    border: Border.all(
-                      color: Colors.grey.withOpacity(0.1),
-                    ),
-                    borderRadius: BorderRadius.circular(15),
-                    //color: Color(0xffabaffa),
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                  constraints: const BoxConstraints(minHeight: 160),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 5, 40, 25),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20.0, bottom: 20.0, left: 25.0),
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(0.1),
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                          //color: Color(0xffabaffa),
+                          color: Theme.of(context).backgroundColor,
+                        ),
+                        constraints: const BoxConstraints(minHeight: 160),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(30, 5, 40, 25),
                           child: Column(
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Laptop's Price is : ",
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
-                                    // textAlign: TextAlign.start,
-                                  ),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20.0, bottom: 20.0, left: 25.0),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Laptop's Price is : ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2,
+                                          // textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
+                                      textBaseline: TextBaseline.alphabetic,
+                                      children: [
+                                        Text(
+                                          price.toStringAsFixed(2),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3,
+                                        ),
+                                        Text(
+                                          " DZD",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.baseline,
-                                textBaseline: TextBaseline.alphabetic,
-                                children: [
-                                  Text(
-                                    "${price.toStringAsFixed(2)}",
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  ),
-                                  Text(
-                                    " DZD",
-                                    style:
-                                        Theme.of(context).textTheme.headline2,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
+                              Container(
 
 //                                 height: 220,
 //                                 width: 350,
@@ -193,93 +201,102 @@ class PredictionCard extends StatelessWidget {
 //                         // ]),
 //                         color: Color(0xff00CBBF),
 
-                            height: 340,
-                            width: 500,
-                            //padding: EdgeInsets.symmetric(horizontal: 10.0,),
-                            child: const Image(
-                                image: AssetImage("assets/laptop_pricee.png"))),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                          gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: [
-                                Theme.of(context).primaryColorDark,
-                                Theme.of(context).primaryColorLight,
-                              ]),
-                          // color: Color(0xff00CBBF),
+                                  height: 340,
+                                  width: 500,
+                                  //padding: EdgeInsets.symmetric(horizontal: 10.0,),
+                                  child: const Image(
+                                      image: AssetImage(
+                                          "assets/laptop_pricee.png"))),
+                            ],
+                          ),
                         ),
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.transparent),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ))),
-                            onPressed: () async {
-                              final data =
-                                  await QrCodeApi.generateQr(pc, price);
-                              Navigator.pushNamed(context, "/generatedQR",
-                                  arguments: Arguments(
-                                      hash: data["hash"].toString(),
-                                      price: price,
-                                      laptop: pc));
-                              //Navigator.pushNamed(context, "/generatedQR");
-                            },
-                            child: const Text(
-                              "Generate QR",
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            )),
                       ),
-                      Container(
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-
-                          //color: Theme.of(context).backgroundColor,
-                        ),
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.white),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  side: const BorderSide(
-                                    color: Color(0xff00CBBF),
-                                  ),
-                                ))),
-                            onPressed: () {
-                              //Navigator.of(context).pushNamed("/");
-                              homeCubit.changePredictionFormCondition(
-                                  value: false);
-                            },
-                            child: const Text(
-                              "Back to main page",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xff00CBBF),
+                      const SizedBox(height: 20),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(15)),
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomLeft,
+                                    end: Alignment.topRight,
+                                    colors: [
+                                      Theme.of(context).primaryColorDark,
+                                      Theme.of(context).primaryColorLight,
+                                    ]),
+                                // color: Color(0xff00CBBF),
                               ),
-                            )),
-                      ),
-                    ]),
+                              child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.transparent),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ))),
+                                  onPressed: () async {
+                                    homeCubit.changeQrCodeCondition(
+                                        value: true);
+                                    true;
+                                    final data =
+                                        await QrCodeApi.generateQr(pc, price);
+                                    homeCubit.changeQrCodeCondition(
+                                        value: false);
+                                    Navigator.pushNamed(context, "/generatedQR",
+                                        arguments: Arguments(
+                                            hash: data["hash"].toString(),
+                                            price: price,
+                                            laptop: pc));
+                                    //Navigator.pushNamed(context, "/generatedQR");
+                                  },
+                                  child: const Text(
+                                    "Generate QR",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
+                                  )),
+                            ),
+                            Container(
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+
+                                //color: Theme.of(context).backgroundColor,
+                              ),
+                              child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.white),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        side: const BorderSide(
+                                          color: Color(0xff00CBBF),
+                                        ),
+                                      ))),
+                                  onPressed: () {
+                                    //Navigator.of(context).pushNamed("/");
+                                    homeCubit.changePredictionFormCondition(
+                                        value: false);
+                                  },
+                                  child: const Text(
+                                    "Back to main page",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xff00CBBF),
+                                    ),
+                                  )),
+                            ),
+                          ]),
 
 //                     //SizedBox(width: 1.0,),
 //                     Container(
@@ -293,8 +310,8 @@ class PredictionCard extends StatelessWidget {
 //                         //color: Color(0xff874FC4),
 //                         color: Colors.white,
 
-                //SizedBox(width: 1.0,),
-              ],
+                      //SizedBox(width: 1.0,),
+                    ],
 
 //                       child: Padding(
 //                         padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
@@ -333,10 +350,10 @@ class PredictionCard extends StatelessWidget {
 //                           "Generate QR code",
 //                           style: TextStyle(fontSize: 24),
 //                         )),
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
-    );
+          );
   }
 }

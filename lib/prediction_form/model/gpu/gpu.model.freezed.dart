@@ -24,16 +24,12 @@ class _$GPUTearOff {
   _GPU call(
       {String name = "",
       String brand = "",
-      double frequency = 0.0,
       String numberIdentifier = "",
-      String wordsIdentifier = "",
       int vram = 0}) {
     return _GPU(
       name: name,
       brand: brand,
-      frequency: frequency,
       numberIdentifier: numberIdentifier,
-      wordsIdentifier: wordsIdentifier,
       vram: vram,
     );
   }
@@ -50,9 +46,7 @@ const $GPU = _$GPUTearOff();
 mixin _$GPU {
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
-  double get frequency => throw _privateConstructorUsedError;
   String get numberIdentifier => throw _privateConstructorUsedError;
-  String get wordsIdentifier => throw _privateConstructorUsedError;
   int get vram => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,13 +58,7 @@ mixin _$GPU {
 abstract class $GPUCopyWith<$Res> {
   factory $GPUCopyWith(GPU value, $Res Function(GPU) then) =
       _$GPUCopyWithImpl<$Res>;
-  $Res call(
-      {String name,
-      String brand,
-      double frequency,
-      String numberIdentifier,
-      String wordsIdentifier,
-      int vram});
+  $Res call({String name, String brand, String numberIdentifier, int vram});
 }
 
 /// @nodoc
@@ -85,9 +73,7 @@ class _$GPUCopyWithImpl<$Res> implements $GPUCopyWith<$Res> {
   $Res call({
     Object? name = freezed,
     Object? brand = freezed,
-    Object? frequency = freezed,
     Object? numberIdentifier = freezed,
-    Object? wordsIdentifier = freezed,
     Object? vram = freezed,
   }) {
     return _then(_value.copyWith(
@@ -99,17 +85,9 @@ class _$GPUCopyWithImpl<$Res> implements $GPUCopyWith<$Res> {
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
-      frequency: frequency == freezed
-          ? _value.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as double,
       numberIdentifier: numberIdentifier == freezed
           ? _value.numberIdentifier
           : numberIdentifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      wordsIdentifier: wordsIdentifier == freezed
-          ? _value.wordsIdentifier
-          : wordsIdentifier // ignore: cast_nullable_to_non_nullable
               as String,
       vram: vram == freezed
           ? _value.vram
@@ -124,13 +102,7 @@ abstract class _$GPUCopyWith<$Res> implements $GPUCopyWith<$Res> {
   factory _$GPUCopyWith(_GPU value, $Res Function(_GPU) then) =
       __$GPUCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String name,
-      String brand,
-      double frequency,
-      String numberIdentifier,
-      String wordsIdentifier,
-      int vram});
+  $Res call({String name, String brand, String numberIdentifier, int vram});
 }
 
 /// @nodoc
@@ -146,9 +118,7 @@ class __$GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? brand = freezed,
-    Object? frequency = freezed,
     Object? numberIdentifier = freezed,
-    Object? wordsIdentifier = freezed,
     Object? vram = freezed,
   }) {
     return _then(_GPU(
@@ -160,17 +130,9 @@ class __$GPUCopyWithImpl<$Res> extends _$GPUCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
-      frequency: frequency == freezed
-          ? _value.frequency
-          : frequency // ignore: cast_nullable_to_non_nullable
-              as double,
       numberIdentifier: numberIdentifier == freezed
           ? _value.numberIdentifier
           : numberIdentifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      wordsIdentifier: wordsIdentifier == freezed
-          ? _value.wordsIdentifier
-          : wordsIdentifier // ignore: cast_nullable_to_non_nullable
               as String,
       vram: vram == freezed
           ? _value.vram
@@ -186,9 +148,7 @@ class _$_GPU implements _GPU {
   const _$_GPU(
       {this.name = "",
       this.brand = "",
-      this.frequency = 0.0,
       this.numberIdentifier = "",
-      this.wordsIdentifier = "",
       this.vram = 0});
 
   factory _$_GPU.fromJson(Map<String, dynamic> json) => _$$_GPUFromJson(json);
@@ -201,20 +161,14 @@ class _$_GPU implements _GPU {
   final String brand;
   @JsonKey()
   @override
-  final double frequency;
-  @JsonKey()
-  @override
   final String numberIdentifier;
-  @JsonKey()
-  @override
-  final String wordsIdentifier;
   @JsonKey()
   @override
   final int vram;
 
   @override
   String toString() {
-    return 'GPU(name: $name, brand: $brand, frequency: $frequency, numberIdentifier: $numberIdentifier, wordsIdentifier: $wordsIdentifier, vram: $vram)';
+    return 'GPU(name: $name, brand: $brand, numberIdentifier: $numberIdentifier, vram: $vram)';
   }
 
   @override
@@ -224,11 +178,8 @@ class _$_GPU implements _GPU {
             other is _GPU &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
-            const DeepCollectionEquality().equals(other.frequency, frequency) &&
             const DeepCollectionEquality()
                 .equals(other.numberIdentifier, numberIdentifier) &&
-            const DeepCollectionEquality()
-                .equals(other.wordsIdentifier, wordsIdentifier) &&
             const DeepCollectionEquality().equals(other.vram, vram));
   }
 
@@ -237,9 +188,7 @@ class _$_GPU implements _GPU {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(frequency),
       const DeepCollectionEquality().hash(numberIdentifier),
-      const DeepCollectionEquality().hash(wordsIdentifier),
       const DeepCollectionEquality().hash(vram));
 
   @JsonKey(ignore: true)
@@ -255,12 +204,7 @@ class _$_GPU implements _GPU {
 
 abstract class _GPU implements GPU {
   const factory _GPU(
-      {String name,
-      String brand,
-      double frequency,
-      String numberIdentifier,
-      String wordsIdentifier,
-      int vram}) = _$_GPU;
+      {String name, String brand, String numberIdentifier, int vram}) = _$_GPU;
 
   factory _GPU.fromJson(Map<String, dynamic> json) = _$_GPU.fromJson;
 
@@ -269,11 +213,7 @@ abstract class _GPU implements GPU {
   @override
   String get brand;
   @override
-  double get frequency;
-  @override
   String get numberIdentifier;
-  @override
-  String get wordsIdentifier;
   @override
   int get vram;
   @override
