@@ -267,30 +267,34 @@ class PredictionCard extends StatelessWidget {
                                             laptop: pc));
                                     //Navigator.pushNamed(context, "/generatedQR");
                                   },
-                                  child: const Text(
-                                    "Generate QR",
-                                    style: TextStyle(
-                                        fontSize: 18, color: Colors.white),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                                    child: const Text(
+                                      "Generate QR",
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.white),
+                                    ),
                                   )),
                             ),
                             Container(
                               height: 50,
                               decoration: const BoxDecoration(
+
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15)),
 
                                 //color: Theme.of(context).backgroundColor,
                               ),
-                              child: ElevatedButton(
+                              child: TextButton(
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all<Color>(
-                                              Colors.white),
+                                              Theme.of(context).backgroundColor),
                                       shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
                                           RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(20.0),
+                                            BorderRadius.circular(15.0),
                                         side: const BorderSide(
                                           color: Color(0xff00CBBF),
                                         ),
@@ -300,11 +304,14 @@ class PredictionCard extends StatelessWidget {
                                     homeCubit.changePredictionFormCondition(
                                         value: false);
                                   },
-                                  child: const Text(
-                                    "Back to main page",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xff00CBBF),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                                    child: const Text(
+                                      "Back to main page",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Color(0xff00CBBF),
+                                      ),
                                     ),
                                   )),
                             ),

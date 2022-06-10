@@ -169,7 +169,7 @@ class PageOne extends StatelessWidget {
                         ]),
                     // color: Color(0xff00CBBF),
                   ),
-                  child: ElevatedButton(
+                  child: TextButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.transparent),
@@ -182,9 +182,12 @@ class PageOne extends StatelessWidget {
                         homeCubit.changeButtomNavIndex(1);
                         Scaffold.of(context).openEndDrawer();
                       },
-                      child: const Text(
-                        "go to Sign in",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: const Text(
+                          "go to Sign in",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       )),
                 ),
                 Container(
@@ -197,7 +200,7 @@ class PageOne extends StatelessWidget {
                   child: ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
+                              MaterialStateProperty.all<Color>(Theme.of(context).backgroundColor),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -210,11 +213,14 @@ class PageOne extends StatelessWidget {
                         Scaffold.of(context).openEndDrawer();
                         //Navigator.pop(context);
                       },
-                      child: const Text(
-                        "Cancel",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xff00CBBF),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: const Text(
+                          "Cancel",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xff00CBBF),
+                          ),
                         ),
                       )),
                 ),
