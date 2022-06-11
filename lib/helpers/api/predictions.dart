@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:proto/favorite/favorite_model.dart';
 import 'package:proto/helpers/constants.dart';
@@ -56,7 +58,7 @@ class QrCodeApi {
             validateStatus: (status) => true,
           ));
       if (response.statusCode == 200) {
-        return double.parse(response.toString());
+        return response.data;
       } else {
         print(response);
         throw Exception('this is an exception mate ${response.statusCode}');

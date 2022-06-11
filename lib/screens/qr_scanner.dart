@@ -1,9 +1,13 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
+import 'package:proto/components/prediction_card.dart';
 import 'package:proto/helpers/api/predictions.dart';
+import 'package:proto/prediction_form/model/cpu/cpu.model.dart';
+import 'package:proto/prediction_form/model/gpu/gpu.model.dart';
 import 'package:proto/prediction_form/model/pc.model.dart';
 import 'package:proto/screens/generated_qr_code.dart';
+import 'package:proto/screens/prediction.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRCodeScanner extends StatefulWidget {
@@ -75,11 +79,42 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
         data = result?.code.toString();
       });
       if (condition == 1) {
-        price = await QrCodeApi.scanQrCode(hash: data);
+        var response = await QrCodeApi.scanQrCode(hash: data);
+        price = double.parse(response["price"]);
         condition++;
-        Navigator.pushNamed(context, "/generatedQR",
-            arguments: Arguments(
-                hash: data.toString(), price: price, laptop: const PcInfo()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Prediction(
+                    pc: PcInfo(
+                        brand: response["brand"],
+                        cpu: CPU(
+                          brand: response["cpu_brand"],
+                          family: response["cpu_family"],
+                          modifier: response["cpu_modifier"],
+                          numberIdentifier: response["cpu_number_identifier"],
+                        ),
+                        gpu: GPU(
+                            brand: response["gpu_brand"],
+                            numberIdentifier:
+                                response["cpu_number_identifier"].toString(),
+                            vram: response["gpu_vram"]),
+                        ram: response["ram"],
+                        ramType: response["ram_type"],
+                        ramFrequency:
+                            double.parse(response["ram_frequency"].toString()),
+                        hdd: response["hdd"],
+                        ssd: response["ssd"],
+                        screenSize:
+                            double.parse(response["screen_size"].toString()),
+                        screenResolution: response["screen_resolution"],
+                        screenRefreshRate: response["screen_refresh_rate"],
+                        state: response["state"],
+                        touchScreen: response["touch_screen"]),
+                    price: price)));
+        //Navigator.pushNamed(context, "/generatedQR",
+        //    arguments: Arguments(
+        //        hash: data.toString(), price: price, laptop: const PcInfo()));
       }
     });
     //print("fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck");
@@ -125,16 +160,15 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
                   setState(() {});
                 },
                 icon: FutureBuilder<bool?>(
-                  future: controller?.getFlashStatus(),
-                  builder: (context, snapshot) {
-                    if (snapshot.data != null) {
-                      return Icon(
-                          snapshot.data! ? Icons.flash_on : Icons.flash_off);
-                    } else {
-                      return Container();
-                    }
-                  },
-                )),
+                    future: controller?.getFlashStatus(),
+                    builder: (context, snapshot) {
+                      if (snapshot.data != null) {
+                        return Icon(
+                            snapshot.data! ? Icons.flash_on : Icons.flash_off);
+                      } else {
+                        return Container();
+                      }
+                    })),
             IconButton(
                 onPressed: () async {
                   await controller?.flipCamera();
